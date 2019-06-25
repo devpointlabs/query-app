@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :quizzes, through: :submissions
-  has_many :submissions
+  has_many :submissions 
 
 end
