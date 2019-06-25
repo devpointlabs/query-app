@@ -1,0 +1,3 @@
+class SubmissionChoice < ApplicationRecord
+  
+end

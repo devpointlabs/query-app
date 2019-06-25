@@ -3,9 +3,7 @@
 one:
   field: MyText
   user: one
-  quiz: one
 
 two:
   field: MyText
   user: two
-  quiz: two
