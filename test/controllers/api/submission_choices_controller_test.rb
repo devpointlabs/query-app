@@ -11,13 +11,18 @@ class Api::SubmissionChoicesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get create" do
+    get api_submission_choices_create_url
+    assert_response :success
+  end
+
   test "should get update" do
     get api_submission_choices_update_url
     assert_response :success
   end
 
-  test "should get create" do
-    get api_submission_choices_create_url
+  test "should get destroy" do
+    get api_submission_choices_destroy_url
     assert_response :success
   end
 
