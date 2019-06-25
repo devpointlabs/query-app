@@ -14,3 +14,5 @@ class Api::SubmissionChoicesController < ApplicationController
   def destroy
   end
 end
+
+
