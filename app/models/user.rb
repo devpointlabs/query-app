@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :quizzes, through: :submissions
+  has_many :submissions
+
 end
