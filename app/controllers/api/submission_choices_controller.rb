@@ -1,10 +1,14 @@
 class Api::SubmissionChoicesController < ApplicationController
-  before_action :set_choice
   before_action :set_submission
   before_action :set_submission_choice
 
   def index
-    render json: @choice.submission.submissions_choices
+    render json: @submission.submissions_choices
+  end
+  
+  def sho
+    render json: @submission.submission_choices
+    
   end
 
   private 
@@ -14,9 +18,7 @@ class Api::SubmissionChoicesController < ApplicationController
   def set_submission
     @submission = Submission.find(params[:submission_id])
   end 
-  def set_choice
-    @choice = Choice.find(params[:choice_id])
-  end 
+  
 
 
 end
