@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  boolean_q: MyString
+  multiple_q: MyString
+  open_q: MyString
+  quiz: one
+  choices: 
+
+two:
+  name: MyString
+  boolean_q: MyString
+  multiple_q: MyString
+  open_q: MyString
+  quiz: two
+  choices: 
