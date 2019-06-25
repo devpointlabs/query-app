@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_25_201106) do
+ActiveRecord::Schema.define(version: 2019_06_25_204708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_06_25_201106) do
     t.string "correct_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "questions_id"
+    t.index ["questions_id"], name: "index_choices_on_questions_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_06_25_201106) do
     t.string "open_q"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quizzes_id"
+    t.index ["quizzes_id"], name: "index_questions_on_quizzes_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -40,6 +44,10 @@ ActiveRecord::Schema.define(version: 2019_06_25_201106) do
   create_table "submission_choices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "submissions_id"
+    t.bigint "choices_id"
+    t.index ["choices_id"], name: "index_submission_choices_on_choices_id"
+    t.index ["submissions_id"], name: "index_submission_choices_on_submissions_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -47,6 +55,8 @@ ActiveRecord::Schema.define(version: 2019_06_25_201106) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quizzes_id"
+    t.index ["quizzes_id"], name: "index_submissions_on_quizzes_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
@@ -82,5 +92,10 @@ ActiveRecord::Schema.define(version: 2019_06_25_201106) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "choices", "questions", column: "questions_id"
+  add_foreign_key "questions", "quizzes", column: "quizzes_id"
+  add_foreign_key "submission_choices", "choices", column: "choices_id"
+  add_foreign_key "submission_choices", "submissions", column: "submissions_id"
+  add_foreign_key "submissions", "quizzes", column: "quizzes_id"
   add_foreign_key "submissions", "users"
 end
