@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :questions
     end
     resources :questions do
-      resources :choices 
+      resources :choices
     end
   end
 end
