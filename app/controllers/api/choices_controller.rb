@@ -1,23 +1,25 @@
 class Api::ChoicesController < ApplicationController
-  before_action :choice, only: [:index, :show]
+  before_action :authenticate_user!
+  before_action :set_choice
+  before_action :choice, only: [:show]
 
   def index
+    @choices = @question.choices.all
     render json: @choices
   end
 
   def show 
-    render json: @choices
   end
   
   def new 
   end
 
   def create
-    @choice = Choice.new(choice_params)
+    choice = @question.choices.new(choice_params)
     if @choice.save
-      render json: @article, status: :created, location: //something
+      render json: choice
     else
-      render json: @choices.errors, status: :unprocessable_entity
+      render json: @choices.errors, status: 422
     end 
   end
 
@@ -26,7 +28,7 @@ class Api::ChoicesController < ApplicationController
 
       render json: @article
     else
-      render json: @article.errors, status: :unprocessable_entity
+      render json: @choice.errors, status: 422
     end
   end
 
@@ -34,13 +36,16 @@ class Api::ChoicesController < ApplicationController
     @choice.destroy
   end
 
-private 
+  private 
 
-def set_choice
-  @choices = Choice.find(params[:id])
-end
+  def set_choice
+    @choices = Choice.find(params[:id])
+  end
 
-def choices_params
-  params.require(:choice).permit(:answer, :correct, //may need question_id) 
-
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+  def choices_params
+    params.require(:choice).permit(:answer, :correct, //may need question_id) 
+  end
 end
