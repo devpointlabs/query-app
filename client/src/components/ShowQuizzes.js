@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const ShowQuizzes = () => {
-    
+
     const [ quiz, setQuiz ] = useState("")
 
     useEffect( () => {
@@ -14,7 +14,7 @@ const ShowQuizzes = () => {
             setQuiz(res.data);
           })
       }, [])
-    
+
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
             <Card.Group>
@@ -27,8 +27,8 @@ const ShowQuizzes = () => {
           </Card.Group>
         ))
       }
-    
-    
+
+
     return (
         <>
         {renderQuizzes()}
