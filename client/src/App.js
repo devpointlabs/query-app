@@ -6,6 +6,7 @@ import Login from './components/Login';
 import QuestionForm from './components/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
+import TakeQuiz from './components/TakeQuiz';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
@@ -17,10 +18,12 @@ const App = () => (
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/question_form" component={QuestionForm} />
+          <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/quizzes/quiz_id/take_quiz" component={TakeQuiz} />
           <Route component={NoMatch} />
+
         </Switch>
       </Container>
     </FetchUser>
