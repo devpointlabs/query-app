@@ -39,6 +39,6 @@ class Api::QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
   def quiz_params
-    params.require(:quizzes).permit(:name)
+    params.require(:quiz).permit(:name)
   end
 end
