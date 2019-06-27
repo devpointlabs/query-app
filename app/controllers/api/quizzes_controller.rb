@@ -2,7 +2,7 @@ class Api::QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :update, :create, :destroy]
 
   def index
-    render json: current_user.quizzes
+    render json: Quiz.all
   end
 
   def show

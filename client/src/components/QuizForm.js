@@ -1,34 +1,50 @@
-import React, { useState, } from "react";
-import axios from "axios";
-import { Form, } from "semantic-ui-react";
-import { useFormInput } from "../hooks/useFormInput";
+import React, { useState, useEffect, } from 'react'
+import { Form, Button, } from "semantic-ui-react"
+import axios from 'axios'
+
 
 const QuizForm = (props) => {
- const name = useFormInput("");
+ const [name, setName] = useState("");
 
  const handleSubmit = (e) => {
    e.preventDefault();
-   axios.post("/api/quizzes", { name: name.value, })
-     .then( res => {
-       props.add(res.data);
-       props.toggleForm();
-     })
- };
+    axios.post(`/api/quizzes/${props.match.params.id}`, { quiz: { name, } })
+    .then( res => {
+      setName(res.data)
+    })
 
-   return (
-     <Form onSubmit={handleSubmit}>
-       <Form.Group widths="equal">
-         <Form.Input
-           label="Name"
-           placeholder="Name"
-           name="name"
-           required
-           { ...name }
-         />
-       </Form.Group>
-       <Form.Button>Submit</Form.Button>
-     </Form>
-   );
- };
+
+
+ }
+
+ const handleChange = (e) => {
+   setName( e.target.value);
+
+   
+
+ }
+
+
+   return(
+
+     <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Input
+        placeholder="quiz"
+        label="quiz"
+        value={name}
+        onChange={handleChange}
+          />
+
+      <Form.Button color="purple">Submit</Form.Button>
+      </Form>
+      
+
+
+     </>
+
+   )
+
+}
 
 export default QuizForm;
