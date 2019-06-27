@@ -1,38 +1,57 @@
 import React, {useState, useEffect, } from 'react';
-import {Card, Header,} from 'semantic-ui-react';
 import axios from 'axios';
+import {Card, Header, Segment, List, Button, } from 'semantic-ui-react';
+import QuizForm from "./QuizForm";
 
 
-
-const ShowQuizzes = () => {
+const ShowQuizzes = (props) => {
     
-    const [ quizzes, setQuiz ] = useState("")
+    const [ quizzes, setQuizzes ] = useState([])
+    const [showForm, setShowForm] = useState(false);
 
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
-            setQuiz(res.data);
+            setQuizzes(res.data);
           })
       }, [])
-    
+
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
+          <Segment key={quiz.id}>
             <Card.Group>
-            <Card key={quiz.id}>
+            <Card>
               <Card.Content>
                 <Card.Header> {quiz.name} </Card.Header>
                 {/* <Card.Description> {quiz.description} </Card.Description> */}
               </Card.Content>
             </Card>
           </Card.Group>
+          </Segment>
         ))
       }
     
     
     return (
-        <>
-        {renderQuizzes()}
-        </>
+      <>
+        <Header as="h1">My Quizzes</Header>
+        <br />
+        { showForm && 
+          <QuizForm 
+            toggleForm={setShowForm} 
+            add={ quiz => setQuizzes([...quizzes, quiz])} 
+          /> 
+        }
+        <Button onClick={ () => setShowForm(!showForm) }>
+          { showForm ? "Close Form" : "Show Form"}
+        </Button>
+        <br />
+        <List>
+          {renderQuizzes()}
+        </List>
+        
+        
+      </>
     )
 }
 
