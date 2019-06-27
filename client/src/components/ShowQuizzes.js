@@ -1,30 +1,32 @@
 import React, {useState, useEffect, } from 'react';
-import {Card, Header,} from 'semantic-ui-react';
+import {Card, Header, Segment, List} from 'semantic-ui-react';
 import axios from 'axios';
 
 
 
-const ShowQuizzes = () => {
+const ShowQuizzes = (props) => {
     
-    const [ quiz, setQuiz ] = useState("")
+    const [ quizzes, setQuizzes ] = useState([])
 
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
-            setQuiz(res.data);
+            setQuizzes(res.data);
           })
       }, [])
-    
+
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
+          <Segment key={quiz.id}>
             <Card.Group>
-            <Card key={quiz.id}>
+            <Card>
               <Card.Content>
                 <Card.Header> {quiz.name} </Card.Header>
                 {/* <Card.Description> {quiz.description} </Card.Description> */}
               </Card.Content>
             </Card>
           </Card.Group>
+          </Segment>
         ))
       }
     
