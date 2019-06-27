@@ -36,6 +36,9 @@ class Api::QuestionsController < ApplicationController
   end
 
   private 
+  def set_question
+    @question = @quiz.questions.find(params[:id])
+  end
 
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
