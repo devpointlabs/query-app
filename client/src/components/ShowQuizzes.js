@@ -1,4 +1,4 @@
-import React, {useState, useEfffect, } from 'react';
+import React, {useState, useEffect, } from 'react';
 import {Card, Header,} from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -6,12 +6,12 @@ import axios from 'axios';
 
 const ShowQuizzes = () => {
     
-    state = [ quiz, setQuiz ] = useState("")
+    const [ quiz, setQuiz ] = useState("")
 
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
-            setBlogs(res.data);
+            setQuiz(res.data);
           })
       }, [])
     
