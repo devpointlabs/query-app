@@ -1,18 +1,26 @@
 import React, { useState, useEffect, } from 'react'
 import { Form, Button, } from "semantic-ui-react"
+import axios from 'axios'
 
 
-const QuestionForm = () => {
- const [question, setQuestion] = useState("");
+const QuestionForm = (props) => {
+ const [name, setName] = useState("");
 
  const handleSubmit = (e) => {
-   e.preventDefault()
+   e.preventDefault();
+    axios.post(`/api/quizzes/${props.match.params.id}/questions`, { question: { name, } })
+    .then( res => {
+      setName(res.data)
+    })
+
 
 
  }
 
  const handleChange = (e) => {
-   setQuestion( e.target.value)
+   setName( e.target.value);
+
+   
 
  }
 
@@ -20,17 +28,17 @@ const QuestionForm = () => {
    return(
 
      <>
-     <Form onSubmit={handleSubmit}>
-     <Form.Input
-     placeholder="question"
-     label="question"
-     value={question}
-     onchange={handleChange}
-      />
+      <Form onSubmit={handleSubmit}>
+        <Form.Input
+        placeholder="question"
+        label="question"
+        value={name}
+        onChange={handleChange}
+          />
 
-     <Form.Button>submit</Form.Button>
-     </Form>
-
+      <Form.Button color="purple">Submit</Form.Button>
+      </Form>
+      
 
 
      </>

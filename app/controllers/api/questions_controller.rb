@@ -12,10 +12,13 @@ class Api::QuestionsController < ApplicationController
   end
 
   def create
+
      question = @quiz.questions.new(question_params)
      if question.save 
+      
       render json: question 
      else 
+      
       render json: question.errors, status: 422
      end
   end
@@ -40,6 +43,12 @@ class Api::QuestionsController < ApplicationController
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
   end
+  
+  def set_question
+    @question = @quiz.questions.find(params[:id])
+  end
+
+ 
 
   def question_params
     params.require(:question).permit(:name)
