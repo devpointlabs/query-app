@@ -3,23 +3,26 @@ import { Form, Button, } from "semantic-ui-react"
 import axios from 'axios'
 
 
-const QuestionForm = (props) => {
- const [name, setName] = useState({});
+const QuizForm = (props) => {
+ const [name, setName] = useState("");
 
- const handleSubmit = (e, history) => {
+ const handleSubmit = (e) => {
    e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, } )
+    axios.post(`/api/quizzes/${props.match.params.id}`, { quiz: { name, } })
     .then( res => {
       setName(res.data)
-      props.history.push("/")
     })
- }
 
+
+
+ }
 
  const handleChange = (e) => {
    setName( e.target.value);
- }
 
+   
+
+ }
 
 
    return(
@@ -27,16 +30,14 @@ const QuestionForm = (props) => {
      <>
       <Form onSubmit={handleSubmit}>
         <Form.Input
-        placeholder="question"
-        label="question"
+        placeholder="quiz"
+        label="quiz"
         value={name}
         onChange={handleChange}
           />
 
       <Form.Button color="purple">Submit</Form.Button>
       </Form>
-
-     
       
 
 
@@ -46,4 +47,4 @@ const QuestionForm = (props) => {
 
 }
 
-export default QuestionForm;
+export default QuizForm;
