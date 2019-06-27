@@ -1,5 +1,5 @@
 import React, {useState, useEffect, } from 'react';
-import {Card, Header, Segment, List, Button, Container, Grid,   } from 'semantic-ui-react';
+import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
@@ -10,6 +10,7 @@ import ReactDOM from 'react-dom';
 const ShowQuizzes = (props) => {
     
     const [ quizzes, setQuizzes ] = useState([])
+    const [showForm, setShowForm] = useState(false);
 
     useEffect( () => {
         axios.get("/api/quizzes")
@@ -21,7 +22,9 @@ const ShowQuizzes = (props) => {
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
           <>
+          
           <Container>
+            
             <Segment key={quiz.id}>
                 <Card.Group>
                 <Card>
