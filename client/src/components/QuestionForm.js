@@ -4,25 +4,22 @@ import axios from 'axios'
 
 
 const QuestionForm = (props) => {
- const [name, setName] = useState("");
+ const [name, setName] = useState({});
 
- const handleSubmit = (e) => {
+ const handleSubmit = (e, history) => {
    e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`, { question: { name, } })
+    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, } )
     .then( res => {
       setName(res.data)
+      props.history.push("/")
     })
-
-
-
  }
+
 
  const handleChange = (e) => {
    setName( e.target.value);
-
-   
-
  }
+
 
 
    return(
@@ -38,6 +35,8 @@ const QuestionForm = (props) => {
 
       <Form.Button color="purple">Submit</Form.Button>
       </Form>
+
+     
       
 
 
