@@ -5,17 +5,17 @@ import axios from 'axios';
 
 const TakeQuiz = (props) => {
     
-    const [ questions, setQuestions ] = useState([])
+    const [ question, setQuestion ] = useState({})
 
-    // useEffect( (props) => {
-    //     axios.get(`/api/quizzes/${props.match.params.id}/questions/${id}`)
-    //       .then( res => {
-    //         setQuestions(res.data);
-    //       })
-    //   }, [])
+    useEffect( (props) => {
+        axios.get(`/api/quizzes/${props.match.params.id}/questions/${id}`, {...props.question})
+          .then( res => {
+            setQuestion(res.data);
+          })
+      }, [])
 
       const renderQuestions = () => {
-        return questions.map( question => (
+        return question.map( question => (
           <Segment key={question.id}>
             <Card.Group>
             <Card>
