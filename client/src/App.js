@@ -21,7 +21,7 @@ const App = () => (
           <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/quizzes/take" component={TakeQuiz} />
+          <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
           <Route component={NoMatch} />
 
         </Switch>

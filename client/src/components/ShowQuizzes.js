@@ -3,7 +3,6 @@ import {Card, Header, Segment, List, Button, Container, Grid,   } from 'semantic
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
-import ReactDOM from 'react-dom';
 
 
 
@@ -30,10 +29,12 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={TakeQuiz} /> } >
+               <Link to={`/quizzes/${quiz.id}/take`}>
+               <Button style={{backgroundColor: "#4F1A9E", color: "white",}} >
                 
                     Take Quiz
                 </Button>
+                </Link>
             </Card.Group>
             </Segment>
           </Container>
