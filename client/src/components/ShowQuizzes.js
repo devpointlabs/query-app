@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const ShowQuizzes = () => {
     
-    const [ quiz, setQuiz ] = useState("")
+    const [ quizzes, setQuiz ] = useState("")
 
     useEffect( () => {
         axios.get("/api/quizzes")
