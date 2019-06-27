@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
+import TakeQuiz from './components/TakeQuiz';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
@@ -18,7 +19,9 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/quizzes/quiz_id/take_quiz" component={TakeQuiz} />
           <Route component={NoMatch} />
+
         </Switch>
       </Container>
     </FetchUser>
