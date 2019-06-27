@@ -3,6 +3,7 @@ import { Form, Button, } from "semantic-ui-react"
 
 
 const QuestionForm = () => {
+<<<<<<< HEAD
   const [question, setQuestion] = useState("");
 
   const handleSubmit = (e) => {
@@ -41,6 +42,8 @@ const QuestionForm = () => {
 
 export default QuestionForm;
 
+=======
+>>>>>>> 9486450e2810a8293c39485b434b21271cd3a0ed
  const [question, setQuestion] = useState("");
 
  const handleSubmit = (e) => {
@@ -77,4 +80,8 @@ export default QuestionForm;
 
 }
 
+<<<<<<< HEAD
 export default QuestionForm;
+=======
+export default QuestionForm;
+>>>>>>> 9486450e2810a8293c39485b434b21271cd3a0ed

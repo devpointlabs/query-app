@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -22,3 +23,21 @@ User.create(
 end
 
 puts "100 Users Seeded"
+=======
+User.create(
+    email: 'test@test.com',
+    password: 'password'
+  )
+  
+  99.times do
+    User.create(
+      name: Faker::Name.name,
+      email: Faker::Internet.email,
+      nickname: Faker::Creature::Cat.name,
+      password: "password",
+      image: Faker::Avatar.image("name", '100x400', 'png', 'set4')
+    )
+  end
+  
+  puts "100 Users Seeded"
+>>>>>>> 9486450e2810a8293c39485b434b21271cd3a0ed
