@@ -8,7 +8,9 @@ const Home = () => {
     <Header as='h1'> DevPoint Labs - Knowledge Check</Header>
     <Container>
       <Header as='h2'> Quizzes Assigned to Me </Header>
-      
+      <div>
+      {ShowQuizzes()}
+      </div>
 
     </Container>
 
