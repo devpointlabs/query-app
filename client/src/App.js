@@ -4,7 +4,6 @@ import NoMatch from './components/NoMatch';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import QuestionForm from './components/QuestionForm';
-import ShowQuestion from './components/ShowQuestion';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
@@ -22,7 +21,6 @@ const App = () => (
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
-          <ProtectedRoute exact path="/quizzes/:id/show_question" component={ShowQuestion} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/take" component={TakeQuiz} />

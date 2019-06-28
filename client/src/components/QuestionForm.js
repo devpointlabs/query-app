@@ -36,8 +36,6 @@ const QuestionForm = (props) => {
       <Form.Button color="purple">Submit</Form.Button>
       </Form>
 
-     
-      
 
 
      </>
