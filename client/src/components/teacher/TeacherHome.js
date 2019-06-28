@@ -3,12 +3,12 @@ import axios from "axios";
 import { Form, } from "semantic-ui-react";
 import { useFormInput } from "../../hooks/useFormInput";
 
-const QuizForm = (props) => {
+const TeacherHome = (props) => {
  const name = useFormInput("");
 
  const handleSubmit = (e) => {
    e.preventDefault();
-   axios.post("/api/quizzes", { name: name.value, })
+   axios.post("/api/teacher-dash", { name: name.value, })
      .then( res => {
        props.add(res.data);
        props.toggleForm();
@@ -31,4 +31,4 @@ const QuizForm = (props) => {
    );
  };
 
-export default QuizForm;
+export default TeacherHome;

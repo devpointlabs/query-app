@@ -26,7 +26,7 @@ class Api::ChoicesController < ApplicationController
   def update
     if @choice.update(choice_params)
 
-      render json: @article
+      render json: @choice
     else
       render json: @choice.errors, status: 422
     end
@@ -49,3 +49,4 @@ class Api::ChoicesController < ApplicationController
     params.require(:choice).permit(:answer, :correct, //may need question_id) 
   end
 end
+
