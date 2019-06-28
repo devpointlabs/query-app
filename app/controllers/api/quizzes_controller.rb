@@ -1,6 +1,6 @@
 class Api::QuizzesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz, only: [:show, :update, :create, :destroy]
+  before_action :set_quiz, only: [:show, :update, :destroy]
 
   def index
     render json: Quiz.all
@@ -11,7 +11,7 @@ class Api::QuizzesController < ApplicationController
   end
 
   def create
-    quiz = current_user.quizzes.new(quiz_params)
+    quiz = Quiz.new(quiz_params)
 
     if quiz.save
       render json: quiz
