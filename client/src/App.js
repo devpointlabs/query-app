@@ -25,6 +25,7 @@ const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
           <Route exact path="/quizzes/new" component={QuizForm} />
+          {/* <Route exact path="/questions/:id/choices" component={Choice} /> */}
           <Route component={NoMatch} />
 
         </Switch>

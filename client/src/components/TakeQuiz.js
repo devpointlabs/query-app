@@ -1,21 +1,12 @@
 import React, {useState, useEffect, } from 'react';
-import {Card, Header, Segment, List, Button, Container } from 'semantic-ui-react';
+import {Card, Header, Segment, List, Button, Container, Input, Card } from 'semantic-ui-react';
 import axios from 'axios';
 
 
 const ShowQuestions = (props) => {
     
     const [ questions, setQuestions ] = useState([])
-    // const [ quizzes, setQuizzes ] = useState([])
-
-
-    // useEffect( () => {
-    //     axios.get("/api/quizzes")
-    //       .then( res => {
-    //         setQuizzes(res.data);
-    //       })
-    //   }, [])  
-
+    const [ choice, setChoice ] = useState([])
 
     useEffect( () => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
@@ -24,34 +15,57 @@ const ShowQuestions = (props) => {
           })
       }, [])
 
+    useEffect( () => {
+      axios.post(`/api/questions/${props.match.params.id}/choices`)
+        .then( res => {
+          setChoice(res.data);
+        })
+    }, [] )
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      axios.post(`/api/questions/${props.match.params.id}/choices`)
+        .then( res => {
+          choice(res.data);
+        })
+    }
+
+    const handleChange = (e) => {
+      setChoice(e.target.value);
+    }
+  
+
       const renderQuestions = () => {
         return questions.map( questions => (
           <>
-          <Container>
             <Segment key={questions.id}>
-                <Card.Group>
-                <Card>
-                <Card.Content>
-                    <Card.Header> {questions.name} </Card.Header>
-                    {/* <Card.Description> {questions.description} </Card.Description> */}
-                </Card.Content>
-                </Card>
-            </Card.Group>
+            <p> - {questions.name}</p>
             </Segment>
-          </Container>
           <br />
           <br />
           <br />
-
           </>
         ))
+      }
+
+      const renderAnswerBox = () => {
+
+        return (
+          <Input> {handleChange} </Input>
+          <Button onClick={handleSubmit}> Submit Answer</Button>
+        )
       }
     
     
     return (
         <>
-
+    <div>
     {renderQuestions()}
+    </div>
+    <br />
+    <div>
+      {renderAnswerBox()}
+    </div>
        
         </>
     )
