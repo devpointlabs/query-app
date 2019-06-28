@@ -8,6 +8,7 @@ import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
 import Student from './components/Student';
+import Choice from './components/Choice';
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -24,7 +25,8 @@ const App = () => (
           <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/quizzes/quiz_id/take_quiz" component={TakeQuiz} />
+          <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
+          <Route exact path="/quizzes/:id/choice" component={Choice} />
           <Route exact path="/quizzes/new" component={QuizForm} />
           <Route exact path="/student" component={Student} />
           <Route exact path="/teacherdash" component={TeacherHome} />
