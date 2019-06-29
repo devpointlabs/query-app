@@ -8,6 +8,8 @@ import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
 import ShowTeacherChoices from './components/ShowTeacherChoices'
+import Choice from './components/Choice'
+import Student from './components/Student'
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ShowAnswer from './components/ShowAnswer'
