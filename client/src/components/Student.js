@@ -3,7 +3,7 @@ import axios from "axios";
 import QuizForm from "./QuizForm";
 import { List, Header, Segment, Button, } from "semantic-ui-react";
 
-const Students = (props) => {
+const Student = (props) => {
   const [quizzes, setQuizzes] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
@@ -40,4 +40,4 @@ const Students = (props) => {
   );
 };
 
-export default Students
+export default Student;
