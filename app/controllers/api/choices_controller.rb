@@ -1,7 +1,8 @@
 class Api::ChoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_choice
-  before_action :choice, only: [:show]
+  before_action :set_choice, only: [:show]
+  before_action :set_question
+  
 
   def index
     @choices = @question.choices.all
@@ -46,6 +47,6 @@ class Api::ChoicesController < ApplicationController
     @question = Question.find(params[:question_id])
   end
   def choices_params
-    params.require(:choice).permit(:answer, :correct, //may need question_id) 
+    params.require(:choice).permit(:answer, :correct, :question_id) 
   end
 end
