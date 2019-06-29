@@ -7,10 +7,10 @@ import QuestionForm from './components/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
-import Student from './components/Student';
-import Choice from './components/Choice';
+import ShowTeacherChoices from './components/ShowTeacherChoices'
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
+import ShowAnswer from './components/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
@@ -23,6 +23,8 @@ const App = () => (
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
+          <ProtectedRoute exact path="/quizzes/:id/show_answer" component={ShowAnswer} />
+          <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/take" component={TakeQuiz} />

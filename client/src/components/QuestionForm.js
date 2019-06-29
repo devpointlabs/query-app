@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 const QuestionForm = (props) => {
- const [name, setName] = useState({});
+ const [name, setName] = useState('');
 
  const handleSubmit = (e, history) => {
    e.preventDefault();
@@ -36,8 +36,8 @@ const QuestionForm = (props) => {
       <Form.Button color="purple">Submit</Form.Button>
       </Form>
 
-     
-      
+
+
 
 
      </>
