@@ -40,10 +40,11 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={TakeQuiz} /> } >
-
+                <Link to={`/quizzes/${quiz.id}/questions`}>
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
                     Take Quiz
                 </Button>
+                </Link>
             <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
