@@ -32,10 +32,11 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={TakeQuiz} /> } >
-
-                    Take Quiz
+                <Link to={`/quizzes/${quiz.id}/questions`} > 
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} >
+                  Take Quiz
                 </Button>
+                </Link>
             </Card.Group>
             </Segment>
           </Container>

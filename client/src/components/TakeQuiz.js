@@ -7,34 +7,12 @@ import Choice from './Choice';
 const ShowQuestions = (props) => {
     
     const [ questions, setQuestions ] = useState([])
-    // const [ choice, setChoice ] = useState([])
-
     useEffect( () => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
           .then( res => {
             setQuestions(res.data);
           })
       }, [])
-
-    // useEffect( () => {
-    //   axios.post(`/api/questions/${props.match.params.id}/choices`)
-    //     .then( res => {
-    //       setChoice(res.data);
-    //     })
-    // }, [] )
-
-    // const handleSubmit = (e) => {
-    //   e.preventDefault();
-    //   axios.post(`/api/questions/${props.match.params.id}/choices`)
-    //     .then( res => {
-    //       choice(res.data);
-    //     })
-    // }
-
-    // const handleChange = (e) => {
-    //   setChoice(e.target.value);
-    // }
-  
 
       const renderQuestions = () => {
         return questions.map( questions => (
@@ -49,37 +27,11 @@ const ShowQuestions = (props) => {
         ))
       }
 
-      // const renderChoices = () => {
-
-      //   return choice.map ( c => (
-      //     <>
-      //     <Segment key={c.id}>
-      //     <Card>
-      //       <Card.Content>
-      //         <Card.Header> #{c.id} </Card.Header>
-      //         <Card.Description> 
-      //           <Radio label={c.name}/>
-      //         </Card.Description>
-      //       </Card.Content>
-      //     </Card>
-      //     </Segment>
-      //     </>
-        
-        
-      //     )
-      //   )
-      // }
-    
-    
     return (
         <>
     <div>
     {renderQuestions()}
     </div>
-    <div>
-      <Choice/>
-    </div>
-       
         </>
     )
 }

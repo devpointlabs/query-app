@@ -13,6 +13,7 @@ import Student from './components/Student'
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ShowAnswer from './components/ShowAnswer'
+import ShowQuestion from './components/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
@@ -29,12 +30,13 @@ const App = () => (
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
+          <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
           {/* <Route exact path="/quizzes/:id/choice" component={Choice} /> */}
           <Route exact path="/quizzes/new" component={QuizForm} />
           <Route exact path="/questions/:id/choices" component={Choice} />
           <Route exact path="/student" component={Student} />
           <Route exact path="/teacherdash" component={TeacherHome} />
+          <Route exact path="/quizzes/:id/questions/" component={ShowQuestion} />
           <Route component={NoMatch} />
 
         </Switch>
