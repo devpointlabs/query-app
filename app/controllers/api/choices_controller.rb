@@ -39,14 +39,14 @@ class Api::ChoicesController < ApplicationController
   private 
 
   def set_choice
-    @choices = Choice.find(params[:id])
+    @choice = @question.choices.find(params[:id])
   end
 
   def set_question
     @question = Question.find(params[:question_id])
   end
   def choices_params
-    params.require(:choice).permit(:answer, :correct, //may need question_id) 
+    params.require(:choice).permit(:answer, :correct) 
   end
 end
 

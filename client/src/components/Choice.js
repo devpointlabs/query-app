@@ -9,12 +9,12 @@ const Choice = (props) => {
     const [choice, setChoice] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
-    useEffect( () => {
-        axios.get("/api/choice")
-          .then( res => {
-            setChoice(res.data);
-          })
-      }, [])
+    // useEffect( () => {
+    //     axios.get(`/api/questions/${props.match.params.id}/choices`)
+    //       .then( res => {
+    //         setChoice(res.data);
+    //       })
+    //   }, [])
 
       const renderChoice = () => {
         return choice.map( c => (
@@ -48,7 +48,7 @@ const Choice = (props) => {
     
     return (
         <>
-
+      <h2> hey</h2>
     {renderChoice()}
        
         </>
