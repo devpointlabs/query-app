@@ -1,36 +1,55 @@
 import React, { useState, useEffect, } from 'react'
-import { Form, Button, } from "semantic-ui-react"
+import { Form, } from "semantic-ui-react"
 import axios from 'axios'
 
 
 const QuestionForm = (props) => {
  const [name, setName] = useState('');
+ const [correctAnswer, setCorrectAnswer] = useState('')
 
  const handleSubmit = (e, history) => {
    e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, } )
-    .then( res => {
-      setName(res.data)
-      props.history.push("/")
+    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name,   } )
+    .then( ques => {
+      setName(ques.data)
+      return axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { correctAnswer, } )
+        .then( res => {
+          setCorrectAnswer(res.data)
+        props.history.push(`/`)
+      })
     })
  }
 
 
- const handleChange = (e) => {
+
+
+ const handleQuestionChange = (e) => {
    setName( e.target.value);
  }
+
+ const handleAnswersChange = (e) => {
+  setCorrectAnswer( e.target.value);
+}
 
 
 
    return(
 
      <>
-      <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
         <Form.Input
         placeholder="question"
         label="question"
         value={name}
-        onChange={handleChange}
+        onChange={handleQuestionChange}
+          />
+
+        
+        <Form.Input 
+        placeholder="correct answer"
+        label="correct answer"
+        value={correctAnswer}
+        onChange={handleAnswersChange}
           />
 
       <Form.Button color="purple">Submit</Form.Button>
