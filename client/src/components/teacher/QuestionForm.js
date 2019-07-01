@@ -4,19 +4,15 @@ import axios from 'axios'
 
 
 const QuestionForm = (props) => {
- const [name, setName] = useState('');
- const [correctAnswer, setCorrectAnswer] = useState('')
+ const [name, setName] = useState([]);
+ const [correctAnswer, setCorrectAnswer] = useState([])
 
  const handleSubmit = (e, history) => {
    e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name,   } )
+    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, correct_answer: correctAnswer, } )
     .then( ques => {
       setName(ques.data)
-      return axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { correctAnswer, } )
-        .then( res => {
-          setCorrectAnswer(res.data)
-        props.history.push(`/`)
-      })
+      
     })
  }
 
