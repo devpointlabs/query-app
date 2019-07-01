@@ -14,9 +14,17 @@ const ShowQuizzes = (props) => {
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
+            console.log(res)
             setQuizzes(res.data);
           })
       }, [])
+
+      const handleDelete = (id) => {
+        axios.delete(`/api/quizzes/${id}`)
+        .then ( res => {
+          setQuizzes(quizzes.filter( q => q.id !== id))
+        })
+      }
 
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
@@ -36,6 +44,7 @@ const ShowQuizzes = (props) => {
 
                     Take Quiz
                 </Button>
+            <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
           </Container>
