@@ -29,7 +29,7 @@ const Home = () => {
          </Grid.Column>
         <Grid.Column>
       <div>
-      {ShowQuizzes()}
+      <ShowQuizzes />
       </div>
           
         </Grid.Column>

@@ -12,8 +12,8 @@ class Api::QuestionsController < ApplicationController
   end
 
   def create
-
      question = @quiz.questions.new(question_params)
+     
      if question.save 
       
       render json: question 
@@ -51,6 +51,7 @@ class Api::QuestionsController < ApplicationController
  
 
   def question_params
-    params.require(:question).permit(:name)
+    
+    params.require(:question).permit(:name, :correct_answer)
   end
 end
