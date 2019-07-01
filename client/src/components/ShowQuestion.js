@@ -14,9 +14,16 @@ const ShowQuestion = (props) => {
 
     const renderQuestion = () => {
       props.name.map( name =>
-      <Card key={name.id}>
-      <Card.Header>{name.name}</Card.Header>
-      </Card>)
+      <Segment key={name.id}>
+      <Card.Group>
+      <Card>
+        <Card.Content>
+          <Card.Header> Questions #{name.id} </Card.Header>
+          <Card.description> {name.name} </Card.description>
+        </Card.Content>
+        </Card>
+      </Card.Group>
+      </Segment>
 
     }
 
