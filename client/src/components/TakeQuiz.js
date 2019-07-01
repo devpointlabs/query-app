@@ -6,15 +6,15 @@ import axios from 'axios';
 const ShowQuestions = (props) => {
     
     const [ questions, setQuestions ] = useState([])
-    // const [ quizzes, setQuizzes ] = useState([])
+    const [ quizzes, setQuizzes ] = useState([])
 
 
-    // useEffect( () => {
-    //     axios.get("/api/quizzes")
-    //       .then( res => {
-    //         setQuizzes(res.data);
-    //       })
-    //   }, [])  
+    useEffect( () => {
+        axios.get("/api/quizzes")
+          .then( res => {
+            setQuizzes(res.data);
+          })
+      }, [])  
 
 
     useEffect( () => {
