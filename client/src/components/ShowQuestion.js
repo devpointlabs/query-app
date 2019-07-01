@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react'
 import axios from 'axios'
-import { card, } from "semantic-ui-react"
+import { Card, Divider,  } from "semantic-ui-react"
 
 const ShowQuestion = (props) => {
     const [name, setName] = useState({})
@@ -14,18 +14,20 @@ const ShowQuestion = (props) => {
 
     const renderQuestion = () => {
       props.name.map( name =>
-      <Segment key={name.id}>
-      <Card.Group>
-      <Card>
-        <Card.Content>
-          <Card.Header> Questions #{name.id} </Card.Header>
-          <Card.description> {name.name} </Card.description>
-        </Card.Content>
-        </Card>
+      <Card.Group itemsPerRow={4}>
+        { name.map( n =>
+          <Card key={n.id}>
+            <Card.Content>
+              <Divider />
+              <Card.Header>
+                { n.name }
+              </Card.Header>
+            </Card.Content>
+          </Card>
+        )}
       </Card.Group>
-      </Segment>
-
-    }
+      )}
+  
 
 
 
@@ -33,12 +35,8 @@ const ShowQuestion = (props) => {
     return (
       <>
       {renderQuestion()}
-
-
       </>
 
     )
-
 }
-
 export default ShowQuestion;

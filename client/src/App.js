@@ -12,6 +12,7 @@ import Choice from './components/Choice'
 import Student from './components/Student'
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
+import ShowQuestion from './components/ShowQuestion';
 import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
