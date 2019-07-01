@@ -1,25 +1,42 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-# User.create(
-#   email: 'test@test.com',
-#   password: 'password'
-# )
 
-# 99.times do
-#   User.create(
-#     name: Faker::Name.name,
-#     email: Faker::Internet.email,
-#     role: "student",
-#     password: "password",
-#     image: Faker::Avatar.image("name", '100x400', 'png', 'set4')
-#   )
-# end
+99.times do
+  User.create(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    role: "student",
+    password: "password",
+    image: Faker::Avatar.image("name", '100x400', 'png', 'set4')
+  )
 
-Choice.create( id: 1, answer: "blah blah", correct: true, question_id: 1)
+end
+  
+  10.times do 
+    Quiz.create(
+        name: Faker::Educator.subject,
+        )
+        2.times do 
+            Question.create(
+                name: Faker::Science.scientist,
+                correct_answer: "the coolest person",
+                quiz_id: rand(1..10)
+                )
+                
+            end
+        end
+            10.times do 
+                Choice.create( 
+                answer: "the coolest persons",
+                correct: true,
+                question_id: rand(1..2),
+                )
+            end
+            5.times do
+                Choice.create( 
+                    answer: "not cool at all",
+                    correct: false,
+                    question_id: rand(1..2),
+                    )
+            end
 
-puts "100 Users Seeded"
+
+puts "100 Users Seeded 10 quizzes 20 questions 20 answers"
