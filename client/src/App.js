@@ -9,7 +9,7 @@ import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
 import Student from './components/Student';
 import Choice from './components/Choice';
-import QuizForm from './components/QuizForm';
+import QuizForm from './components/teacher/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
@@ -28,8 +28,7 @@ const App = () => (
           <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
           <Route exact path="/quizzes/new" component={QuizForm} />
-          <Route exact path="/student" component={Student} />
-          <Route exact path="/teacherdash" component={TeacherHome} />
+          <Route exact path="/teacherhome" component={TeacherHome} />
           <Route component={NoMatch} />
 
         </Switch>
