@@ -16,6 +16,7 @@ import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
+import AdminRoute from './components/AdminRoute';
 
 const App = () => (
   <Fragment>
@@ -23,10 +24,11 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
+          <AdminRoute exact path="admin/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/quizzes/:id/show_answer" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/take" component={TakeQuiz} />
