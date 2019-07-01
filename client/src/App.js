@@ -3,17 +3,16 @@ import Home from './components/Home';
 import NoMatch from './components/NoMatch';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-import QuestionForm from './components/QuestionForm';
+import QuestionForm from './components/teacher/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
-import ShowTeacherChoices from './components/ShowTeacherChoices'
+import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import Choice from './components/Choice'
 import Student from './components/Student'
 import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
-import ShowAnswer from './components/ShowAnswer'
-import ShowQuestion from './components/ShowAnswer'
+import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
