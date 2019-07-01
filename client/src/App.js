@@ -10,7 +10,6 @@ import TeacherHome from './components/teacher/TeacherHome';
 import Choice from './components/Choice';
 import QuizForm from './components/teacher/QuizForm';
 import ShowTeacherChoices from './components/ShowTeacherChoices'
-import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ShowAnswer from './components/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
