@@ -7,6 +7,7 @@ import QuestionForm from './components/teacher/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
+import EditQuestion from './components/teacher/EditQuestion';
 import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import Choice from './components/Choice'
 import Student from './components/Student'
@@ -28,6 +29,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:id/show_answer" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+          <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
 
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
