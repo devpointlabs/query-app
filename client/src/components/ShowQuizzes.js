@@ -14,9 +14,17 @@ const ShowQuizzes = (props) => {
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
+            console.log(res)
             setQuizzes(res.data);
           })
       }, [])
+
+      const handleDelete = (id) => {
+        axios.delete(`/api/quizzes/${id}`)
+        .then ( res => {
+          setQuizzes(quizzes.filter( q => q.id !== id))
+        })
+      }
 
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
@@ -32,10 +40,12 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={TakeQuiz} /> } >
-
+                <Link to={`/quizzes/${quiz.id}/questions`}>
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
                     Take Quiz
                 </Button>
+                </Link>
+            <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
           </Container>
