@@ -30,6 +30,7 @@ const QuestionForm = (props) => {
 
 
 
+
    return(
 
      <>
@@ -42,18 +43,29 @@ const QuestionForm = (props) => {
           value={name}
           onChange={handleQuestionChange}
             />
-          <Dropdown>
-            <Dropdown.Item>
-              true/falses
-            </Dropdown.Item>
-          </Dropdown>
-          
           <Form.Input 
           placeholder="correct answer"
           label="correct answer"
           value={correctAnswer}
           onChange={handleAnswersChange}
-            />
+          />
+          <Dropdown>
+            <Dropdown.Menu>
+              <Dropdown.Item>
+                multiple choice
+              </Dropdown.Item>
+              
+              <Dropdown.Item>
+                true/false
+              </Dropdown.Item>
+
+              <Dropdown.Item>
+                fill in the blank
+              </Dropdown.Item>
+
+            </Dropdown.Menu>
+          </Dropdown>
+          
 
             <Form.Button color="purple">Submit</Form.Button>
         </Form>
