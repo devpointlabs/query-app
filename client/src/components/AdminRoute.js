@@ -7,17 +7,13 @@ const AdminRoute = ({ component: Component, ...rest }) => (
     { auth =>
       <Route
         {...rest}
-        render={props => (
-          auth.authenticated ?
-            <Component {...props} />
-            :
-            <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: props.location, },
-              }}
-            />
-        )}
+        render={props => {
+          if (auth.authenticated && auth.user.role == 'teacher') {
+            return <Component {...props} />
+          } else {
+            return null
+          }
+        }}
       />
     }
   </AuthConsumer>
