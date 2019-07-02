@@ -7,6 +7,7 @@ import QuestionForm from './components/teacher/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
+import EditQuestion from './components/teacher/EditQuestion';
 import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import SubmissionChoices from './components/teacher/SubmissionChoices';
 import Choice from './components/Choice'
@@ -17,6 +18,7 @@ import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
+import AdminRoute from './components/AdminRoute';
 
 const App = () => (
   <Fragment>
@@ -24,10 +26,12 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
+          <AdminRoute exact path="admin/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/quizzes/:id/show_answer" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+          <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
+
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />

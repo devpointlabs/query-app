@@ -8,12 +8,11 @@ class Api::QuestionsController < ApplicationController
   end
 
   def show
-    
+    render json: @question
   end
 
   def create
      question = @quiz.questions.new(question_params)
-     
      if question.save 
       
       render json: question 
@@ -24,15 +23,17 @@ class Api::QuestionsController < ApplicationController
   end
 
   def update
-    question = @quiz.questions.update(question_params) #this could be wrong
-    question.update(question_params)
-    render json: question
-
+    binding.pry
+    if @question.update(question_params) #this could be wrong
+      render json: @question
+    else
+    render json: question.errors, status: 422
+    end
   end
 
   def destroy
-    Question.destroy
-    render json: {message: "Question Deleted"}
+    @question.destroy
+    render json: @questions
   end
 
   private 
@@ -44,14 +45,7 @@ class Api::QuestionsController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
   end
   
-  def set_question
-    @question = @quiz.questions.find(params[:id])
-  end
-
- 
-
   def question_params
-    
-    params.require(:question).permit(:name, :correct_answer)
+    params.require(:question).permit(:name, :quiz_id )
   end
 end
