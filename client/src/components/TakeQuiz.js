@@ -28,30 +28,24 @@ const ShowQuestions = (props) => {
           <>
           <Container>
             <Segment key={questions.id}>
-                <Card.Group>
+              <Card.Group>
                 <Card>
-                <Card.Content>
-                    <Card.Header> {questions.name} </Card.Header>
-                    {/* <Card.Description> {questions.description} </Card.Description> */}
-                </Card.Content>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
-            { toggle  ? <StudentChoiceForm /> : null  }
-                
+                  <Card.Content>
+                      <Card.Header> {questions.name} </Card.Header>
+                      {/* <Card.Description> {questions.description} </Card.Description> */}
+                  </Card.Content>
+                  <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
+                    { toggle  ? <StudentChoiceForm /> : null  }
                 </Card>
-            </Card.Group>
+              </Card.Group>
             </Segment>
-            
-
-            
           </Container>
           <br />
           <br />
           <br />
-
           </>
         ))
       }
-    
     
     return (
         <>

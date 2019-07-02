@@ -8,6 +8,7 @@ import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
 import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
+import SubmissionChoices from './components/teacher/SubmissionChoices';
 import Choice from './components/Choice'
 import Student from './components/Student'
 import QuizForm from './components/QuizForm';
@@ -27,6 +28,7 @@ const App = () => (
           <ProtectedRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/quizzes/:id/show_answer" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+          <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
@@ -43,3 +45,4 @@ const App = () => (
 )
 
 export default App;
+
