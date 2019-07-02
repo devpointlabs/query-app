@@ -1,5 +1,5 @@
 import React, { useState, useEffect, } from 'react'
-import { Form, } from "semantic-ui-react"
+import { Form, Dropdown, } from "semantic-ui-react"
 import axios from 'axios'
 
 
@@ -33,24 +33,30 @@ const QuestionForm = (props) => {
    return(
 
      <>
-    <Form onSubmit={handleSubmit}>
-        <Form.Input
-        placeholder="question"
-        label="question"
-        value={name}
-        onChange={handleQuestionChange}
-          />
 
-        
-        <Form.Input 
-        placeholder="correct answer"
-        label="correct answer"
-        value={correctAnswer}
-        onChange={handleAnswersChange}
-          />
 
-      <Form.Button color="purple">Submit</Form.Button>
-      </Form>
+      <Form onSubmit={handleSubmit}>
+          <Form.Input
+          placeholder="question"
+          label="question"
+          value={name}
+          onChange={handleQuestionChange}
+            />
+          <Dropdown>
+            <Dropdown.Item>
+              true/falses
+            </Dropdown.Item>
+          </Dropdown>
+          
+          <Form.Input 
+          placeholder="correct answer"
+          label="correct answer"
+          value={correctAnswer}
+          onChange={handleAnswersChange}
+            />
+
+            <Form.Button color="purple">Submit</Form.Button>
+        </Form>
 
 
 

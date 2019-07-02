@@ -39,7 +39,7 @@ const ShowQuestions = (props) => {
           <>
           <Container>
             <Segment key={questions.id}>
-                <Card.Group>
+              <Card.Group>
                 <Card>
                 <Card.Content>
                     <Card.Header> {questions.name} </Card.Header>
@@ -56,20 +56,15 @@ const ShowQuestions = (props) => {
             { toggle  ? <StudentChoiceForm /> : null  }
                 
                 </Card>
-            </Card.Group>
+              </Card.Group>
             </Segment>
-            
-
-            
           </Container>
           <br />
           <br />
           <br />
-
           </>
         ))
       }
-    
     
     return (
         <>
