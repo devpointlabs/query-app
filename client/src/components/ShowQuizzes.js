@@ -3,27 +3,35 @@ import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
+import ReactDOM from 'react-dom';
 
 
 
 const ShowQuizzes = (props) => {
-    
     const [ quizzes, setQuizzes ] = useState([])
     const [showForm, setShowForm] = useState(false);
 
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
+            console.log(res)
             setQuizzes(res.data);
           })
       }, [])
 
+      const handleDelete = (id) => {
+        axios.delete(`/api/quizzes/${id}`)
+        .then ( res => {
+          setQuizzes(quizzes.filter( q => q.id !== id))
+        })
+      }
+
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
           <>
-          
+
           <Container>
-            
+
             <Segment key={quiz.id}>
                 <Card.Group>
                 <Card>
@@ -32,12 +40,12 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-               <Link to={`/quizzes/${quiz.id}/take`}>
-               <Button style={{backgroundColor: "#4F1A9E", color: "white",}} >
-                
+                <Link to={`/quizzes/${quiz.id}/questions`}>
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
                     Take Quiz
                 </Button>
                 </Link>
+            <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
           </Container>
@@ -48,13 +56,13 @@ const ShowQuizzes = (props) => {
           </>
         ))
       }
-    
-    
+
+
     return (
         <>
 
     {renderQuizzes()}
-       
+
         </>
     )
 }

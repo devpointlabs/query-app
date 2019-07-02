@@ -32,6 +32,7 @@ class Api::QuizzesController < ApplicationController
   def destroy
     #could break here
     @quiz.destroy
+    render json: Quiz.all
   end
 
   private
