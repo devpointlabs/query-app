@@ -1,18 +1,24 @@
 import React, {useState, useEffect, } from 'react'
 import { Form, } from "semantic-ui-react"
 import axios from 'axios'
+import ShowAnswer from './teacher/ShowAnswer';
+
 
 const StudentChoiceForm = (props) => {
     const [answer, setAnswer] = useState([])
 
+  
     
 
-    const handleSubmit = (e, history) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        
-         axios.post(`/api/questions/${props.match.params.id}/choices`)
+
+         axios.post(`/api/questions/props.match.params.id/choices`,  { answer, })
          .then( res => {
-             debugger
+             setAnswer(res.data)
+         })
+         .catch( res => {
+             console.log(res)
          })
     
     }
@@ -25,7 +31,8 @@ const StudentChoiceForm = (props) => {
 
     return (
         <>
-
+       
+        
         <Form onSubmit={handleSubmit}>
             <Form.Input 
                 placeholder="answer"

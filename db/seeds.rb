@@ -14,7 +14,7 @@ end
     Quiz.create(
         name: Faker::Educator.subject,
         )
-        2.times do 
+        5.times do 
             Question.create(
                 name: Faker::Science.scientist,
                 correct_answer: "the coolest person",

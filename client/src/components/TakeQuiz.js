@@ -8,15 +8,7 @@ const ShowQuestions = (props) => {
     
     const [ questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
-    // const [ quizzes, setQuizzes ] = useState([])
 
-
-    // useEffect( () => {
-    //     axios.get("/api/quizzes")
-    //       .then( res => {
-    //         setQuizzes(res.data);
-    //       })
-    //   }, [])  
 
 
     useEffect( () => {
@@ -42,11 +34,12 @@ const ShowQuestions = (props) => {
                     {/* <Card.Description> {questions.description} </Card.Description> */}
                 </Card.Content>
                 <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
-            { toggle  ? <StudentChoiceForm answer={props.match}/> : null  }
+            { toggle  ? <StudentChoiceForm /> : null  }
                 
                 </Card>
             </Card.Group>
             </Segment>
+
             
           </Container>
           <br />
