@@ -1,8 +1,12 @@
 import React, {useState, useEffect, } from 'react';
 import {Card, Header, Segment, List, Button, Container } from 'semantic-ui-react';
 import StudentChoiceForm from './StudentChoiceForm'
+import EditQuestion from './teacher/EditQuestion'
 import { Link, } from 'react-router-dom'
 import axios from 'axios';
+import {AuthConsumer} from '../providers/AuthProvider'
+
+
 
 
 const ShowQuestions = (props) => {
@@ -16,6 +20,7 @@ const ShowQuestions = (props) => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
           .then( res => {
             setQuestions(res.data);
+            console.log(res.data)
           })
       }, [])
 
@@ -23,49 +28,73 @@ const ShowQuestions = (props) => {
         setToggle( !toggle)
       }
 
+      const handleDelete = (id) => {
+        axios.delete(`/api/quizzes/${props.match.params.id}/questions/${id}`)
+          .then( res => {
+            setQuestions(questions.filter( q => q.id !== id))
+          })
+      }
+
+      
+     
       const renderQuestions = () => {
         return questions.map( questions => (
           <>
           <Container>
             <Segment key={questions.id}>
-                <Card.Group>
+              <Card.Group>
                 <Card>
                 <Card.Content>
                     <Card.Header> {questions.name} </Card.Header>
                     {/* <Card.Description> {questions.description} </Card.Description> */}
                 </Card.Content>
                 <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
+                <Button  color="red" icon="trash" onClick={() => handleDelete(questions.id)}></Button>
+                <Link to={{
+                  pathname: `/api/quizzes/${props.match.params.id}/questions/edit`,
+                  state: { question_id: questions.id }
+                  }}>
+                <Button  color="gray" icon="pencil" ></Button>
+                </Link>
             { toggle  ? <StudentChoiceForm /> : null  }
                 
                 </Card>
-            </Card.Group>
+              </Card.Group>
             </Segment>
-            
-
-            
           </Container>
           <br />
           <br />
           <br />
-
           </>
         ))
       }
     
-    
     return (
-        <>
-        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
-          <Button>add a question</Button>
-        </Link>
+      <>
+      { props.auth.user.role == 'teacher' ?
+          <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
+            <Button>add a question</Button>
+          </Link>
+        :
+        null  
+      }
+
+        {console.log(questions)}
 
     {renderQuestions()}
-       
         </>
     )
 }
 
-export default ShowQuestions;
+const ConnectedShowQuestions = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <ShowQuestions {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default ConnectedShowQuestions;
 
 
 

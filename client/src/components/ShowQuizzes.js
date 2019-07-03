@@ -3,7 +3,7 @@ import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
-import ReactDOM from 'react-dom';
+
 
 
 

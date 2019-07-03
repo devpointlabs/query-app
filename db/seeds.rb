@@ -25,7 +25,7 @@ end
         end
             10.times do 
                 Choice.create( 
-                answer: "the coolest persons",
+                answer: "blah blahs",
                 correct: true,
                 question_id: rand(1..2),
                 )
