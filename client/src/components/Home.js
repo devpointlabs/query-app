@@ -24,6 +24,8 @@ const Home = () => {
           <Header as='h1' style={{color: "white", textAlign: "center", }}> Test Your Knowledge</Header>
           <br />
           <br />
+          <Header as="h3" style={{color: "white"}}> Your quizzes help DevPoint Labs understand how we are teaching.</Header>
+          <Header as="h4" style={{color: "white"}}> Every effort you put into these quizzes will help us guide you and the cohort better.</Header>
           <br />
           
          </Grid.Column>
