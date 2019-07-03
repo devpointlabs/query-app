@@ -44,10 +44,6 @@ class Register extends React.Component {
 
     return (
       <Segment basic>
-       <div style={{display: "flex"}}>
-    <Image src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" style={{width: "100px", height: "100px"}}/>
-    <Header as='h1'> DevPoint Labs</Header>
-    </div>
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input
@@ -113,7 +109,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
           /> 
           <Segment textAlign='center' basic>
-            <Button primary type='submit' style={{backgroundColor: "#4F1A9E"}}>Submit</Button>
+            <Button primary type='submit'>Submit</Button>
           </Segment>
         </Form>
       </Segment>
