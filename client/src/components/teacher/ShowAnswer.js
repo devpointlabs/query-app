@@ -4,6 +4,7 @@ import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
 
+
 const ShowAnswer = (props) => {
   const [answers, setAnswers] = useState([])
   const [correct, setCorrect] = useState([])
@@ -39,6 +40,7 @@ const ShowAnswer = (props) => {
     return ( 
       <>
           <ShowTeacherChoices { ...props } />
+          
       
           <h1>
               Answers/choices

@@ -1,20 +1,15 @@
 import React, {useState, useEffect, } from 'react';
 import {Card, Header, Segment, List, Button, Container } from 'semantic-ui-react';
+import StudentChoiceForm from './StudentChoiceForm'
+import { Link, } from 'react-router-dom'
 import axios from 'axios';
 
 
 const ShowQuestions = (props) => {
     
     const [ questions, setQuestions ] = useState([])
-    // const [ quizzes, setQuizzes ] = useState([])
+    const [toggle, setToggle] = useState(false)
 
-
-    // useEffect( () => {
-    //     axios.get("/api/quizzes")
-    //       .then( res => {
-    //         setQuizzes(res.data);
-    //       })
-    //   }, [])  
 
 
     useEffect( () => {
@@ -23,6 +18,10 @@ const ShowQuestions = (props) => {
             setQuestions(res.data);
           })
       }, [])
+
+      const toggleClick = () => {
+        setToggle( !toggle)
+      }
 
       const renderQuestions = () => {
         return questions.map( questions => (
@@ -35,9 +34,15 @@ const ShowQuestions = (props) => {
                     <Card.Header> {questions.name} </Card.Header>
                     {/* <Card.Description> {questions.description} </Card.Description> */}
                 </Card.Content>
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
+            { toggle  ? <StudentChoiceForm /> : null  }
+                
                 </Card>
             </Card.Group>
             </Segment>
+            
+
+            
           </Container>
           <br />
           <br />
@@ -50,6 +55,9 @@ const ShowQuestions = (props) => {
     
     return (
         <>
+        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
+          <Button>add a question</Button>
+        </Link>
 
     {renderQuestions()}
        

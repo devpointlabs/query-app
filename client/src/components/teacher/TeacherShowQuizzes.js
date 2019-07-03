@@ -2,9 +2,12 @@ import React, {useState, useEffect, } from 'react';
 import { Container, Card, Segment, Button, Header, Icon, } from 'semantic-ui-react';
 import { Link, } from "react-router-dom";
 import axios from 'axios';
+import QuizForm from "./QuizForm";
 
 const TeacherShowQuizzes = (props) => {
   const [ quizzes, setQuizzes ] = useState([])
+  const [ showForm, setShowForm ] = useState(false);
+
 
   useEffect( () => {
     axios.get("/api/quizzes")
@@ -35,6 +38,17 @@ const TeacherShowQuizzes = (props) => {
                   <Card.Header> {quiz.name} </Card.Header>
                 </Card.Content>
                 <Card.Content extra>
+                  <br />
+                  { showForm && 
+                    <QuizForm 
+                      toggleForm={setShowForm} 
+                      edit={ quiz => setQuizzes([...quizzes, quiz]) } 
+                      key={quiz.id}
+                    /> 
+                  }
+                  <Button onClick={ () => setShowForm(!showForm) }>
+                    { showForm ? "Close Edit" : "Edit name" }
+                  </Button>
                   <Button as={Link} to={`/quizzes/${quiz.id}`} class="ui violet basic button">  
                     View
                   </Button>

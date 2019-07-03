@@ -30,7 +30,6 @@ class Api::QuizzesController < ApplicationController
   end
 
   def destroy
-    #could break here
     @quiz.destroy
     render json: Quiz.all
   end

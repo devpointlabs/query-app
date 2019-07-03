@@ -6,13 +6,12 @@ const QuizForm = (props) => {
  const [name, setName] = useState("");
 
  const handleSubmit = (e) => {
-   e.preventDefault();
-    axios.post("/api/quizzes", { name, } )
-    .then( res => {
-      props.history.push("/")
-
-    })
- }
+  e.preventDefault();
+   axios.post("/api/quizzes", { name, } )
+   .then( res => {
+     props.history.push("/")
+   })
+}
 
  const handleChange = (e) => {
    setName( e.target.value); 
@@ -39,6 +38,6 @@ const QuizForm = (props) => {
 
    )
 
-}
+  }
 
 export default QuizForm;
