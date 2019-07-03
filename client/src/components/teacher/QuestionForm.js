@@ -28,6 +28,19 @@ const QuestionForm = (props) => {
   setCorrectAnswer( e.target.value);
 }
 
+const questionType = [
+  { key: 1, text: 'true/false', value: 1 },
+  { key: 2, text: 'multiple choice', value: 2 },
+  { key: 3, text: 'fill in the blank', value: 3 },
+]
+
+const questionDropdown = () => (
+  <Dropdown
+    placeholder='type of question'
+    selection
+    options={questionType}
+  />
+)
 
 
 
@@ -52,22 +65,9 @@ const QuestionForm = (props) => {
 
             <Form.Button color="purple">Submit</Form.Button>
         </Form>
-          <Dropdown>
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                multiple choice
-              </Dropdown.Item>
-              
-              <Dropdown.Item>
-                true/false
-              </Dropdown.Item>
 
-              <Dropdown.Item>
-                fill in the blank
-              </Dropdown.Item>
-
-            </Dropdown.Menu>
-          </Dropdown>
+        {questionDropdown()}
+        
           
 
 
