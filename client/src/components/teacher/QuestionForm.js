@@ -22,9 +22,6 @@ const QuestionForm = (props) => {
     })
     // history.push(`quizzes/${props.history.location.id}/questions`)
  }
-
- 
- 
  const handleQuestionChange = (e) => {
    setName( e.target.value);
   }
@@ -47,6 +44,8 @@ const QuestionForm = (props) => {
        { key: 3, text: 'fill in the blank', value: 3 },
         ]
        )
+
+       
   
 
 
