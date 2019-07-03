@@ -23,7 +23,7 @@ class Api::QuestionsController < ApplicationController
   end
 
   def update
-    binding.pry
+  
     if @question.update(question_params) #this could be wrong
       render json: @question
     else
@@ -46,6 +46,6 @@ class Api::QuestionsController < ApplicationController
   end
   
   def question_params
-    params.require(:question).permit(:name, :quiz_id )
+    params.require(:question).permit(:name, :correct_answer, :wrong_answers, :question_type, :quiz_id )
   end
 end

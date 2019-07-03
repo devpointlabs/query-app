@@ -13,7 +13,7 @@ gem 'devise_token_auth', '~> 1.0.0'
 
 group :development, :test do
   # Debugging
-  gem "pry"
+  gem "pry-rails"
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
