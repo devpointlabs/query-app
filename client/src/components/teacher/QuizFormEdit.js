@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react'
-import {Link,} from "react-router-dom";
-import { Form, } from "semantic-ui-react"
+import {Link, Redirect, } from "react-router-dom";
+import { Form,  } from "semantic-ui-react"
 import axios from 'axios'
 import TeacherHome from './TeacherHome';
 
@@ -23,6 +23,7 @@ const QuizFormEdit = (props) => {
      // needs a fix to load the page after submit
       
     })
+
     }
 
   const handleChange = (e) => {

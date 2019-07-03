@@ -1,9 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from "../providers/AuthProvider";
 import { Button, Form, Segment, Header, Radio, Image, } from 'semantic-ui-react';
-import { Button, Form, Segment, Header, Dropdown, } from 'semantic-ui-react';
-import { Button, Form, Segment, Header, Radio, } from 'semantic-ui-react';
-import { Button, Form, Segment, Header, Radio, } from 'semantic-ui-react';
 
 class Register extends React.Component {
   state = { email: '', name: '', role: '', password: '', passwordConfirmation: '', };
