@@ -4,6 +4,9 @@ import StudentChoiceForm from './StudentChoiceForm'
 import EditQuestion from './teacher/EditQuestion'
 import { Link, } from 'react-router-dom'
 import axios from 'axios';
+import {AuthConsumer} from '../providers/AuthProvider'
+
+
 
 
 const ShowQuestions = (props) => {
@@ -67,19 +70,31 @@ const ShowQuestions = (props) => {
       }
     
     return (
-        <>
+      <>
+      { props.auth.user.role == 'teacher' ?
+          <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
+            <Button>add a question</Button>
+          </Link>
+        :
+        null  
+      }
+
         {console.log(questions)}
-        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
-          <Button>add a question</Button>
-        </Link>
 
     {renderQuestions()}
-       
         </>
     )
 }
 
-export default ShowQuestions;
+const ConnectedShowQuestions = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <ShowQuestions {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default ConnectedShowQuestions;
 
 
 

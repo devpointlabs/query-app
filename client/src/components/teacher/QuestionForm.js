@@ -49,6 +49,9 @@ const QuestionForm = (props) => {
           value={correctAnswer}
           onChange={handleAnswersChange}
           />
+
+            <Form.Button color="purple">Submit</Form.Button>
+        </Form>
           <Dropdown>
             <Dropdown.Menu>
               <Dropdown.Item>
@@ -66,9 +69,6 @@ const QuestionForm = (props) => {
             </Dropdown.Menu>
           </Dropdown>
           
-
-            <Form.Button color="purple">Submit</Form.Button>
-        </Form>
 
 
 
