@@ -3,6 +3,7 @@ import { Container, Card, Segment, Button, Header, Icon, } from 'semantic-ui-rea
 import { Link, } from "react-router-dom";
 import axios from 'axios';
 import QuizForm from "./QuizForm";
+import QuizFormEdit from './QuizFormEdit'
 
 const TeacherShowQuizzes = (props) => {
   const [ quizzes, setQuizzes ] = useState([])
@@ -40,10 +41,11 @@ const TeacherShowQuizzes = (props) => {
                 <Card.Content extra>
                   <br />
                   { showForm && 
-                    <QuizForm 
+                    <QuizFormEdit
                       toggleForm={setShowForm} 
                       edit={ quiz => setQuizzes([...quizzes, quiz]) } 
                       key={quiz.id}
+                      id={quiz.id}
                     /> 
                   }
                   <Button onClick={ () => setShowForm(!showForm) }>

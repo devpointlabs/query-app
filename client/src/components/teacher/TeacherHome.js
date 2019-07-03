@@ -2,7 +2,7 @@ import React, {useState, } from 'react';
 import { Header, Container, Table, Card, Grid, Segment, Image, Button, } from 'semantic-ui-react';
 import TeacherShowQuizzes from './TeacherShowQuizzes'
 import {Link} from 'react-router-dom';
-import QuizForm from './QuizForm'
+
 
 const Home = () => {
   return (

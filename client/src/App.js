@@ -9,12 +9,10 @@ import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
 import Choice from './components/Choice';
 import QuizForm from './components/teacher/QuizForm';
-import ShowTeacherChoices from './components/teacher/ShowTeacherChoices';
+import QuizFormEdit from './components/teacher/QuizFormEdit';
 import EditQuestion from './components/teacher/EditQuestion';
 import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import SubmissionChoices from './components/teacher/SubmissionChoices';
-import Choice from './components/Choice'
-import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';

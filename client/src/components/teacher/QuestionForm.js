@@ -13,7 +13,6 @@ const QuestionForm = (props) => {
     .then( ques => {
       setName(ques.data)
       history.push(`quizzes/${props.history.location.id}/questions`)
-      
     })
  }
 

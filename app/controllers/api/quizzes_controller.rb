@@ -21,9 +21,8 @@ class Api::QuizzesController < ApplicationController
   end
 
   def update
-    quiz = Quiz.find(params[:id])
-    if quiz.update
-      render json: quiz
+    if @quiz.update(quiz_params)
+      render json: @quiz
     else
       render json: { errors: quiz.errors }, status: 422
     end
