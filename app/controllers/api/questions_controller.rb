@@ -23,7 +23,6 @@ class Api::QuestionsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @question.update(question_params) #this could be wrong
       render json: @question
     else
