@@ -1,6 +1,9 @@
 import React, { useState, useEffect, } from 'react'
 import { Form, Dropdown, } from "semantic-ui-react"
 import axios from 'axios'
+import WrongAnswers from './WrongAnswers'
+import TrueFalse from './TrueFalse'
+import FillInTheBlank from './FillInTheBlank';
 
 
 const QuestionForm = (props) => {
@@ -45,7 +48,7 @@ const QuestionForm = (props) => {
         ]
        )
 
-       
+
   
 
 
@@ -63,43 +66,23 @@ const dropDown = () => {
 
 
 
-
-
    return(
 
      <>
-     {console.log(questionType)}
+   
 
+          <Form>
+    
+         
+            {questionType == 'fill in the blank' ? <FillInTheBlank { ...props }/> : null }
+            {questionType == 'multiple choice' ? <WrongAnswers  {...props } /> : null }
+            {questionType == 'true/false' ? <TrueFalse { ...props } /> : null }
 
-      <Form onSubmit={handleSubmit}>
-          <Form.Input
-          placeholder="question"
-          label="question"
-          value={name}
-          onChange={handleQuestionChange}
-            />
-          <Form.Input 
-          placeholder="correct answer"
-          label="correct answer"
-          value={correctAnswer}
-          onChange={handleAnswersChange}
-          />
-          <Form.Input 
-          placeholder="wrong answers"
-          label="wrong answers"
-          value={wrongAnswers}
-          onChange={handleWrongAnswerChange}
-          />
-            <Form.Button color="purple">Submit</Form.Button>
-            {dropDown()}
+              <Form.Button color="purple">Submit</Form.Button>
+              <h3>Question Type</h3>
+              {dropDown()}
           </Form>
         
-          
-
-
-
-
-
      </>
 
    )
