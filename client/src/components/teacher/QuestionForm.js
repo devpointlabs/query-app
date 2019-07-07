@@ -1,45 +1,19 @@
 import React, { useState, useEffect, } from 'react'
 import { Form, Dropdown, } from "semantic-ui-react"
 import axios from 'axios'
-import WrongAnswers from './WrongAnswers'
+import WrongAnswers from './MultipleChoice'
 import TrueFalse from './TrueFalse'
 import FillInTheBlank from './FillInTheBlank';
 
 
 const QuestionForm = (props) => {
- const [name, setName] = useState([]);
- const [correctAnswer, setCorrectAnswer] = useState([])
- const [wrongAnswers, setWrongAnswers] = useState([])
+
  const [questionType, setQuestionType] = useState('')
 
- const handleSubmit = (e, history) => {
-   e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
-      name, 
-      correct_answer: correctAnswer, 
-      wrong_answers: wrongAnswers,
-      question_type: questionType,
-      } )
-    .then( ques => {
-      setName(ques.data)   
-    })
-    // history.push(`quizzes/${props.history.location.id}/questions`)
- }
- const handleQuestionChange = (e) => {
-   setName( e.target.value);
-  }
-  
-  const handleAnswersChange = (e) => {
-    setCorrectAnswer( e.target.value);
-  }
-  
-  const handleWrongAnswerChange = (e) => {
-    setWrongAnswers( e.target.value )
-  }
   
   const handleQuestionType = (e) => {
     setQuestionType(e.target.innerText)
-  }
+   }
       const type =  ( 
          [
          { key: 1, text: 'true/false', value: 1 },
@@ -49,13 +23,10 @@ const QuestionForm = (props) => {
        )
 
 
-  
-
-
 const dropDown = () => {
   return (
 <Dropdown
-  placeholder='type of question'
+  placeholder='select a type of question'
   selection
   options={type}
   onChange={handleQuestionType}
@@ -65,24 +36,17 @@ const dropDown = () => {
 }
 
 
-
-   return(
+   return (
 
      <>
-   
-
-          <Form>
-    
+              {dropDown()}
          
             {questionType == 'fill in the blank' ? <FillInTheBlank { ...props }/> : null }
             {questionType == 'multiple choice' ? <WrongAnswers  {...props } /> : null }
             {questionType == 'true/false' ? <TrueFalse { ...props } /> : null }
 
-              <Form.Button color="purple">Submit</Form.Button>
               <h3>Question Type</h3>
-              {dropDown()}
-          </Form>
-        
+          
      </>
 
    )
