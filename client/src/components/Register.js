@@ -5,19 +5,6 @@ import { Button, Form, Segment, Header, Radio, } from 'semantic-ui-react';
 class Register extends React.Component {
   state = { email: '', name: '', role: '', password: '', passwordConfirmation: '', };
   
- friendOptions = () => [
-    {
-      key: 'Student',
-      text: 'Student',
-      value: "Student",
-    },
-    {
-      key: 'Teacher',
-      text: 'Teacher',
-      value: "Teacher",
-    } ]
-
-
   handleSubmit = (e) => {
     e.preventDefault();
     const { email, name, role, password, passwordConfirmation } = this.state;
