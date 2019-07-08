@@ -14,7 +14,7 @@ const ShowQuizzes = (props) => {
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
-            console.log(res)
+            
             setQuizzes(res.data);
           })
       }, [])
