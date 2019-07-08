@@ -39,13 +39,13 @@ const dropDown = () => {
    return (
 
      <>
+              <h3>Question Type</h3>
               {dropDown()}
          
             {questionType == 'fill in the blank' ? <FillInTheBlank { ...props }/> : null }
             {questionType == 'multiple choice' ? <WrongAnswers  {...props } /> : null }
             {questionType == 'true/false' ? <TrueFalse { ...props } /> : null }
 
-              <h3>Question Type</h3>
           
      </>
 
