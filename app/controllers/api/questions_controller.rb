@@ -46,6 +46,6 @@ class Api::QuestionsController < ApplicationController
   end
   
   def question_params
-    params.require(:question).permit(:name, :answerA :answerB, :answerC, :answerD,  :correct_answer, :wrong_answers, :question_type, :quiz_id )
+    params.require(:question).permit(:name, :answerA, :answerB, :answerC, :answerD,  :correct_answer, :wrong_answers, :question_type, :quiz_id )
   end
 end
