@@ -3,23 +3,26 @@ import { Form, } from 'semantic-ui-react'
 import axios from "axios"
 
 
-const FillInTheBlank = () => {
+const FillInTheBlank = (props) => {
 
-    const [question, setQuestion] = useState([])
-    const [correctAnswer, setCorrectAnswer] = useState([])
+    const [name, setName] = useState('')
+    const [correctAnswer, setCorrectAnswer] = useState('')
 
      const handleSubmit = () => {
+        axios.post(`/api/quizzes/${props.match.params.id}/questions`,
+         { name, correct_answer: correctAnswer })
         console.log("handleSumbit")
     }
 
     const handleQuestionChange = (e) => {
-       setQuestion( e.target.value)
+       setName( e.target.value)
     }
 
     const handleAnswersChange = (e) => {
         setCorrectAnswer( e.target.value)
         console.log('handleAnswerChange')
     }
+
     
     
      return (
@@ -31,7 +34,7 @@ const FillInTheBlank = () => {
           <Form.Input
           placeholder="question"
           label="question"
-          value={question}
+          value={name}
           onChange={handleQuestionChange}
           />
 
@@ -42,7 +45,7 @@ const FillInTheBlank = () => {
           onChange={handleAnswersChange}
           />
         
-
+        <Form.Button>submit</Form.Button>
       </Form>
     
     </>

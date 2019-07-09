@@ -7,13 +7,12 @@ import ShowAnswer from './teacher/ShowAnswer';
 const StudentChoiceForm = (props) => {
     const [answer, setAnswer] = useState([])
     
-  
     
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
          axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
+
     
     }
     
