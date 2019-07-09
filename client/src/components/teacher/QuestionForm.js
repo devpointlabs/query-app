@@ -8,7 +8,7 @@ import FillInTheBlank from './FillInTheBlank';
 
 const QuestionForm = (props) => {
 
- const [questionType, setQuestionType] = useState('')
+ const [questionType, setQuestionType] = useState('multiple choice')
 
   
   const handleQuestionType = (e) => {

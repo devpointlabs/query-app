@@ -16,79 +16,104 @@ const MultipleChoice = (props) => {
     const [toggleCCorrect, setToggleCCorrect] = useState(false)
     const [toggleDCorrect, setToggleDCorrect] = useState(false)
 
-    const [name, setName] = useState([])
-    const [answerA, setAnswerA] = useState([])
-    const [answerB, setAnswerB] = useState([])
-    const [answerC, setAnswerC] = useState([])
-    const [answerD, setAnswerD] = useState([])
-    const [correctAnswer, setCorrectAnswer] = useState([])
-
-
+    const [name, setName] = useState('')
+    const [answerA, setAnswerA] = useState('')
+    const [answerB, setAnswerB] = useState('')
+    const [answerC, setAnswerC] = useState('')
+    const [answerD, setAnswerD] = useState('')
+    const [correctAnswer, setCorrectAnswer] = useState('')
+    
+    
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { answerA, answerB, answerC, answerD, name, correct_answer: correctAnswer}    )
-        .then( res => {
-            setName( res.data )   
-        })
+        
+    }
+    
+    const updateName = (name) => { 
+        setName(name)
+    }
+    const updateAnswerA = (answerA) => {
+        setAnswerA(answerA)
+    }
+
+    const updateAnswerB = (answerB) => {
+        setAnswerB(answerB)
+    }
+
+    const updateAnswerC = (answerC) => {
+        setAnswerC(answerC)
+    }
+
+    const updateAnswerD = (answerD) => {
+        setAnswerD(answerD)
+    }
+
+    const updateCorrectAnswer = (correctAnswer) => {
+        setCorrectAnswer(correctAnswer)
+    }
+
+
+
+
+// then make it so that the outputs are displayed in the same order for the students to answer
+//also make the submit work across different components simaltainiously {i know is spelled wrong}
+
+const toggleA = () => {
+    setToggleACorrect( !toggleACorrect)
+    
+}
+const makeACorrect = () => {
+    if (toggleACorrect == true) { 
+        return   <CorrectAnswerInput updateCorrectAnswer={updateCorrectAnswer} { ...props} />
+    } else {
+        return <AnswerA updateAnswerA={updateAnswerA} { ...props} />
+    }
 }
 
-        
-        // then make it so that the outputs are displayed in the same order for the students to answer
-        //also make the submit work across different components simaltainiously {i know is spelled wrong}
+const toggleB = () => {
+    setToggleBCorrect( !toggleBCorrect)
+    
+}
+const makeBCorrect = () => {
+    if (toggleBCorrect == true) { 
+        return    <CorrectAnswerInput updateCorrectAnswer={updateCorrectAnswer} { ...props} />
+    } else {
+        return <AnswerB updateAnswerB={updateAnswerB} { ...props} />
+    }
+}
 
-        const toggleA = () => {
-            setToggleACorrect( !toggleACorrect)
-            
-        }
-        const makeACorrect = () => {
-            if (toggleACorrect == true) { 
-                return   <CorrectAnswerInput { ...props} />
-            } else {
-                return <AnswerA { ...props} />
-            }
-        }
+const toggleC = () => {
+    setToggleCCorrect( !toggleCCorrect)
+    
+}
+const makeCCorrect = () => {
+    if (toggleCCorrect == true) { 
+        return    <CorrectAnswerInput updateCorrectAnswer={updateCorrectAnswer} { ...props} />
+    } else {
+        return <AnswerC updateAnswerC={updateAnswerC} { ...props} />
+    }
+}
 
-        const toggleB = () => {
-            setToggleBCorrect( !toggleBCorrect)
-            
-        }
-        const makeBCorrect = () => {
-            if (toggleBCorrect == true) { 
-                return   <CorrectAnswerInput { ...props} />
-            } else {
-                return <AnswerB { ...props} />
-            }
-        }
-
-        const toggleC = () => {
-            setToggleCCorrect( !toggleCCorrect)
-            
-        }
-        const makeCCorrect = () => {
-            if (toggleCCorrect == true) { 
-                return   <CorrectAnswerInput { ...props} />
-            } else {
-                return <AnswerC { ...props} />
-            }
-        }
-
-        const toggleD = () => {
-            setToggleDCorrect( !toggleDCorrect)
-            
-        }
-        const makeDCorrect = () => {
-            if (toggleDCorrect == true) { 
-                return   <CorrectAnswerInput { ...props} />
-            } else {
-                return <AnswerD { ...props} />
-            }
-        }
+const toggleD = () => {
+    setToggleDCorrect( !toggleDCorrect)
+    
+}
+const makeDCorrect = () => {
+    if (toggleDCorrect == true) { 
+        return  <CorrectAnswerInput updateCorrectAnswer={updateCorrectAnswer} { ...props} />
+    } else {
+        return <AnswerD updateAnswerD={updateAnswerD} { ...props} />
+    }
+}
 
 
 
-    return (
-        <>
-          <h1>Question</h1><QuestionInput { ...props } />
+return (
+    <>
+          <h1>Question</h1><QuestionInput updateName={updateName} { ...props } />
+          {console.log('parent component:', correctAnswer)}
 
         <h4>A</h4><Button onClick={toggleA}>{ toggleACorrect == false ? "false" : "true" }</Button>  
             {makeACorrect()}

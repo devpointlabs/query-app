@@ -14,12 +14,6 @@ const StudentChoiceForm = (props) => {
         e.preventDefault()
 
          axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
-         .then( res => {
-             setAnswer(res.data)
-         })
-         .catch( res => {
-            
-         })
     
     }
     
