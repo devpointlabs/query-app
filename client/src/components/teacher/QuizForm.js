@@ -1,5 +1,5 @@
 import React, { useState, } from 'react'
-import { Form, } from "semantic-ui-react"
+import { Form, Card, } from "semantic-ui-react"
 import axios from 'axios'
 
 const QuizForm = (props) => {

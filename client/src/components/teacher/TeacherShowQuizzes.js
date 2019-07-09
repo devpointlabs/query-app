@@ -2,20 +2,19 @@ import React, {useState, useEffect, } from 'react';
 import { Container, Card, Segment, Button, Header, Icon, } from 'semantic-ui-react';
 import { Link, } from "react-router-dom";
 import axios from 'axios';
-import QuizForm from "./QuizForm";
 import QuizFormEdit from './QuizFormEdit'
 
 const TeacherShowQuizzes = (props) => {
   const [ quizzes, setQuizzes ] = useState([])
   const [ showForm, setShowForm ] = useState(false);
-
-
+  
   useEffect( () => {
     axios.get("/api/quizzes")
       .then( res => {
         setQuizzes(res.data);
     })
   }, []);
+  
 
   const deleteQuiz = (id) => {
     axios.delete(`api/quizzes/${id}`)
@@ -26,10 +25,22 @@ const TeacherShowQuizzes = (props) => {
     renderQuizzes();
   }
 
+  const updateQuiz = (quiz, id) => {
+    const allQuizzes = quizzes.map( q => {
+      if(q.id === id) {
+        return quiz 
+      } else {
+        return q
+      }
+    })
+    return setQuizzes(allQuizzes)
+  }
+
   const renderQuizzes = () => {
+    
     if(quizzes.length <= 0)
       return <Header as='h2'> - No Quizzes Available -</Header>
-    return quizzes.map( quiz => (
+    return quizzes.map(quiz => (
       <>
         <Container> 
           <Segment key={quiz.id}>
@@ -41,15 +52,15 @@ const TeacherShowQuizzes = (props) => {
                 <Card.Content extra>
                   <br />
                   { showForm && 
-                    <QuizFormEdit
-                      toggleForm={setShowForm} 
-                      edit={ quiz => setQuizzes([...quizzes, quiz]) } 
+                    <QuizFormEdit                    
+                      updateQuiz={updateQuiz}
                       key={quiz.id}
                       id={quiz.id}
+                      
                     /> 
                   }
                   <Button onClick={ () => setShowForm(!showForm) }>
-                    { showForm ? "Close Edit" : "Edit name" }
+                    { showForm ? "Close" : "Edit name" }
                   </Button>
                   <Button as={Link} to={`/quizzes/${quiz.id}`} class="ui violet basic button">  
                     View

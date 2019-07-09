@@ -4,16 +4,12 @@ import { Form, } from 'semantic-ui-react'
 
 
 const QuestionInput = (props) => {
-    const [name, setName] = useState([])
+    const [name, setName] = useState('')
 
    
-        const handleSubmit = (e) => {
-            debugger
+        const handleSubmit = (e) => {  
             e.preventDefault();
-           axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, } )
-            .then( res => {
-                setName( res.data )   
-            })
+        props.updateName(name)
     }
 
     const handleChange = (e) => {
@@ -24,6 +20,7 @@ const QuestionInput = (props) => {
 
     return (
         <>
+        {console.log('child component:', name)}
             <Form onSubmit={handleSubmit} >
               <Form.Input 
                 placeholder='Question'
@@ -31,8 +28,7 @@ const QuestionInput = (props) => {
                 value={name}
                 onChange={handleChange}
              />
-
-                
+   
           </Form>
         
         </>
