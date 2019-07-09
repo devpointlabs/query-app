@@ -7,6 +7,7 @@ import QuestionForm from './QuestionForm';
 
 
 
+
 const EditQuestion = (props) => {
 
   const [name, setName] = useState('');
@@ -24,7 +25,7 @@ const EditQuestion = (props) => {
     const { question_id } = props.location.state
     let params = { name: name, quiz_id: props.match.params.id }
      axios.put(`/api/quizzes/${props.match.params.id}/questions/${question_id}`, params)
-     
+     props.history.push(`/quizzes/${props.match.params.id}/questions`)
     }
 
   const handleChange = (e) => {

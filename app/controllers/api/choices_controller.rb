@@ -18,7 +18,7 @@ class Api::ChoicesController < ApplicationController
 
   def create
     choice = @question.choices.new(choice_params)
-    if @choice.save
+    if choice.save
       render json: choice
     else
       render json: @choice.errors, status: 422

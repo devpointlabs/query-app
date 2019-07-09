@@ -78,7 +78,10 @@ const ShowQuestions = (props) => {
         :
         null  
       }
-
+<Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
+        <Button>show_answers</Button>
+      </Link>
+      
         {console.log(questions)}
 
     {renderQuestions()}

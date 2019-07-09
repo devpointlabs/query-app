@@ -7,12 +7,12 @@ import QuestionForm from './components/teacher/QuestionForm';
 import Register from './components/Register';
 import FetchUser from './components/FetchUser';
 import TeacherHome from './components/teacher/TeacherHome';
+import Choice from './components/Choice';
+import QuizForm from './components/teacher/QuizForm';
+import QuizFormEdit from './components/teacher/QuizFormEdit';
 import EditQuestion from './components/teacher/EditQuestion';
 import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import SubmissionChoices from './components/teacher/SubmissionChoices';
-import Choice from './components/Choice'
-import Student from './components/Student'
-import QuizForm from './components/QuizForm';
 import TakeQuiz from './components/TakeQuiz';
 import ShowAnswer from './components/teacher/ShowAnswer'
 import ProtectedRoute from './components/ProtectedRoute';
@@ -38,8 +38,7 @@ const App = () => (
           <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
           <Route exact path="/quizzes/new" component={QuizForm} />
-          <Route exact path="/student" component={Student} />
-          <Route exact path="/teacherdash" component={TeacherHome} />
+          <Route exact path="/teacherhome" component={TeacherHome} />
           <Route component={NoMatch} />
 
         </Switch>

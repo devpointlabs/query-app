@@ -18,7 +18,7 @@ const StudentChoiceForm = (props) => {
              setAnswer(res.data)
          })
          .catch( res => {
-             console.log(res)
+            
          })
     
     }
@@ -26,7 +26,7 @@ const StudentChoiceForm = (props) => {
     
     const handleChange = (e) => {
         setAnswer( e.target.value)
-        console.log('handleChange')
+       
     }
 
     return (
