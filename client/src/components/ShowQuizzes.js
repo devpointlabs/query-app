@@ -45,7 +45,7 @@ const ShowQuizzes = (props) => {
                     Take Quiz
                 </Button>
                 </Link>
-            <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
+            <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
           </Container>
