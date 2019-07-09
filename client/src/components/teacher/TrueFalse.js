@@ -37,7 +37,7 @@ const TrueFalse = (props) => {
     
     return ( 
         <>
-            <h3>the question is set to {correct == true ? 'true' : "false"}</h3>
+            <h3>the question is set to {correct == true ? 'false' : "false"}</h3>
         <Form onSubmit={handleSubmit}>
 
         
@@ -48,11 +48,13 @@ const TrueFalse = (props) => {
           onChange={handleQuestionChange}
           />
 
-            <Form.Button onClick={toggleTrueFalse} >{ correct == true ? 'true' : 'false' }</Form.Button>
+            <Form.Button onClick={toggleTrueFalse} >{ correct == true ? 'false' : 'true' }</Form.Button>
             
         </Form>
          </>
     )
-}
+} 
+
+// the true and false is set to flip flop because it needs to submit on the change
 
 export default TrueFalse; 

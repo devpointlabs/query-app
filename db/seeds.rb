@@ -1,4 +1,11 @@
+User.create(
+  name: "bob",
+  email: "test@test.com",
+  role: "teacher",
+  password: "password",
+  image: nil
 
+  )
 99.times do
   User.create(
     name: Faker::Name.name,

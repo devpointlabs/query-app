@@ -5,12 +5,13 @@ import { Form, } from 'semantic-ui-react'
 
 const AnswerA = (props) => {
     const [correctAnswer, setCorrectAnswer] = useState([])
+    
 
    
         const handleSubmit = (e) => {
-            debugger
+            
             e.preventDefault();
-           axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { correctAnswer, } )
+           axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { correct_answer: correctAnswer, } )
             .then( res => {
                 setCorrectAnswer( res.data )   
             })

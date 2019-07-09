@@ -16,9 +16,20 @@ const MultipleChoice = (props) => {
     const [toggleCCorrect, setToggleCCorrect] = useState(false)
     const [toggleDCorrect, setToggleDCorrect] = useState(false)
 
+    const [name, setName] = useState([])
+    const [answerA, setAnswerA] = useState([])
+    const [answerB, setAnswerB] = useState([])
+    const [answerC, setAnswerC] = useState([])
+    const [answerD, setAnswerD] = useState([])
+    const [correctAnswer, setCorrectAnswer] = useState([])
+
 
     const handleSubmit = (e) => {
-  
+        e.preventDefault();
+        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { answerA, answerB, answerC, answerD, name, correct_answer: correctAnswer}    )
+        .then( res => {
+            setName( res.data )   
+        })
 }
 
         

@@ -8,7 +8,6 @@ const AnswerA = (props) => {
 
    
         const handleSubmit = (e) => {
-            
             e.preventDefault();
            axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { answerA, } )
             .then( res => {
