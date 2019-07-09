@@ -8,7 +8,7 @@ const TrueFalse = (props) => {
     const [bool, setBool] = useState('')
 
     const handleTrueFalseChange = () => {
-         setBool(correct)
+         setBool(bool === correct)
     }
 
     const handleSubmit = (e) => {
@@ -40,8 +40,10 @@ const TrueFalse = (props) => {
         {console.log("correct:", correct)}
         {console.log("bool:", bool)}
 
-            <h3>the question is set to {correct == true ? "true" : "false"}</h3>
+            <h3>the question is set to {correct == true ? "false" : "true" }</h3>
+            <Button onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
         <Form onSubmit={handleSubmit}>
+            {/* the booleans are working but if console logged they are flip flopped */}
 
         
           <Form.Input
@@ -51,7 +53,6 @@ const TrueFalse = (props) => {
           onChange={handleQuestionChange}
           />
 
-            <Button onClick={toggleTrueFalse} >{ correct == true ? "true" : "false" }</Button>
             
             <Form.Button onClick={handleTrueFalseChange}>Submit</Form.Button>
         </Form>
@@ -59,6 +60,6 @@ const TrueFalse = (props) => {
     )
 } 
 
-// the true and false is set to flip flop because it needs to submit on the change
+
 
 export default TrueFalse; 
