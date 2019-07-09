@@ -11,18 +11,13 @@ const TrueFalse = (props) => {
          setBool(bool === correct)
     }
 
-    const handleSubmit = (e) => {
-       
-            e.preventDefault();
-           axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
-               name: question, 
-               correct_answer: bool, 
-               
-            } )
-            
-            console.log(handleSubmit)
-        
-        
+    const handleSubmit = (e) => {       
+        e.preventDefault();
+        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
+            name: question, 
+            correct_answer: bool, 
+        } )            
+        console.log(handleSubmit)
     }
 
     
@@ -32,7 +27,6 @@ const TrueFalse = (props) => {
 
     const toggleTrueFalse = () => {
         setCorrect( !correct)
-        
     }
     
     return ( 
@@ -40,20 +34,16 @@ const TrueFalse = (props) => {
         {console.log("correct:", correct)}
         {console.log("bool:", bool)}
 
-            <h3>the question is set to {correct == true ? "false" : "true" }</h3>
-            <Button onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
+        <h3>the question is set to {correct == true ? "false" : "true" }</h3>
+        <Button onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
         <Form onSubmit={handleSubmit}>
             {/* the booleans are working but if console logged they are flip flopped */}
-
-        
-          <Form.Input
-          placeholder="question"
-          label="question"
-          value={question}
-          onChange={handleQuestionChange}
-          />
-
-            
+            <Form.Input
+                placeholder="question"
+                label="question"
+                value={question}
+                onChange={handleQuestionChange}
+            />
             <Form.Button onClick={handleTrueFalseChange}>Submit</Form.Button>
         </Form>
          </>
