@@ -2,10 +2,11 @@ import React, { useState, useEffect, } from 'react'
 import {Link, Redirect, } from "react-router-dom";
 import { Form,  } from "semantic-ui-react"
 import axios from 'axios'
-import TeacherHome from './TeacherHome';
+import TeacherShowQuizzes from './TeacherShowQuizzes';
 
 const QuizFormEdit = (props) => {
  const [name, setName] = useState("");
+ const [ showForm, setShowForm ] = useState(false);
 
  useEffect(() => {
   axios.get("/api/quizzes")
@@ -14,31 +15,35 @@ const QuizFormEdit = (props) => {
   })
 }, [])
 
+
+
   const handleSubmit = (e, history) => {
-    e.preventDefault();
+    e.preventDefault()
+    
     axios.put(`/api/quizzes/${props.id}`,{ name })
-    .then( e => {
-      setName(e.data.name)
-     // it works, but after clicking submit it manually needs to refresh the page.
-     // needs a fix to load the page after submit
-      
+    .then( res => {
+      props.updateQuiz(res.data, props.id);
+
     })
 
     }
 
   const handleChange = (e) => {
     setName( e.target.value);
+
   }
+
+  
 
   return(
     <>
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} >
       <Form.Input
       placeholder="New Quiz Name"
       value={name}
       onChange={handleChange}
       />
-    <Form.Button color="purple">Submit</Form.Button>
+    <Form.Button color="purple" >Submit</Form.Button>
     </Form>
     </>
   )
