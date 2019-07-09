@@ -1,13 +1,14 @@
 import React, { useState, useEffect,  } from 'react'
-import { Form, Radio } from 'semantic-ui-react';
+import { Form, Button, Radio } from 'semantic-ui-react';
 import axios from 'axios'
 
 const TrueFalse = (props) => {
     const [question, setQuestion] = useState([])
-    const [correct, setCorrect] = useState(false)
+    const [correct, setCorrect] = useState('')
+    const [bool, setBool] = useState('')
 
-    const handleChange = () => {
-        
+    const handleTrueFalseChange = () => {
+         setBool(bool === correct)
     }
 
     const handleSubmit = (e) => {
@@ -15,17 +16,16 @@ const TrueFalse = (props) => {
             e.preventDefault();
            axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
                name: question, 
-               correct_answer: correct, 
+               correct_answer: bool, 
                
             } )
-            .then( ques => {
-                setQuestion(ques.data)   
-            })
+            
             console.log(handleSubmit)
         
         
     }
-        //ensure that state doesnt get toggled everytime user toggles true/false
+
+    //ensure that state doesnt get toggled everytime user toggles true/false
     const handleQuestionChange = (e) => {
        setQuestion(e.target.value)
     }
@@ -37,8 +37,13 @@ const TrueFalse = (props) => {
     
     return ( 
         <>
-            <h3>the question is set to {correct == true ? 'false' : "false"}</h3>
+        {console.log("correct:", correct)}
+        {console.log("bool:", bool)}
+
+            <h3>the question is set to {correct == true ? "false" : "true" }</h3>
+            <Button onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
         <Form onSubmit={handleSubmit}>
+            {/* the booleans are working but if console logged they are flip flopped */}
 
         
           <Form.Input
@@ -48,13 +53,13 @@ const TrueFalse = (props) => {
           onChange={handleQuestionChange}
           />
 
-            <Form.Button onClick={toggleTrueFalse} >{ correct == true ? 'false' : 'true' }</Form.Button>
             
+            <Form.Button onClick={handleTrueFalseChange}>Submit</Form.Button>
         </Form>
          </>
     )
 } 
 
-// the true and false is set to flip flop because it needs to submit on the change
+
 
 export default TrueFalse; 

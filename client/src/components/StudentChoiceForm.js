@@ -8,12 +8,10 @@ import {Link,} from 'react-router-dom';
 const StudentChoiceForm = (props) => {
     const [answer, setAnswer] = useState([])
     
-  
     
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
          axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
          .then( res => {             
             setAnswer(res.data)             

@@ -20,7 +20,6 @@ const ShowQuestions = (props) => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
           .then( res => {
             setQuestions(res.data);
-            console.log(res.data)
           })
       }, [])
 
