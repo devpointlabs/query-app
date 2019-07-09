@@ -25,7 +25,7 @@ const TrueFalse = (props) => {
         
     }
 
-    //ensure that state doesnt get toggled everytime user toggles true/false
+    
     const handleQuestionChange = (e) => {
        setQuestion(e.target.value)
     }
