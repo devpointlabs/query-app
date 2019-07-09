@@ -56,7 +56,7 @@ const ShowQuestions = (props) => {
                   }}>
                 <Button  color="gray" icon="pencil" ></Button>
                 </Link>
-            { toggle  ? <StudentChoiceForm question_id={questions.id}/> : null  }
+            { toggle  ? <StudentChoiceForm question_id={props.match.params.id} push={props.history.push}/> : null  }
                 
                 </Card>
               </Card.Group>
