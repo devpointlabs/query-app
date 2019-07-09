@@ -38,7 +38,6 @@ const StudentChoiceForm = (props) => {
                 placeholder="answer"
                 value={answer}
                 onChange={handleChange}
-            
             />
             
             <Form.Button style={{backgroundColor: "#4F1A9E", color: "white",}}>Submit</Form.Button>
