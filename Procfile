@@ -1,1 +1,2 @@
-web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+frontend: PORT=3000 yarn --cwd client start
+backend: PORT=3001 bundle exec rails s
