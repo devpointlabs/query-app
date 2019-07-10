@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     resources :choice do
       resources :submission_choices
     end
+    get '*other', to: 'static#index'
   end
 end
