@@ -1,4 +1,11 @@
+User.create(
+  name: "bob",
+  email: "test@test.com",
+  role: "teacher",
+  password: "password",
+  image: nil
 
+  )
 99.times do
   User.create(
     name: Faker::Name.name,
@@ -14,7 +21,7 @@ end
     Quiz.create(
         name: Faker::Educator.subject,
         )
-        2.times do 
+        5.times do 
             Question.create(
                 name: Faker::Science.scientist,
                 correct_answer: "the coolest person",
@@ -25,7 +32,7 @@ end
         end
             10.times do 
                 Choice.create( 
-                answer: "the coolest persons",
+                answer: "blah blahs",
                 correct: true,
                 question_id: rand(1..2),
                 )

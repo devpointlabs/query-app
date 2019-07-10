@@ -3,7 +3,7 @@ import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
-import ReactDOM from 'react-dom';
+
 
 
 
@@ -14,7 +14,7 @@ const ShowQuizzes = (props) => {
     useEffect( () => {
         axios.get("/api/quizzes")
           .then( res => {
-            console.log(res)
+            
             setQuizzes(res.data);
           })
       }, [])
@@ -40,11 +40,12 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={TakeQuiz} /> } >
-
+                <Link to={`/quizzes/${quiz.id}/questions`}>
+                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
                     Take Quiz
                 </Button>
-            <Button color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
+                </Link>
+            <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
           </Container>

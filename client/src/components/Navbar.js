@@ -15,6 +15,7 @@ class Navbar extends React.Component {
             name='logout'
             onClick={() => handleLogout(this.props.history)}
           />
+         
         </Menu.Menu>
       )
     } else {
@@ -34,7 +35,10 @@ class Navbar extends React.Component {
               active={location.pathname === '/register'}
             />
           </Link>
-        </Menu.Menu>
+        
+
+         
+         </Menu.Menu>
       )
     }
   }

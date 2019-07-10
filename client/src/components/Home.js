@@ -11,7 +11,7 @@ const Home = () => {
     <Header as='h1'> DevPoint Labs</Header>
     </div>
       <Grid divided="vertically"> 
-      <br />
+      
         <Grid.Row columns={2}>
           <Grid.Column style={{backgroundColor: "#4F1A9E",}}>
           <br />
@@ -24,6 +24,8 @@ const Home = () => {
           <Header as='h1' style={{color: "white", textAlign: "center", }}> Test Your Knowledge</Header>
           <br />
           <br />
+          <Header as="h3" style={{color: "white", textAlign: "center",}}> Your quizzes help DevPoint Labs understand how we are teaching.</Header>
+          <Header as="h4" style={{color: "white", textAlign: "center",}}> Every effort you put into these quizzes will help us guide you and the cohort better.</Header>
           <br />
           
          </Grid.Column>

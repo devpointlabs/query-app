@@ -1,60 +1,52 @@
 import React, { useState, useEffect, } from 'react'
-import { Form, } from "semantic-ui-react"
+import { Form, Dropdown, } from "semantic-ui-react"
 import axios from 'axios'
+import WrongAnswers from './MultipleChoice'
+import TrueFalse from './TrueFalse'
+import FillInTheBlank from './FillInTheBlank';
 
 
 const QuestionForm = (props) => {
- const [name, setName] = useState([]);
- const [correctAnswer, setCorrectAnswer] = useState([])
 
- const handleSubmit = (e, history) => {
-   e.preventDefault();
-    axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { name, correct_answer: correctAnswer, } )
-    .then( ques => {
-      setName(ques.data)
-      
-    })
- }
+ const [questionType, setQuestionType] = useState('multiple choice')
+
+  
+  const handleQuestionType = (e) => {
+    setQuestionType(e.target.innerText)
+   }
+      const type =  ( 
+         [
+         { key: 1, text: 'true/false', value: 1 },
+       { key: 2, text: 'multiple choice', value: 2 },
+       { key: 3, text: 'fill in the blank', value: 3 },
+        ]
+       )
 
 
+const dropDown = () => {
+  return (
+<Dropdown
+  placeholder='select a type of question'
+  selection
+  options={type}
+  onChange={handleQuestionType}
+  />
 
-
- const handleQuestionChange = (e) => {
-   setName( e.target.value);
- }
-
- const handleAnswersChange = (e) => {
-  setCorrectAnswer( e.target.value);
+  )
 }
 
 
-
-   return(
+   return (
 
      <>
-    <Form onSubmit={handleSubmit}>
-        <Form.Input
-        placeholder="question"
-        label="question"
-        value={name}
-        onChange={handleQuestionChange}
-          />
+              <h3>Question Type</h3>
+              {dropDown()}
+         
+            {questionType == 'fill in the blank' ? <FillInTheBlank { ...props }/> : null }
+            {questionType == 'multiple choice' ? <WrongAnswers  {...props } /> : null }
+            {questionType == 'true/false' ? <TrueFalse { ...props } /> : null }
 
-        
-        <Form.Input 
-        placeholder="correct answer"
-        label="correct answer"
-        value={correctAnswer}
-        onChange={handleAnswersChange}
-          />
-
-      <Form.Button color="purple">Submit</Form.Button>
-      </Form>
-
-
-
-
-
+          
      </>
 
    )

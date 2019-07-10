@@ -1,7 +1,7 @@
 import React, {useEffect, useState, } from "react"
 import {Card, Form, } from "semantic-ui-react"
 import axios from "axios"
-import ShowAnswer from "./ShowAnswer";
+
 
 const ShowTeacherChoices = (props) => {
     const [questions, setQuestions] = useState([])

@@ -24,12 +24,12 @@ const QuizForm = (props) => {
      <>
       <Form onSubmit={handleSubmit}>
         <Form.Input
-        placeholder="Quiz Name"
-        label="quiz"
-        value={name}
-        onChange={handleChange}
+          placeholder="Quiz Name"
+          label="quiz"
+          value={name}
+          onChange={handleChange}
           />
-
+      
       <Form.Button color="purple">Submit</Form.Button>
       </Form>
       

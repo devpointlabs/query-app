@@ -17,10 +17,10 @@ class Api::ChoicesController < ApplicationController
 
   def create
     choice = @question.choices.new(choice_params)
-    if @choice.save
+    if choice.save
       render json: choice
     else
-      render json: @choices.errors, status: 422
+      render json: @choice.errors, status: 422
     end 
   end
 
@@ -40,13 +40,13 @@ class Api::ChoicesController < ApplicationController
   private 
 
   def set_choice
-    @choices = Choice.find(params[:id])
+    @choice = Choice.find(params[:id])
   end
 
   def set_question
     @question = Question.find(params[:question_id])
   end
-  def choices_params
+  def choice_params
     params.require(:choice).permit(:answer, :correct, :question_id) 
   end
 end

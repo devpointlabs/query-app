@@ -10,7 +10,10 @@ const Choice = (props) => {
     const [showForm, setShowForm] = useState(false);
 
     useEffect( () => {
-        axios.get("/api/choice")
+        axios.get(`/api/quizzes/${props.match.params.id}/choice`, { choice, show_form: setShowForm, } )
+
+        // { name, correct_answer: correctAnswer, } )
+
           .then( res => {
             setChoice(res.data);
           })
@@ -31,8 +34,7 @@ const Choice = (props) => {
                 </Card.Content>
                 </Card>
                 <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={ <Link to={setChoice} /> } >
-                
-                    Show Choices
+                  Show Choices
                 </Button>
             </Card.Group>
             </Segment>

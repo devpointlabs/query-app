@@ -3,6 +3,8 @@ import {Card, Form, } from "semantic-ui-react"
 import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
+import SubmissionChoices from './SubmissionChoices'
+
 
 const ShowAnswer = (props) => {
   const [answers, setAnswers] = useState([])
@@ -19,8 +21,12 @@ const ShowAnswer = (props) => {
   }, [])
 
   const renderAnswer = () => {
-      return answers.map( answer => ( <Card key={answer.id}>
+      return answers.map( answer => ( 
+      <Card key={answer.id}>
         <Card.Header>{answer.answer}</Card.Header>
+        <Card.Meta> 
+            <SubmissionChoices { ...props } /> 
+        </Card.Meta>
       </Card>) )
     }
 
@@ -39,6 +45,7 @@ const ShowAnswer = (props) => {
     return ( 
       <>
           <ShowTeacherChoices { ...props } />
+          
       
           <h1>
               Answers/choices
