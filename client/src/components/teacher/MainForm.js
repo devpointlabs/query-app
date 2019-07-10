@@ -71,6 +71,23 @@ class MainForm extends Component {
     return null;
   }
 
+  renderForm(){
+    switch(this.state.currentStep){
+      case 1: 
+      return <QuizForm 
+      currentStep={this.state.currentStep} 
+      handleChange={this.handleChange}
+      name={this.state.name}
+    />
+
+      case 2:
+        return <QuestionForm
+        currentStep={this.state.currentStep} 
+        handleChange={this.handleChange}
+        name={this.state.name}
+      />   
+    }
+  }
   render() {    
     return (
       
@@ -78,16 +95,7 @@ class MainForm extends Component {
       <h1>Create a Quiz</h1>
       <p>Step {this.state.currentStep} of 2 </p> 
       <form onSubmit={this.handleSubmit}>
-      <QuizForm 
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          name={this.state.name}
-        />
-        <QuestionForm
-          currentStep={this.state.currentStep} 
-          handleChange={this.handleChange}
-          name={this.state.name}
-        />     
+        {this.renderForm()}
         {this.previousButton}
         {this.nextButton}
       </form>
