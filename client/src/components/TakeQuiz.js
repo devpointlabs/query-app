@@ -6,20 +6,15 @@ import { Link, } from 'react-router-dom'
 import axios from 'axios';
 import {AuthConsumer} from '../providers/AuthProvider'
 
-
-
-
-const ShowQuestions = (props) => {
-    
+const ShowQuestions = (props) => {    
     const [ questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
-
-
 
     useEffect( () => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
           .then( res => {
             setQuestions(res.data);
+            console.log(res.data)
           })
       }, [])
 
@@ -33,9 +28,7 @@ const ShowQuestions = (props) => {
             setQuestions(questions.filter( q => q.id !== id))
           })
       }
-
-      
-     
+ 
       const renderQuestions = () => {
         return questions.map( questions => (
           <>
@@ -77,7 +70,7 @@ const ShowQuestions = (props) => {
         :
         null  
       }
-<Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
+      <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
         <Button>show_answers</Button>
       </Link>
       
