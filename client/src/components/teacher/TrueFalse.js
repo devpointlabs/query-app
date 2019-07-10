@@ -11,16 +11,16 @@ const TrueFalse = (props) => {
          setBool(bool === correct)
     }
 
-    const handleSubmit = (e) => {       
+    const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
-            name: question, 
-            correct_answer: bool, 
-        } )            
+        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  {
+            name: question,
+            correct_answer: bool,
+        } )
         console.log(handleSubmit)
     }
 
-    
+
     const handleQuestionChange = (e) => {
        setQuestion(e.target.value)
     }
@@ -28,8 +28,8 @@ const TrueFalse = (props) => {
     const toggleTrueFalse = () => {
         setCorrect( !correct)
     }
-    
-    return ( 
+
+    return (
         <>
         {console.log("correct:", correct)}
         {console.log("bool:", bool)}
@@ -48,8 +48,8 @@ const TrueFalse = (props) => {
         </Form>
          </>
     )
-} 
+}
 
 
 
-export default TrueFalse; 
+export default TrueFalse;
