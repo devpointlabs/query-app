@@ -12,7 +12,6 @@ class Api::QuizzesController < ApplicationController
 
   def create
     quiz = Quiz.new(quiz_params)
-
     if quiz.save
       render json: quiz
     else

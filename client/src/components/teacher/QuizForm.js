@@ -1,8 +1,10 @@
 import React from 'react'
 import { Form, Button} from "semantic-ui-react"
+import axios from "axios"
 
 class QuizForm extends React.Component{
- 
+  state = { name: ''}
+  
  render() {
   if (this.props.currentStep !== 1) { 
     return null
@@ -13,11 +15,10 @@ class QuizForm extends React.Component{
       <label htmlFor="quizName">Quiz Name</label>
       <input
         className="form-control"
-        id="quizName"
-        name="quizName"
+        name="name"
         type="text"
         placeholder="Enter Quiz Name"
-        value={this.props.quizName}
+        value={this.props.name}
         onChange={this.props.handleChange} 
       />
     </div>
@@ -26,18 +27,7 @@ class QuizForm extends React.Component{
 }
 
 
-  // return(
-  //   <Form>
-  //     <h1 className="ui centered"> Quiz Name </h1>
-  //     <Form.Field>
-  //       <input
-  //       placeholder="Quiz Name"
-  //       onChange={this.props.handleChange('quizName')}
-  //       defaultValue={values.name}
-  //       />
-  //     </Form.Field>
-  //     <Button onClick={this.saveAndContinue}> Save and Continue</Button>
-  //   </Form>
+
 
   // <Form onSubmit={handleSubmit}>
   //   <Form.Input
