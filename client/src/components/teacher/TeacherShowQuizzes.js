@@ -15,7 +15,6 @@ const TeacherShowQuizzes = (props) => {
     })
   }, []);
   
-
   const deleteQuiz = (id) => {
     axios.delete(`api/quizzes/${id}`)
       .then(res => {
@@ -37,7 +36,6 @@ const TeacherShowQuizzes = (props) => {
   }
 
   const renderQuizzes = () => {
-    
     if(quizzes.length <= 0)
       return <Header as='h2'> - No Quizzes Available -</Header>
     return quizzes.map(quiz => (
@@ -55,8 +53,7 @@ const TeacherShowQuizzes = (props) => {
                     <QuizFormEdit                    
                       updateQuiz={updateQuiz}
                       key={quiz.id}
-                      id={quiz.id}
-                      
+                      id={quiz.id}                     
                     /> 
                   }
                   <Button onClick={ () => setShowForm(!showForm) }>
