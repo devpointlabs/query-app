@@ -113,7 +113,7 @@ const makeDCorrect = () => {
 return (
     <>
           <h1>Question</h1><QuestionInput updateName={updateName} { ...props } />
-          {console.log('parent component:', correctAnswer)}
+          {console.log('parent component:', answerB)}
 
         <h4>A</h4><Button onClick={toggleA}>{ toggleACorrect == false ? "false" : "true" }</Button>  
             {makeACorrect()}
