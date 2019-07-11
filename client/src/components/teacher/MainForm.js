@@ -27,7 +27,7 @@ class MainForm extends Component {
     axios.post("/api/quizzes/", {name})
        .then( res => {
          const { name } = this.state
-         this.setState({name: [...name, res.data]})
+         this.setState({name: res.data})
        })
       
       

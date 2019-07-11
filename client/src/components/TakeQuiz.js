@@ -1,6 +1,7 @@
 import React, {useState, useEffect, } from 'react';
 import {Card, Header, Segment, List, Button, Container } from 'semantic-ui-react';
 import StudentChoiceForm from './StudentChoiceForm'
+import ShowQuestion from './ShowQuestion'
 import EditQuestion from './teacher/EditQuestion'
 import { Link, } from 'react-router-dom'
 import axios from 'axios';
@@ -34,6 +35,7 @@ const ShowQuestions = (props) => {
           })
       }
 
+    //  const array = questions.map()
       
      
       const renderQuestions = () => {
@@ -67,8 +69,9 @@ const ShowQuestions = (props) => {
           <br />
           <br />
           <br />
+
           </>
-        ))
+        )).splice()
       }
     
     return (
@@ -89,6 +92,7 @@ const ShowQuestions = (props) => {
         {console.log(questions)}
 
     {renderQuestions()}
+    
         </>
     )
 }
