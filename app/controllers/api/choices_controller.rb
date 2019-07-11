@@ -16,6 +16,7 @@ class Api::ChoicesController < ApplicationController
   end
 
   def create
+    
     choice = @question.choices.new(choice_params)
     if choice.save
       render json: choice
@@ -44,6 +45,7 @@ class Api::ChoicesController < ApplicationController
   end
 
   def set_question
+    
     @question = Question.find(params[:question_id])
   end
   def choice_params

@@ -30,7 +30,7 @@ const App = () => (
           <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/questions/:id/choices/:id" component={ShowAnswer} />
+          <ProtectedRoute exact path="/questions/:question_id/choices/:id" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
           <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />

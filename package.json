@@ -2,11 +2,29 @@
   "name": "query-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+    "build": "yarn --cwd client install && yarn --cwd client build",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+    "heroku-postbuild": "yarn build && yarn deploy"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "styled-components": "^4.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpointlabs/query-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devpointlabs/query-app/issues"
+  },
+  "homepage": "https://github.com/devpointlabs/query-app#readme"
 }
