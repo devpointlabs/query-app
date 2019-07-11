@@ -97,7 +97,7 @@ class MainForm extends Component {
     />
 
       case 2:
-        return <QuestionForm
+        return <QuestionForm 
         currentStep={this.state.currentStep} 
         handleChange={this.handleChange}
         name={this.state.name}

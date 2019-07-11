@@ -28,7 +28,7 @@ const Home = () => {
             </Grid.Column>
             <Grid.Column>
             <div>
-              <Link to={"/quizzes/new"}>
+              <Link to={""}>
                 <Button style={{backgroundColor: "#4F1A9E", color: "white",}} >                 
                 Create a Quiz
                 </Button>
