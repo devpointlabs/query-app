@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from "axios";
 import QuizForm from "./QuizForm";
 import QuestionForm from "./QuestionForm";
 
@@ -21,6 +22,16 @@ class MainForm extends Component {
       [name]: value
     })    
   }
+
+  addQuiz = (name) => {
+    axios.post("/api/quizzes/", {name})
+       .then( res => {
+         const { name } = this.state
+         this.setState({name: [...name, res.data]})
+       })
+      
+      
+  }
   
   handleSubmit = (event) => {
     event.preventDefault()
@@ -28,18 +39,21 @@ class MainForm extends Component {
   }
 
   _next() {
+    const { name } = this.state
     let currentStep = this.state.currentStep
     currentStep = currentStep >= 2? 3: currentStep + 1
     this.setState({
       currentStep: currentStep
     })
+   {this.addQuiz(name)}
   }
     
   _prev() {
     let currentStep = this.state.currentStep
     currentStep = currentStep <= 1? 1: currentStep - 1
     this.setState({
-      currentStep: currentStep
+      currentStep: currentStep,
+      name: ''
     })
   }
 
@@ -69,6 +83,7 @@ class MainForm extends Component {
       )
     }
     return null;
+    
   }
 
   renderForm(){
@@ -78,6 +93,7 @@ class MainForm extends Component {
       currentStep={this.state.currentStep} 
       handleChange={this.handleChange}
       name={this.state.name}
+       
     />
 
       case 2:
@@ -103,20 +119,5 @@ class MainForm extends Component {
     )
   }
 }
-
-  // return(
-  //   <>
-  //   <Form onSubmit={handleSubmit}>
-  //     <Form.Input
-  //     placeholder="Quiz Name"
-  //     label="quiz"
-  //     value={name}
-  //     onChange={handleChange}
-  //     />
-  //   <Form.Button color="purple">Submit</Form.Button>
-  //   </Form>
-  //   </>
-  // )
-
 
 export default MainForm;
