@@ -27,7 +27,7 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
-          <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
+          <ProtectedRoute exact path="/quizzes/:id/questions/:submission_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/questions/:question_id/choices/:id" component={ShowAnswer} />

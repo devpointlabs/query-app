@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_06_162732) do
+ActiveRecord::Schema.define(version: 2019_07_11_204934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2019_07_06_162732) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "submission_id"
     t.index ["question_id"], name: "index_choices_on_question_id"
+    t.index ["submission_id"], name: "index_choices_on_submission_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_162732) do
   end
 
   add_foreign_key "choices", "questions"
+  add_foreign_key "choices", "submissions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "submission_choices", "choices"
   add_foreign_key "submission_choices", "submissions"
