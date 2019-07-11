@@ -38,7 +38,7 @@ const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
           <Route exact path="/quizzes" component={MainForm} />
-          <Route exact path="/quizzes/new" component={MainForm} />
+          <Route exact path="/quizzes/new" component={QuizForm} />
           <Route exact path="/teacherhome" component={TeacherHome} />
           <Route component={NoMatch} />
         </Switch>
