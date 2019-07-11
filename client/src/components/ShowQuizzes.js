@@ -3,6 +3,7 @@ import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
+import {AuthConsumer} from '../providers/AuthProvider'
 
 
 
@@ -26,6 +27,13 @@ const ShowQuizzes = (props) => {
         })
       }
 
+      const createSubmission = (id) => {
+        axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+          .then( res => { 
+            props.push(`/quizzes/${id}/questions/${res.data.id}`)
+          })
+      }
+
       const renderQuizzes = () => {
         return quizzes.map( quiz => (
           <>
@@ -40,11 +48,11 @@ const ShowQuizzes = (props) => {
                     {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
                 </Card>
-                <Link to={`/quizzes/${quiz.id}/questions`}>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
+               
+                <Button onClick={() => createSubmission(quiz.id)} style={{backgroundColor: "#4F1A9E", color: "white",}}>
                     Take Quiz
                 </Button>
-                </Link>
+             
             <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             </Card.Group>
             </Segment>
@@ -67,4 +75,12 @@ const ShowQuizzes = (props) => {
     )
 }
 
-export default ShowQuizzes;
+const ConnectedShowQuizzes = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <ShowQuizzes {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default ConnectedShowQuizzes;

@@ -3,7 +3,10 @@ import { Header, Container, Table, Card, Grid, Segment, Image,   } from 'semanti
 import ShowQuizzes from './ShowQuizzes'
 import TakeQuiz from './TakeQuiz'
 
-const Home = () => {
+const Home = (props) => {
+  
+
+  
   return (
     <>
     <div style={{display: "flex"}}>
@@ -31,7 +34,7 @@ const Home = () => {
          </Grid.Column>
         <Grid.Column>
       <div>
-      <ShowQuizzes />
+      <ShowQuizzes push={props.history.push} />
       </div>
           
         </Grid.Column>
