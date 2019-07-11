@@ -15,7 +15,7 @@ const ShowQuestion = (props) => {
     const renderQuestion = () => {
       props.name.map( question =>
       <Card key={question.id}>
-      <Card.Header>{}</Card.Header>
+      <Card.Header>#{question.id} {question.name}</Card.Header>
       </Card>)
 
     }
