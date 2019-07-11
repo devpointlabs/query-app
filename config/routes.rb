@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :quizzes do
+      resources :submissions
       resources :questions
     end
     resources :questions do

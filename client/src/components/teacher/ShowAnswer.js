@@ -1,5 +1,5 @@
 import React, {useEffect, useState, } from "react"
-import {Card, Form, } from "semantic-ui-react"
+import {Card, Form, Segment, } from "semantic-ui-react"
 import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
@@ -11,7 +11,7 @@ const ShowAnswer = (props) => {
   const [correct, setCorrect] = useState([])
 
   useEffect( () => {
-      axios.get(`/api/questions/${props.match.params.id}/choices`, { answers })
+      axios.get(`/api/questions/${props.match.params.question_id}/choices/${props.match.params.id}`)
       .then( res => {
           setAnswers(res.data)
       })
@@ -25,7 +25,6 @@ const ShowAnswer = (props) => {
       <Card key={answer.id}>
         <Card.Header>{answer.answer}</Card.Header>
         <Card.Meta> 
-            <SubmissionChoices { ...props } /> 
         </Card.Meta>
       </Card>) )
     }
