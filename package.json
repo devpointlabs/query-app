@@ -9,22 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
   "dependencies": {
-    "styled-components": "^4.3.2"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devpointlabs/query-app.git"
-  },
-  "bugs": {
-    "url": "https://github.com/devpointlabs/query-app/issues"
-  },
-  "homepage": "https://github.com/devpointlabs/query-app#readme"
+  }
 }
