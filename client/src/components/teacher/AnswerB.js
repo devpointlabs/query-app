@@ -8,12 +8,13 @@ const AnswerB = (props) => {
 
    
         const handleSubmit = (e) => {
-           
-            e.preventDefault();
+            console.log(handleSubmit)
+          
          props.updateAnswerB(answerB)
     }
 
     const handleChange = (e) => {
+        e.preventDefault()
         setAnswerB( e.target.value)
     }
 
@@ -21,10 +22,11 @@ const AnswerB = (props) => {
 
     return (
         <>
-        {console.log("childComponent", answerB)}
-            <Form onSubmit={handleSubmit} >
+      
+            <Form onBlur={handleSubmit} >
               <Form.Input 
                 placeholder='B'
+
                 
                 value={answerB}
                 onChange={handleChange}
