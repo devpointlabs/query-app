@@ -3,6 +3,7 @@
 
 {
   "name": "query-app",
+<<<<<<< HEAD
   "version": "1.0.0",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "main": "index.js",
@@ -32,4 +33,16 @@
     "url": "https://github.com/devpointlabs/query-app/issues"
   },
   "homepage": "https://github.com/devpointlabs/query-app#readme"
+=======
+  "license": "MIT",
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.15.2"
+  },
+  "scripts": {
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+  }
+>>>>>>> 7efe747eb0a85763e851459c67c4e8e1a7ade2e9
 }

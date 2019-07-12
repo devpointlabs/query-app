@@ -35,15 +35,12 @@ const TeacherShowQuizzes = (props) => {
     return setQuizzes(allQuizzes)
   }
 
-  const renderQuizzes = () => {
-    if(quizzes.length <= 0)
-      return <Header as='h2'> - No Quizzes Available -</Header>
-    return quizzes.map(quiz => (
-      <>
+  const renderQuizzes = () => (
+    <>
         <Container> 
-          <Segment key={quiz.id}>
-            <Card.Group>
-              <Card>
+            <Card.Group itemsPerRow={3}>
+     { quizzes.map(quiz => (
+              <Card key={quiz.id}>
                 <Card.Content>
                   <Card.Header> {quiz.name} </Card.Header>
                 </Card.Content>
@@ -56,30 +53,40 @@ const TeacherShowQuizzes = (props) => {
                       id={quiz.id}                     
                     /> 
                   }
-                  <Button onClick={ () => setShowForm(!showForm) }>
+                  <Button style={{backgroundColor: "#494ca2", color:"white"}} 
+                          onClick={ () => setShowForm(!showForm) }>
                     { showForm ? "Close" : "Edit name" }
                   </Button>
-                  <Button as={Link} to={`/quizzes/${quiz.id}`} class="ui violet basic button">  
+                  <Button style={{backgroundColor: "#8186d5", color:"white"}} 
+                          as={Link} 
+                          to={`/quizzes/${quiz.id}`} 
+                          class="ui violet basic button">  
                     View
                   </Button>
-                  <Button class="ui violet basic button" onClick={() => deleteQuiz(quiz.id)}> 
-                    <Icon name="trash"/> Delete
+                  <Button style={{backgroundColor: "#c6cbef", color:"white"}}
+                          class="ui violet basic button" onClick={() => deleteQuiz(quiz.id)}> 
+                    <Icon name="trash"/> 
                   </Button>
-
+                    <hr />
+                   
                   <Link textAlign="center" to={`/quizzes/${quiz.id}/question_form`}>
+<<<<<<< HEAD
                     <Button>Add Question</Button>
+=======
+                    <Button style={{backgroundColor: "#494ca2", color:"white"}} >add a question</Button>
+>>>>>>> 7efe747eb0a85763e851459c67c4e8e1a7ade2e9
                   </Link>
                 </Card.Content>
-              </Card>  
+              </Card> 
+         ))} 
             </Card.Group>
-          </Segment>
         </Container>
         <br />
         <br />
         <br />
       </>
-    ))
-  }
+    
+  )
     return (
       <>
         <br />

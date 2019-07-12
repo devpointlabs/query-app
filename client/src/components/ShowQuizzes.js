@@ -45,7 +45,8 @@ const ShowQuizzes = (props) => {
                     <Card.Header> {quiz.name} </Card.Header>
                 </Card.Content>
                
-                <Button onClick={() => createSubmission(quiz.id)} style={{backgroundColor: "#4F1A9E", color: "white",}}>
+                <Button onClick={() => createSubmission(quiz.id)} 
+                        style={{backgroundColor: "#7e6bc4", color: "white",}}>
                     Take Quiz
                 </Button>
              {props.auth.user.role === 'teacher' ? 
