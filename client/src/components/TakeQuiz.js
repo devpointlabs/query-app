@@ -10,7 +10,7 @@ import {AuthConsumer} from '../providers/AuthProvider'
 
 
 
-const ShowQuestions = (props) => {
+const ShowQuestions = (props, id,) => {
     
     const [ questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
@@ -77,7 +77,7 @@ const ShowQuestions = (props) => {
     return (
       <>
       { props.auth.user.role == 'teacher' ?
-          <Link textAlign="center" to={`/quizzes/${props.match.params.id}/question_form`}>
+          <Link textAlign="center" to={`/quizzes/${id}/question_form`}>
             <Button>add a question</Button>
           </Link>
         :
@@ -85,7 +85,7 @@ const ShowQuestions = (props) => {
       }
       { props.auth.user.role == 'teacher' ?
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
-        <Button>show_answers</Button>
+        <Button>show answers</Button>
       </Link>
       : null }
       

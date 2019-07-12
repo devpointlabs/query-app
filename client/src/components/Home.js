@@ -4,9 +4,7 @@ import ShowQuizzes from './ShowQuizzes'
 import TakeQuiz from './TakeQuiz'
 
 const Home = (props) => {
-  
 
-  
   return (
     <>
     <div style={{display: "flex"}}>
