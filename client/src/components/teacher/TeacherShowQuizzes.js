@@ -9,7 +9,7 @@ const TeacherShowQuizzes = (props) => {
   const [ showForm, setShowForm ] = useState(false);
   
   useEffect( () => {
-    axios.get("/api/quizzes")
+    axios.get("/api/quizzes/", { quizzes, })
       .then( res => {
         setQuizzes(res.data);
     })
@@ -22,6 +22,13 @@ const TeacherShowQuizzes = (props) => {
         setQuizzes(values)
       });
     renderQuizzes();
+  }
+
+  const createSubmission = (id) => {
+    axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+      .then( res => { 
+        props.history.push(`/quizzes/${id}/questions/${res.data.id}`)
+      })
   }
 
   const updateQuiz = (quiz, id) => {
@@ -59,8 +66,9 @@ const TeacherShowQuizzes = (props) => {
                   </Button>
                   <Button style={{backgroundColor: "#8186d5", color:"white"}} 
                           as={Link} 
-                          to={`/quizzes/${quiz.id}`} 
-                          class="ui violet basic button">  
+                        to={`/quizzes/${quiz.id}/questions/`} 
+                          class="ui violet basic button"
+                          onClick={() => createSubmission(quiz.id)}>  
                     View
                   </Button>
                   <Button style={{backgroundColor: "#c6cbef", color:"white"}}
