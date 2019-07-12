@@ -31,22 +31,37 @@ const Home = (props) => {
           fontWeight: 'normal',
           height: '250px'
       }}
-            > Test Your Knowledge
+            > Query
             </Header>
       { props.auth.user.role == 'student' ? 
       <div style={{display: 'flex', justifyContent: "space-evenly"}}>
         <div>
-          <Icon size="huge" name='pencil alternate' circular />
+          <Icon 
+              size="huge" 
+              name='pencil alternate' 
+              circular 
+              style={{color: '#7e6bc4'}}
+              />
           <Header style={{textAlign: 'center'}} as='h2'> learn </Header>
           <br />
         </div>
         <div>
-          <Icon name="book" size="huge"  circular/>
+          <Icon 
+              name="book" 
+              size="huge"  
+              circular
+              style={{color: '#7e6bc4'}}
+              />
           <Header style={{textAlign: 'center'}} as='h2'> study </Header>
           <br />
         </div>
         <div>
-          <Icon name="line graph" size="huge"  circular/>
+          <Icon 
+              name="line graph" 
+              size="huge"  
+              circular
+              style={{color: '#7e6bc4'}}
+              />
           <Header style={{textAlign: 'center'}} as='h2'> grow </Header>
         </div>
       </div>
@@ -55,7 +70,7 @@ const Home = (props) => {
       { props.auth.user.role == 'teacher' ?
           <div>
               <Link to={"/quizzes/new"}>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white", justifyContent: 'center'}}
+                <Button style={{backgroundColor: "#7e6bc4", color: "white", justifyContent: 'center'}}
                 centered size='massive'
                  >                 
                 Create a Quiz
