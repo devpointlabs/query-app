@@ -19,6 +19,7 @@ import ShowTeacherChoices from './components/teacher/ShowTeacherChoices'
 import SubmissionChoices from './components/teacher/SubmissionChoices';
 import ShowAnswer from './components/teacher/ShowAnswer'
 import TakeQuiz from './components/TakeQuiz';
+import TeacherShowQuizzes from './components/teacher/TeacherShowQuizzes'
 import Choice from './components/Choice';
 
 const App = () => (
@@ -32,6 +33,7 @@ const App = () => (
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/questions/:question_id/choices/:id" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+          <ProtectedRoute exact path="/questions/:id/questions/:id" component={TeacherShowQuizzes} />
           <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
           <Route exact path="/login" component={Login} />

@@ -96,9 +96,7 @@ const Home = (props) => {
       : null}
 
       {props.auth.user.role=== 'teacher' ? 
-      <div>
-          {TeacherShowQuizzes()}
-      </div> 
+      <TeacherShowQuizzes  { ...props } />
       :null} 
             </Container>
     </>
