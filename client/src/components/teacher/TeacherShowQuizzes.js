@@ -65,6 +65,10 @@ const TeacherShowQuizzes = (props) => {
                   <Button class="ui violet basic button" onClick={() => deleteQuiz(quiz.id)}> 
                     <Icon name="trash"/> Delete
                   </Button>
+
+                  <Link textAlign="center" to={`/quizzes/${quiz.id}/question_form`}>
+                    <Button>add a question</Button>
+                  </Link>
                 </Card.Content>
               </Card>  
             </Card.Group>

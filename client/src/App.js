@@ -27,10 +27,10 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
-          <Route exact path="/quizzes/:id/questions" component={TakeQuiz} />
+          <ProtectedRoute exact path="/quizzes/:id/questions/:submission_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/questions/:id/choices/:id" component={ShowAnswer} />
+          <ProtectedRoute exact path="/questions/:question_id/choices/:id" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
           <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
@@ -38,7 +38,7 @@ const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
           <Route exact path="/quizzes" component={MainForm} />
-          <Route exact path="/quizzes/new" component={MainForm} />
+          <Route exact path="/quizzes/new" component={QuizForm} />
           <Route exact path="/teacherhome" component={TeacherHome} />
           <Route component={NoMatch} />
         </Switch>

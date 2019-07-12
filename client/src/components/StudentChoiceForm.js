@@ -15,7 +15,7 @@ const StudentChoiceForm = (props) => {
          axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
          .then( res => {             
             setAnswer(res.data)             
-            props.push(`/questions/${props.question_id}/choices/${res.data.id}`)
+            // props.push(`/questions/${props.question_id}/choices/${res.data.id}`)
          })
          .catch( res => {
              console.log(res)
