@@ -1,14 +1,13 @@
 {
   "name": "query-app",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "npm --cwd client install && npm --cwd client build",
-    "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm build && npm deploy"
+  "license": "MIT",
+  "engines": {
+    "node": "10.15.3",
+    "yarn": "1.15.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "scripts": {
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
   }
 }
