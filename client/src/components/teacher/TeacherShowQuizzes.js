@@ -70,11 +70,7 @@ const TeacherShowQuizzes = (props) => {
                     <hr />
                    
                   <Link textAlign="center" to={`/quizzes/${quiz.id}/question_form`}>
-<<<<<<< HEAD
-                    <Button>Add Question</Button>
-=======
                     <Button style={{backgroundColor: "#494ca2", color:"white"}} >add a question</Button>
->>>>>>> 7efe747eb0a85763e851459c67c4e8e1a7ade2e9
                   </Link>
                 </Card.Content>
               </Card> 

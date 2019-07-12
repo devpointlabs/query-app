@@ -12,7 +12,7 @@ import {AuthConsumer} from '../providers/AuthProvider'
 
 const ShowQuestions = (props) => {
     
-    const [ questions, setQuestions ] = useState([])
+    const [questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
 
 
@@ -39,23 +39,24 @@ const ShowQuestions = (props) => {
       
      
       const renderQuestions = () => {
-        return questions.map( questions => (
+  
+        return questions.map( q => (
           <>
           <Container>
-            <Segment key={questions.id}>
+            <Segment key={q.id}>
               <Card.Group>
                 <Card>
                 <Card.Content>
-                    <Card.Header>Question: {questions.name} </Card.Header>
+                    <Card.Header>Question: {q.name} </Card.Header>
                 </Card.Content>
                 <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
                 { props.auth.user.role == 'teacher' ?
-                    <Button  color="red" icon="trash" onClick={() => handleDelete(questions.id)}></Button>
+                    <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
                 : null }
                 { props.auth.user.role == 'teacher' ?
                     <Link to={{
                       pathname: `/api/quizzes/${props.match.params.id}/questions/edit`,
-                      state: { question_id: questions.id }
+                      state: { question_id: q.id }
                     }}>
                     <Button  color="gray" icon="pencil" ></Button>
                     </Link>
@@ -71,7 +72,7 @@ const ShowQuestions = (props) => {
           <br />
 
           </>
-        )).splice()
+        ))
       }
     
     return (
