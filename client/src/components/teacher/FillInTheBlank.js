@@ -11,7 +11,9 @@ const FillInTheBlank = (props) => {
      const handleSubmit = () => {
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,
          { name, correct_answer: correctAnswer })
-        console.log("handleSumbit")
+         .then( res => {
+          props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+      })
     }
 
     const handleQuestionChange = (e) => {

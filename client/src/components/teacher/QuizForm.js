@@ -8,7 +8,7 @@ const QuizForm = (props) => {
 
 
 
- const handleSubmit = (e, id) => {
+ const handleSubmit = (e) => {
    e.preventDefault()
   
    axios.post(`/api/quizzes/`, { name: quizzes })
