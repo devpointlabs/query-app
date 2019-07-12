@@ -5,8 +5,16 @@ import TakeQuiz from './TakeQuiz'
 import {Link,} from 'react-router-dom';
 import {AuthConsumer} from '../providers/AuthProvider'
 import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
+import QuizForm from './teacher/QuizForm'
 
 const Home = (props) => {
+
+  const [togglequiz, setTogglequiz] = useState(false)
+
+  const toggle = () => {
+    setTogglequiz( !togglequiz)
+    console.log(toggle)
+  }
   
 
   
@@ -69,12 +77,14 @@ const Home = (props) => {
       
       { props.auth.user.role == 'teacher' ?
           <div>
-              <Link to={"/quizzes/new"}>
-                <Button style={{backgroundColor: "#7e6bc4", color: "white", justifyContent: 'center'}}
+             {togglequiz == true ? <QuizForm {...props} push={props.history.push } /> : null}
+              
+                <Button onClick={toggle} style={{backgroundColor: "#7e6bc4", color: "white", justifyContent: 'center'}}
                 centered size='massive'
-                 >                 
+                 > 
                 Create a Quiz
                 </Button>
+                  <Link to={"/quizzes/new"}>
               </Link>
          </div>
       : null }
