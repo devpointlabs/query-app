@@ -28,6 +28,9 @@ const MultipleChoice = (props) => {
         e.preventDefault();
         
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { answerA, answerB, answerC, answerD, name, correct_answer: correctAnswer}    )
+        .then( res => {
+            props.history.push(`/quizzes/${res.data.id}/questions/`)
+        })
         
     }
     
