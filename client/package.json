@@ -18,13 +18,9 @@
     "start": "react-scripts start",
     "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
     "test": "react-scripts test",
-<<<<<<< HEAD
     "eject": "react-scripts eject",
     "deploy": "cp -a client/build/. public/",
     "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
-=======
-    "eject": "react-scripts eject"
->>>>>>> 7efe747eb0a85763e851459c67c4e8e1a7ade2e9
   },
   "eslintConfig": {
     "extends": "react-app"
