@@ -67,7 +67,7 @@ const TeacherShowQuizzes = (props) => {
                   </Button>
 
                   <Link textAlign="center" to={`/quizzes/${quiz.id}/question_form`}>
-                    <Button>add a question</Button>
+                    <Button>Add Question</Button>
                   </Link>
                 </Card.Content>
               </Card>  
