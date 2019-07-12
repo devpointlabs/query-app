@@ -12,8 +12,8 @@ const QuizForm = (props) => {
    e.preventDefault()
   
    axios.post(`/api/quizzes/`, { name: quizzes })
-   .then( res =>{
-     props.push(`/quizzes/${res.data.id}/question_form`)
+   .then( res => {
+     props.history.push(`/quizzes/${res.data.id}/question_form`)
 
    })
  }
@@ -35,7 +35,7 @@ const QuizForm = (props) => {
       onChange={handleChange}
       
       />
-        <Form.Button> Submit</Form.Button>
+        <Form.Button>Submit</Form.Button>
     </Form>
    </>
  )
