@@ -82,7 +82,7 @@ const Home = (props) => {
                 <Button onClick={toggle} style={{backgroundColor: "#7e6bc4", color: "white", justifyContent: 'center'}}
                 centered size='massive'
                  > 
-                Create a Quiz
+                {togglequiz == true ? 'Close' : 'Create Quiz'}
                 </Button>
                   <Link to={"/quizzes/new"}>
               </Link>
