@@ -4,10 +4,11 @@ import MainForm from "./MainForm";
 import axios from "axios";
 import { Container, Card, Segment, Button, Header, Icon, } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Quiz from "./Quiz";
 
 
 class TeacherShowQuizzes extends React.Component {
-  state = { quizzes: [], };
+  state = { quizzes: [], quiz: []};
 
   componentDidMount() {
     axios.get("/api/quizzes")
@@ -48,7 +49,8 @@ class TeacherShowQuizzes extends React.Component {
   }
 
   renderQuizzes = () => {
-    return this.state.quizzes.map( quiz => <QuizList  quizzes={this.state.quizzes}
+    const { quiz, } = this.state;
+    return this.state.quizzes.map( quiz => <Quiz key={quiz.id} {...quiz}
       editQuiz={this.editQuiz}
       deleteQuiz={this.deleteQuiz} />);
   };
@@ -58,7 +60,9 @@ class TeacherShowQuizzes extends React.Component {
 <>
           {/* <Container> 
               <Card.Group itemsPerRow={3}> */}
-              { this.renderQuizzes() }
+              <Card.Group>
+//         {this.renderQuizzes()}
+//       </Card.Group>
                    
         {/* <Button style={{backgroundColor: "#8186d5", color:"white"}} 
                          as={Link} 

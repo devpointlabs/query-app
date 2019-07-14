@@ -25,10 +25,10 @@ class Quiz extends React.Component {
             </div>
         }
         <div>
-          <Button basic icon color="blue" onClick={this.toggleEdit}> 
+          <Button basic icon color="purple" onClick={this.toggleEdit}> 
             <Icon name="edit outline" />
           </Button>
-          <Button basic icon color="red" floated="right" onClick={() => this.props.deleteQuiz(this.props.id)}> 
+          <Button basic icon color="purple" floated="right" onClick={() => this.props.deleteQuiz(this.props.id)}> 
             <Icon name="trash alternate outline" />
           </Button>
         </div>
