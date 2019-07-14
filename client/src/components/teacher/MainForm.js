@@ -1,24 +1,48 @@
-import React, { useState, useEffect,  } from 'react';
-import axios from "axios";
-import QuizForm from "./QuizForm";
-import QuestionForm from "./QuestionForm";
+import React from "react";
+import { Header, Form,} from "semantic-ui-react";
 
+class MainForm extends React.Component {
+  state = { name: "", };
 
-const MainForm = (props) => {
-    const [quiz, setQuiz] = useState([])
+  componentDidMount() {
+    if (this.props.id) {
+      this.setState({ name: this.props.name })
+    }
+  }
 
+  handleChange = (e) => {
+    this.setState({ name: e.target.value, });
+  }
 
-    
-      axios.post(`api/quizzes/${props.match.params.id}`)
-    
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.props.id) {
+      this.props.editQuiz({ id: this.props.id, ...this.state, });
+      this.props.toggleEdit();
+    } else {
+      this.props.addQuiz(this.state.name);
+    }
+    this.setState({ name: "", });
+  }
 
-
+  render() {
     return (
-      <>
-      
-      
-      </>
+      <Form onSubmit={this.handleSubmit}>
+        <Header as="h3">
+          { this.props.id ? "Edit Quiz" : "Create a New Quiz"}
+        </Header>
+        <Form.Group>
+          <Form.Input
+            placeholder="Quiz Name"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <Form.Button color='violet'>Submit</Form.Button>
+        </Form.Group>
+      </Form>
     )
+  }
 }
 
 export default MainForm;
