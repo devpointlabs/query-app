@@ -39,10 +39,9 @@ class Quiz extends React.Component {
           <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
             <Button style={{backgroundColor: "#494ca2", color:"white"}} >add a question</Button>
           </Link>
-          <Button style={{backgroundColor: "#8186d5", color:"white"}} 
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
           as={Link} 
           to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
-          class="ui violet basic button"
           onClick={() => this.props.createSubmission(this.props.id)}>  
             View
           </Button>
