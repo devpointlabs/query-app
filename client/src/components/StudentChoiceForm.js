@@ -2,7 +2,7 @@ import React, {useState, useEffect, } from 'react';
 import { Form, } from "semantic-ui-react";
 import axios from 'axios';
 import ShowAnswer from './teacher/ShowAnswer';
-import {Link,} from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 
 const StudentChoiceForm = (props) => {
@@ -15,8 +15,11 @@ const StudentChoiceForm = (props) => {
          axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
          .then( res => {             
             setAnswer(res.data)             
-            // props.push(`/questions/${props.question_id}/choices/${res.data.id}`)
-         })
+        })
+        .then( res => {
+            props.history.push(`/questions/${props.question_id}/choices/${res.data.id}`)
+
+        })
          .catch( res => {
              console.log(res)
          })
