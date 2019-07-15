@@ -12,7 +12,7 @@ const StudentChoiceForm = (props) => {
     
 
     const handleSubmit = (e) => {
- console.log(answer)
+    console.log(answer)
         e.preventDefault()
          axios.post(`/api/questions/${props.id}/submission/${props.submission_id}/choices`, {answer})
          
@@ -27,7 +27,7 @@ const StudentChoiceForm = (props) => {
         //      console.log(res)
         //  })
     
-    
+    }
     
     const handleChange = (e) => {
         setAnswer( e.target.value)
