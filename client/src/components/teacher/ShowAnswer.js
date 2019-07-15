@@ -13,7 +13,7 @@ const ShowAnswer = (props, id) => {
 
   useEffect( () => {  
     
-      axios.get(`/api/questions/${props.match.params.question_id}/choices/`, { answer: answers,})
+      axios.get(`/api/questions/${props.match.params.quiz_id}/choices/`, { answer: answers,})
       .then( res => {
           setAnswers(res.data)
       })
