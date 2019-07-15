@@ -18,4 +18,7 @@ class Submission < ApplicationRecord
       
       ", quiz_id])    
   end
+
+
+  
 end

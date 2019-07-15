@@ -10,24 +10,23 @@ import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 const ShowAnswer = (props, id) => {
   const [answers, setAnswers] = useState([])
   const [correct, setCorrect] = useState([])
-  const [grade, setGrade] = useState(false)
+  const [finalGrade, setFinalGrade] = useState(false)
 
   useEffect( () => {  
       axios.get(`/api/show_grades/${props.match.params.quiz_id}`, { answer: answers,})
       .then( res => {
-        debugger
           setAnswers(res.data)
       })
   }, [])
 
-  const makeGrade = () => {
-    setGrade(!grade )
+  const updateGrade = (finalGrade) => {
+    setFinalGrade(finalGrade)
   }
 
   const renderAnswer = () => {
 
       return answers.map( answer => ( 
-      <ShowStudentCorrectAnswer answer={answer} { ...props} key={id} />
+      <ShowStudentCorrectAnswer updateGrade={updateGrade}  answer={answer} { ...props} key={id} />
       )
       ) 
     }
@@ -45,6 +44,7 @@ const ShowAnswer = (props, id) => {
     return ( 
       <>
           {renderAnswer()}
+          {console.log("parentComonent", finalGrade)}
          
          
           
