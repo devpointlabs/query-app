@@ -1,6 +1,4 @@
 import React from 'react';
-import QuizList from "./QuizList";
-import MainForm from "./MainForm";
 import Quiz from "./Quiz";
 import axios from "axios";
 import { Container, Header, Card } from "semantic-ui-react";
@@ -48,54 +46,33 @@ class TeacherShowQuizzes extends React.Component {
   }
 
   renderQuizzes = (quizzes) => {
-    
     return(
       <>
-      <Container> 
-          <Card.Group itemsPerRow={3}>
-   { this.state.quizzes.map(quiz => (
-            <Card >
-              
-              <Card.Content extra>
-                <br />
-                <Quiz 
-        id={quiz.id}
-       key={quiz.id} {...quiz}
-       editQuiz={this.editQuiz}
-       deleteQuiz={this.deleteQuiz} />
-
-</Card.Content>
+        <Container> 
+          <Card.Group itemsPerRow={2}>
+            { this.state.quizzes.map(quiz => (
+              <Card>
+                <Card.Content>
+                 <Card.Header> {quiz.name} </Card.Header>
+                 </Card.Content>
+                <Card.Content extra>
+                  <br />
+                  <Quiz 
+                    id={quiz.id}
+                    key={quiz.id}
+                    editQuiz={this.editQuiz}
+                    deleteQuiz={this.deleteQuiz} />
+                </Card.Content>
               </Card> 
-         ))}
-            </Card.Group>
+          ))}
+          </Card.Group>
         </Container>
         <br />
         <br />
         <br />
       </>
-    
     )
-}
-    
-    // <>
-    //   <Container> 
-    //     <Card.Group itemsPerRow={4}>
-    //  {this.state.quizzes.map( quiz => 
-    //  <Quiz 
-     
-    //   key={quiz.id} {...quiz}
-    //   editQuiz={this.editQuiz}
-    //   deleteQuiz={this.deleteQuiz} />)
-    //  }
-    //         </Card.Group>
-    //      </Container>
-    //      <br />
-    //      <br />
-    //      <br />
-    //    </>
-    // )
-
-    // }
+  } 
 
   render() {
     return (
@@ -114,14 +91,12 @@ class TeacherShowQuizzes extends React.Component {
 export default TeacherShowQuizzes;
 
 
-  // createSubmission = (id) => {
+//  createSubmission = (id) => {
   //   axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
   //     .then( res => { 
   //       props.history.push(`/quizzes/${id}/questions/${res.data.id}`)
   //     })
   // }
-
-  
 
 
   // renderQuizzes = () => (
@@ -173,24 +148,3 @@ export default TeacherShowQuizzes;
   //     </>
     
   // )
-//   render() {
-
-//   return (
-//     <>
-//       <br />
-//       <br />
-//       <br />
-//       <Card.Group>
-//          {this.renderQuizzes()}
-//       </Card.Group>
-//     </>
-  
-
-
-
-//   )
-//   }
-
-
-// }
-// export default TeacherShowQuizzes;

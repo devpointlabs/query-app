@@ -26,10 +26,14 @@ class Quiz extends React.Component {
             </div>
         }
         <div>
-          <Button basic icon color="purple" onClick={this.toggleEdit}> 
+          
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={this.toggleEdit}> 
+            View
+          </Button>
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}> 
             <Icon name="edit outline" />
           </Button>
-          <Button basic icon color="purple" floated="right" onClick={() => this.props.deleteQuiz(this.props.id)}> 
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={() => this.props.deleteQuiz(this.props.id)}> 
             <Icon name="trash alternate outline" />
           </Button>
         </div>
