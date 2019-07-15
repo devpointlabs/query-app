@@ -7,7 +7,6 @@ import { Link, } from "react-router-dom";
 class Quiz extends React.Component {
   state = { editing: false, };
   
-
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
   };
@@ -15,9 +14,8 @@ class Quiz extends React.Component {
 
   createSubmission = (id) => {
     axios.post(`/api/quizzes/${id}/submissions`, {user_id: this.auth.user.id, quiz_id: id})
-      .then( res => { 
-        const { quiz, } = this.state;
-        this.history.push(`/quizzes/${id}/questions/${res.data.id}`)
+      .then( id => { 
+        this.history.push(`/quizzes/${id}/questions/${id}`)
       })
   }
 
@@ -38,13 +36,13 @@ class Quiz extends React.Component {
         }
         <div>
           
-        <Button style={{backgroundColor: "#8186d5", color:"white"}} 
-                          as={Link} 
-                        to={`/quizzes/${this.props.id}/questions/`} 
-                          class="ui violet basic button"
-                          onClick={() => this.props.createSubmission(this.props.id)}>  
-                    View
-                  </Button>
+          <Button style={{backgroundColor: "#8186d5", color:"white"}} 
+          as={Link} 
+          to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
+          class="ui violet basic button"
+          onClick={() => this.props.createSubmission(this.props.id)}>  
+            View
+          </Button>
           <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}> 
             <Icon name="edit outline" />
           </Button>

@@ -50,8 +50,8 @@ class TeacherShowQuizzes extends React.Component {
   renderQuizzes = (quizzes) => {
     return(
       <>
-        <Container style={styles.container}> 
-          <Card.Group itemsPerRow={2} >
+        <Container> 
+          <Card.Group itemsPerRow={2} style={styles.card}>
             { this.state.quizzes.map(quiz => (
               <Card>
                 <Card.Content>
@@ -95,7 +95,7 @@ class TeacherShowQuizzes extends React.Component {
 }
 
 const styles = {
-  segment: {
+  card: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
