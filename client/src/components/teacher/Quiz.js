@@ -11,13 +11,19 @@ class Quiz extends React.Component {
     this.setState({ editing: !this.state.editing, });
   };
 
-
-  createSubmission = (id) => {
+  createSubmission = (id, props) => {
     axios.post(`/api/quizzes/${id}/submissions`, {user_id: this.auth.user.id, quiz_id: id})
-      .then( id => { 
-        this.history.push(`/quizzes/${id}/questions/${id}`)
+      .then( res => { 
+        this.history.push(`/quizzes/${id}/questions/${res.data.id}`)
       })
   }
+
+//  createSubmission = (id) => {
+//     axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+//       .then( res => { 
+//         props.history.push(`/quizzes/${id}/questions/${res.data.id}`)
+//       })
+//   }
 
   render() {
     return (
