@@ -12,19 +12,12 @@ const StudentChoiceForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-         axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
-         .then( res => {             
-            setAnswer(res.data)             
-        })
-        .then( res => {
-            props.history.push(`/questions/${props.question_id}/choices/${res.data.id}`)
-
-        })
-         .catch( res => {
-             console.log(res)
-         })
+        axios.post(`/api/questions/${props.question_id}/choices`,  { answer, }) 
+        debugger
+        }
+     
     
-    }
+    
     
     
     const handleChange = (e) => {
@@ -34,6 +27,9 @@ const StudentChoiceForm = (props) => {
 
     return (
         <>
+        {console.log("answer:", answer)}
+        {console.log("handleSubmit:", handleSubmit)}
+
        
         
         <Form onSubmit={handleSubmit}>

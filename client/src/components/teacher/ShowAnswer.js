@@ -13,14 +13,14 @@ const ShowAnswer = (props, id) => {
 
   useEffect( () => {  
     
-      axios.get(`/api/questions/${props.match.params.question_id}/choices`, { answer: answers,})
+      axios.get(`/api/questions/${props.match.params.question_id}/choices/`, { answer: answers,})
       .then( res => {
           setAnswers(res.data)
       })
   }, [])
 
   const makeGrade = () => {
-    setGrade(!grade)
+    setGrade(!grade )
   }
 
   const renderAnswer = () => {
@@ -44,9 +44,7 @@ const ShowAnswer = (props, id) => {
     return ( 
       <>
           <ShowTeacherChoices { ...props } />
-          {console.log(grade)}
           
-        {console.log(answers)}
           {renderAnswer()}
       </>
       )
