@@ -38,7 +38,7 @@ class MainForm extends React.Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <Form.Button color='violet'>Submit</Form.Button>
+          <Form.Button inverted color="purple">Submit</Form.Button>
         </Form.Group>
       </Form>
     )

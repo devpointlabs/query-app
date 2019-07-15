@@ -4,6 +4,7 @@ import MainForm from "./MainForm";
 
 class Quiz extends React.Component {
   state = { editing: false, };
+  
 
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
