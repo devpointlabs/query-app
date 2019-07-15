@@ -49,7 +49,7 @@ const ShowQuestions = (props) => {
                 <Card.Content>
                     <Card.Header>Question: {q.name} </Card.Header>
                 </Card.Content>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
+                <Button style={{backgroundColor: "#7e6bc4", color: "white",}} onClick={toggleClick}>{toggle == true ? "Close" : "Answer"}</Button>
                 { props.auth.user.role == 'teacher' ?
                     <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
                 : null }

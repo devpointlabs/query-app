@@ -40,7 +40,7 @@ const StudentChoiceForm = (props) => {
                 onChange={handleChange}
             
             />
-            <Form.Button style={{backgroundColor: "#4F1A9E", color: "white",}}>Submit</Form.Button>
+            <Form.Button style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Form.Button>
           
         </Form>
 
