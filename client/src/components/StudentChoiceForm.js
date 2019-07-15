@@ -44,7 +44,6 @@ const StudentChoiceForm = (props) => {
                 placeholder="answer"
                 value={answer}
                 onChange={handleChange}
-            
             />
             <Button onClick={handleSubmit} style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Button>
           

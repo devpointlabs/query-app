@@ -15,12 +15,11 @@ const ShowQuestions = (props) => {
     const [questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
 
-
-
     useEffect( () => {
         axios.get(`/api/quizzes/${props.match.params.id}/questions`)
           .then( res => {
             setQuestions(res.data);
+            console.log(res.data)
           })
       }, [])
 

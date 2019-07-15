@@ -13,6 +13,7 @@ class Api::ChoicesController < ApplicationController
   end
   
   def new 
+    @choice = Choice.new
   end
 
   def create
