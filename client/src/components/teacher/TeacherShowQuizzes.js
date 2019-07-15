@@ -55,11 +55,12 @@ class TeacherShowQuizzes extends React.Component {
             { this.state.quizzes.map(quiz => (
               <Card>
                 <Card.Content>
-                 <Card.Header> <div>
-              <Header as="h2">{quiz.name}</Header>
-            </div></Card.Header>
-                 </Card.Content>
-                 
+                 <Card.Header> 
+                   <div>
+                    <Header as="h2">{quiz.name}</Header>
+                   </div>
+                 </Card.Header>
+                </Card.Content>
                 <Card.Content extra>
                   <br />
                   <Quiz 
