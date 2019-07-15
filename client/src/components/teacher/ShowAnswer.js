@@ -3,6 +3,7 @@ import {Card, Button, Segment, } from "semantic-ui-react"
 import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
+import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 
 
 
@@ -26,26 +27,28 @@ const ShowAnswer = (props, id) => {
   const renderAnswer = () => {
 
       return answers.map( answer => ( 
-        <Card key={answer.id}>
-          <h1>
-              Answers/choices
-          </h1>
-        <Card.Header>{answer.answer}</Card.Header>
-         
-        <Button onClick={makeGrade}>{grade == false ? "true" : "false" }</Button>
-      </Card>) )
+      <ShowStudentCorrectAnswer answer={answer} { ...props} key={id} />
+      )
+      ) 
     }
 
-    //if student gets the answer right then it adds that to the correct column of choice model or it displays incorrect
-
+    // if student gets the answer right then it adds that to 
+    //the correct column of choice model or it displays incorrect
+    // I want the question the correct answer, 
+    //and the students answer to display the same line
+    // i want the answer to be graded and sent 
+    // to the database with the correct and false boolean
+    // i want to make the true false toggle only happen for one
   
 
 
     return ( 
       <>
-          <ShowTeacherChoices { ...props } />
-          
           {renderAnswer()}
+          <ShowTeacherChoices { ...props } />
+         
+          
+          
       </>
       )
 
