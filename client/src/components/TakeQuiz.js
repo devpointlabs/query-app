@@ -86,7 +86,7 @@ const ShowQuestions = (props) => {
       }
       { props.auth.user.role == 'teacher' ?
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
-        <Button>show_answers</Button>
+        <Button>show answers</Button>
       </Link>
       : null }
       
