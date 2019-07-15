@@ -1,55 +1,54 @@
 import React, {useEffect, useState, } from "react"
-import {Card, Form, Segment, } from "semantic-ui-react"
+import {Card, Button, Segment, } from "semantic-ui-react"
 import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
-import SubmissionChoices from './SubmissionChoices'
+import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 
 
-const ShowAnswer = (props) => {
+
+const ShowAnswer = (props, id) => {
   const [answers, setAnswers] = useState([])
   const [correct, setCorrect] = useState([])
+  const [finalGrade, setFinalGrade] = useState(false)
 
-  useEffect( () => {
-      axios.get(`/api/questions/${props.match.params.question_id}/choices/${props.match.params.id}`)
+  useEffect( () => {  
+      axios.get(`/api/show_grades/${props.match.params.quiz_id}`, { answer: answers,})
       .then( res => {
           setAnswers(res.data)
       })
-      .catch( err => {
-        
-      })
   }, [])
 
+  const updateGrade = (finalGrade) => {
+    setFinalGrade(finalGrade)
+  }
+
   const renderAnswer = () => {
+
       return answers.map( answer => ( 
-      <Card key={answer.id}>
-        <Card.Header>{answer.answer}</Card.Header>
-        <Card.Meta> 
-        </Card.Meta>
-      </Card>) )
+      <ShowStudentCorrectAnswer updateGrade={updateGrade}  answer={answer} { ...props} key={id} />
+      )
+      ) 
     }
 
-    //if student gets the answer right then it adds that to the correct column of choice model or it displays incorrect
-
-    const getItRight = () => {
-      
-      switch (true) {
-        case answers === correct: 
-        setCorrect()
-        break;
-      }
-    }
+    // if student gets the answer right then it adds that to 
+    //the correct column of choice model or it displays incorrect
+    // I want the question the correct answer, 
+    //and the students answer to display the same line
+    // i want the answer to be graded and sent 
+    // to the database with the correct and false boolean
+    // i want to make the true false toggle only happen for one
+  
 
 
     return ( 
       <>
-          <ShowTeacherChoices { ...props } />
-          
-      
-          <h1>
-              Answers/choices
-          </h1>
           {renderAnswer()}
+          {console.log("parentComonent", finalGrade)}
+         
+         
+          
+          
       </>
       )
 
