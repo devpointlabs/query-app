@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :quizzes do
+      resources :submissions
       resources :questions
     end
     resources :questions do
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     resources :choice do
       resources :submission_choices
     end
+    get '/show_grades/:quiz_id', to: 'submissions#show_grades'
     get '*other', to: 'static#index'
   end
 end

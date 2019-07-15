@@ -2,7 +2,7 @@ import React, {useState, useEffect, } from 'react';
 import { Form, } from "semantic-ui-react";
 import axios from 'axios';
 import ShowAnswer from './teacher/ShowAnswer';
-import {Link,} from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 
 
 const StudentChoiceForm = (props) => {
@@ -12,16 +12,12 @@ const StudentChoiceForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-         axios.post(`/api/questions/${props.question_id}/choices`,  { answer, })
-         .then( res => {             
-            setAnswer(res.data)             
-            props.push(`/questions/${props.question_id}/choices/${res.data.id}`)
-         })
-         .catch( res => {
-             console.log(res)
-         })
+        axios.post(`/api/questions/${props.question_id}/choices`,  { answer, }) 
+       
+        }
+     
     
-    }
+    
     
     
     const handleChange = (e) => {
@@ -31,6 +27,7 @@ const StudentChoiceForm = (props) => {
 
     return (
         <>
+     
        
         
         <Form onSubmit={handleSubmit}>
@@ -39,7 +36,7 @@ const StudentChoiceForm = (props) => {
                 value={answer}
                 onChange={handleChange}
             />
-            <Form.Button style={{backgroundColor: "#4F1A9E", color: "white",}}>Submit</Form.Button>
+            <Form.Button style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Form.Button>
           
         </Form>
 

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import { Header, Container, Grid, Image, Button, } from 'semantic-ui-react';
 import TeacherShowQuizzes from './TeacherShowQuizzes'
 import {Link} from 'react-router-dom';
+import QuizForm from './QuizForm'
 
-const Home = () => {
+const Home = (props) => {
+  const [togglequiz, setTogglequiz] = useState(false)
+
+  const toggle = () => {
+    setTogglequiz( !togglequiz)
+    console.log(toggle)
+  }
+
+
+
   return (
     <>
       <div style={{display: "flex"}}>
@@ -28,11 +38,13 @@ const Home = () => {
             </Grid.Column>
             <Grid.Column>
             <div>
-              <Link to={"/quizzes/new"}>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} >                 
+              
+              {togglequiz == true ? <QuizForm {...props} push={props.history.push } /> : null}
+              
+                <Button onClick={toggle} style={{backgroundColor: "#4F1A9E", color: "white",}} >                 
                 Create a Quiz
                 </Button>
-              </Link>
+             
             </div>
             <div>
               {TeacherShowQuizzes()}

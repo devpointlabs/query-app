@@ -10,12 +10,12 @@ const AnswerA = (props) => {
    
         const handleSubmit = (e) => {
             
-            e.preventDefault();
             props.updateCorrectAnswer(correctAnswer)
-          
-    }
-
-    const handleChange = (e) => {
+            
+        }
+        
+        const handleChange = (e) => {
+            e.preventDefault();
         setCorrectAnswer( e.target.value)
     }
 
@@ -23,8 +23,8 @@ const AnswerA = (props) => {
 
     return (
         <>
-        {console.log("child Component", correctAnswer)}
-            <Form onSubmit={handleSubmit} >
+    
+            <Form onBlur={handleSubmit} >
               <Form.Input 
                 placeholder='Correct Answer'
                 

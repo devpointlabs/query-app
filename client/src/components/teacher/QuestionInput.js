@@ -8,11 +8,11 @@ const QuestionInput = (props) => {
 
    
         const handleSubmit = (e) => {  
+            props.updateName(name)
+        }
+        
+        const handleChange = (e) => {
             e.preventDefault();
-        props.updateName(name)
-    }
-
-    const handleChange = (e) => {
         setName( e.target.value)
     }
 
@@ -20,8 +20,8 @@ const QuestionInput = (props) => {
 
     return (
         <>
-        {console.log('child component:', name)}
-            <Form onSubmit={handleSubmit} >
+       
+            <Form onBlur={handleSubmit} >
               <Form.Input 
                 placeholder='Question'
                 

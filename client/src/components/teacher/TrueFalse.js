@@ -17,7 +17,11 @@ const TrueFalse = (props) => {
             name: question,
             correct_answer: bool,
         } )
-        console.log(handleSubmit)
+        .then( res => {
+            
+            props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+        })
+        
     }
 
 

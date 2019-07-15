@@ -25,7 +25,9 @@ const EditQuestion = (props) => {
     const { question_id } = props.location.state
     let params = { name: name, quiz_id: props.match.params.id }
      axios.put(`/api/quizzes/${props.match.params.id}/questions/${question_id}`, params)
-     props.history.push(`/quizzes/${props.match.params.id}/questions`)
+     .then( res => {
+       props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+     })
     }
 
   const handleChange = (e) => {

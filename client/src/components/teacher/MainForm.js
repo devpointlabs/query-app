@@ -1,122 +1,48 @@
-import React, { Component } from 'react'
-import QuizForm from "./QuizForm";
-import QuestionForm from "./QuestionForm";
+import React from "react";
+import { Header, Form,} from "semantic-ui-react";
 
-class MainForm extends Component {
+class MainForm extends React.Component {
+  state = { name: "", };
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentStep: 1, 
-      name: '',
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this._next = this._next.bind(this)
-    this._prev = this._prev.bind(this)
-  }
-
-  handleChange(event) {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })    
-  }
-  
-  handleSubmit = (event) => {
-    event.preventDefault()
-    const { name } = this.state
-  }
-
-  _next() {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep >= 2? 3: currentStep + 1
-    this.setState({
-      currentStep: currentStep
-    })
-  }
-    
-  _prev() {
-    let currentStep = this.state.currentStep
-    currentStep = currentStep <= 1? 1: currentStep - 1
-    this.setState({
-      currentStep: currentStep
-    })
-  }
-
-  get previousButton(){
-    let currentStep = this.state.currentStep;
-    if(currentStep !==1){
-      return (
-        <button 
-          className="btn btn-secondary" 
-          type="button" onClick={this._prev}>
-        Previous
-        </button>
-      )
-    }
-    return null;
-  }
-  
-  get nextButton(){
-    let currentStep = this.state.currentStep;
-    if(currentStep <2){
-      return (
-        <button 
-          className="btn btn-primary float-right" 
-          type="button" onClick={this._next}>
-        Next
-        </button>        
-      )
-    }
-    return null;
-  }
-
-  renderForm(){
-    switch(this.state.currentStep){
-      case 1: 
-      return <QuizForm 
-      currentStep={this.state.currentStep} 
-      handleChange={this.handleChange}
-      name={this.state.name}
-    />
-
-      case 2:
-        return <QuestionForm
-        currentStep={this.state.currentStep} 
-        handleChange={this.handleChange}
-        name={this.state.name}
-      />   
+  componentDidMount() {
+    if (this.props.id) {
+      this.setState({ name: this.props.name })
     }
   }
-  render() {    
+
+  handleChange = (e) => {
+    this.setState({ name: e.target.value, });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.props.id) {
+      this.props.editQuiz({ id: this.props.id, ...this.state, });
+      this.props.toggleEdit();
+    } else {
+      this.props.addQuiz(this.state.name);
+    }
+    this.setState({ name: "", });
+  }
+
+  render() {
     return (
-      
-      <React.Fragment>
-      <h1>Create a Quiz</h1>
-      <p>Step {this.state.currentStep} of 2 </p> 
-      <form onSubmit={this.handleSubmit}>
-        {this.renderForm()}
-        {this.previousButton}
-        {this.nextButton}
-      </form>
-      </React.Fragment>
+      <Form onSubmit={this.handleSubmit}>
+        <Header as="h3">
+          { this.props.id ? "Edit Quiz" : "Create a New Quiz"}
+        </Header>
+        <Form.Group>
+          <Form.Input
+            placeholder="Quiz Name"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <Form.Button inverted color="purple">Submit</Form.Button>
+        </Form.Group>
+      </Form>
     )
   }
 }
-
-  // return(
-  //   <>
-  //   <Form onSubmit={handleSubmit}>
-  //     <Form.Input
-  //     placeholder="Quiz Name"
-  //     label="quiz"
-  //     value={name}
-  //     onChange={handleChange}
-  //     />
-  //   <Form.Button color="purple">Submit</Form.Button>
-  //   </Form>
-  //   </>
-  // )
-
 
 export default MainForm;

@@ -17,8 +17,11 @@ class Api::ChoicesController < ApplicationController
   end
 
   def create
+    
     choice = @question.choices.new(choice_params)
+    # find out why the answers wont save anymore
     if choice.save
+      
       render json: choice
     else
       render json: @choice.errors, status: 422
@@ -45,6 +48,7 @@ class Api::ChoicesController < ApplicationController
   end
 
   def set_question
+    
     @question = Question.find(params[:question_id])
   end
   def choice_params

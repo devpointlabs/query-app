@@ -1,4 +1,4 @@
 class Choice < ApplicationRecord
   belongs_to :question, required: true
-  has_many :submission_choices 
+  belongs_to :submission, required: true
 end

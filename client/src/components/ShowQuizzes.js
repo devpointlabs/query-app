@@ -1,8 +1,9 @@
 import React, {useState, useEffect, } from 'react';
-import { Container, Button, Card, Segment, Icon, } from 'semantic-ui-react';
+import { Container, Button, Card, Segment, Icon, Grid, } from 'semantic-ui-react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import TakeQuiz from './TakeQuiz'
+import {AuthConsumer} from '../providers/AuthProvider'
 
 
 
@@ -26,45 +27,64 @@ const ShowQuizzes = (props) => {
         })
       }
 
-      const renderQuizzes = () => {
-        return quizzes.map( quiz => (
-          <>
+      const createSubmission = (id) => {
+        axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+          .then( res => { 
+            props.push(`/quizzes/${id}/questions/${res.data.id}`)
+          })
+      }
 
-          <Container>
-
-            <Segment key={quiz.id}>
-                <Card.Group>
-                <Card>
+      const renderQuizzes = () => (
+        
+        
+        <>   
+          <Card.Group itemsPerRow={3}> 
+           { quizzes.map( quiz => (
+                <Card key={quiz.id}>
                 <Card.Content>
                     <Card.Header> {quiz.name} </Card.Header>
-                    {/* <Card.Description> {quiz.description} </Card.Description> */}
                 </Card.Content>
-                </Card>
-                <Link to={`/quizzes/${quiz.id}/questions`}>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}}>
+               
+                <Button onClick={() => createSubmission(quiz.id)} 
+                        style={{backgroundColor: "#7e6bc4", color: "white",}}>
                     Take Quiz
                 </Button>
-                </Link>
+             {props.auth.user.role === 'teacher' ? 
             <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
-            </Card.Group>
-            </Segment>
-          </Container>
+            :null}
+             </Card> 
+           ))} 
+                </Card.Group> 
+          
+        
           <br />
           <br />
           <br />
 
           </>
-        ))
-      }
+        
+      )
 
 
     return (
         <>
 
+    {props.auth.user.role === "student" ?
+    <div>
     {renderQuizzes()}
+    </div> 
+    :null}
 
         </>
     )
 }
 
-export default ShowQuizzes;
+const ConnectedShowQuizzes = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <ShowQuizzes {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default ConnectedShowQuizzes;

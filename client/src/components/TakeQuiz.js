@@ -1,13 +1,18 @@
 import React, {useState, useEffect, } from 'react';
 import {Card, Header, Segment, List, Button, Container } from 'semantic-ui-react';
 import StudentChoiceForm from './StudentChoiceForm'
+import ShowQuestion from './ShowQuestion'
 import EditQuestion from './teacher/EditQuestion'
 import { Link, } from 'react-router-dom'
 import axios from 'axios';
 import {AuthConsumer} from '../providers/AuthProvider'
 
-const ShowQuestions = (props) => {    
-    const [ questions, setQuestions ] = useState([])
+
+
+
+const ShowQuestions = (props) => {
+    
+    const [questions, setQuestions ] = useState([])
     const [toggle, setToggle] = useState(false)
 
     useEffect( () => {
@@ -28,26 +33,33 @@ const ShowQuestions = (props) => {
             setQuestions(questions.filter( q => q.id !== id))
           })
       }
- 
+
+    //  const array = questions.map()
+      
+     
       const renderQuestions = () => {
-        return questions.map( questions => (
+  
+        return questions.map( q => (
           <>
           <Container>
-            <Segment key={questions.id}>
+            <Segment key={q.id}>
               <Card.Group>
                 <Card>
                 <Card.Content>
-                    <Card.Header> {questions.name} </Card.Header>
-                    {/* <Card.Description> {questions.description} </Card.Description> */}
+                    <Card.Header>Question: {q.name} </Card.Header>
                 </Card.Content>
-                <Button style={{backgroundColor: "#4F1A9E", color: "white",}} onClick={toggleClick}>answer</Button>
-                <Button  color="red" icon="trash" onClick={() => handleDelete(questions.id)}></Button>
-                <Link to={{
-                  pathname: `/api/quizzes/${props.match.params.id}/questions/edit`,
-                  state: { question_id: questions.id }
-                  }}>
-                <Button  color="gray" icon="pencil" ></Button>
-                </Link>
+                <Button style={{backgroundColor: "#7e6bc4", color: "white",}} onClick={toggleClick}>{toggle == true ? "Close" : "Answer"}</Button>
+                { props.auth.user.role == 'teacher' ?
+                    <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
+                : null }
+                { props.auth.user.role == 'teacher' ?
+                    <Link to={{
+                      pathname: `/api/quizzes/${props.match.params.id}/questions/edit`,
+                      state: { question_id: q.id }
+                    }}>
+                    <Button  color="gray" icon="pencil" ></Button>
+                    </Link>
+                : null }
             { toggle  ? <StudentChoiceForm question_id={props.match.params.id} push={props.history.push}/> : null  }
                 
                 </Card>
@@ -57,6 +69,7 @@ const ShowQuestions = (props) => {
           <br />
           <br />
           <br />
+
           </>
         ))
       }
@@ -70,13 +83,16 @@ const ShowQuestions = (props) => {
         :
         null  
       }
-      <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
-        <Button>show_answers</Button>
+      { props.auth.user.role == 'teacher' ?
+        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
+        <Button>show answers</Button>
       </Link>
+      : null }
       
         {console.log(questions)}
 
     {renderQuestions()}
+    
         </>
     )
 }
