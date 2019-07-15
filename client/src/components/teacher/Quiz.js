@@ -35,9 +35,13 @@ class Quiz extends React.Component {
               <Header as="h2">{this.props.name}</Header>
             </div>
         }
+        
         <div>
           <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
-            <Button style={{backgroundColor: "#494ca2", color:"white"}} >add a question</Button>
+            <Button style={{backgroundColor: "#494ca2", color:"white"}}>See Results</Button>
+          </Link>
+          <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
+            <Button style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
           </Link>
           <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
           as={Link} 
