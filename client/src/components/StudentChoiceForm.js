@@ -27,7 +27,6 @@ const StudentChoiceForm = (props) => {
         //      console.log(res)
         //  })
     
-    }
     
     
     const handleChange = (e) => {
@@ -37,6 +36,7 @@ const StudentChoiceForm = (props) => {
 
     return (
         <>
+     
        
         
         <Form>

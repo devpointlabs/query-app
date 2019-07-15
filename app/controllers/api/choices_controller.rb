@@ -19,8 +19,8 @@ class Api::ChoicesController < ApplicationController
     choice = @question.choices.new(choice_params)
     submission = Submission.find(params[:submission_id])
     choice.submission_id = submission.id
-    binding.pry
     if choice.save
+      
       render json: choice
     else
       render json: choice.errors, status: 422
