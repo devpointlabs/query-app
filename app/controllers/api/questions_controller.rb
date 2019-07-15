@@ -3,8 +3,8 @@ class Api::QuestionsController < ApplicationController
   before_action :set_quiz
   before_action :set_question, only: [:show, :update, :destroy]
   def index
-    @questions = @quiz.questions.all
-    render json: @questions
+    questions = @quiz.questions.all
+    render json: questions
   end
 
   def show
@@ -24,21 +24,21 @@ class Api::QuestionsController < ApplicationController
 
   def update
   
-    if @question.update(question_params) #this could be wrong
-      render json: @question
+    if question.update(question_params) #this could be wrong
+      render json: question
     else
     render json: question.errors, status: 422
     end
   end
 
   def destroy
-    @question.destroy
+    question.destroy
     render json: @questions
   end
 
   private 
   def set_question
-    @question = @quiz.questions.find(params[:id])
+    question = @quiz.questions.find(params[:id])
   end
 
   def set_quiz

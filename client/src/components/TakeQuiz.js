@@ -35,7 +35,9 @@ const ShowQuestions = (props) => {
           })
       }
 
-    //  const array = questions.map()
+      // const showQuestion = (id) => {
+      //   axios.get(`/api/quizzes/${props.match.params.id}/questions/${id}`)
+      // }
       
      
       const renderQuestions = () => {
@@ -49,7 +51,15 @@ const ShowQuestions = (props) => {
                 <Card.Content>
                     <Card.Header>Question: {q.name} </Card.Header>
                 </Card.Content>
-                <Button style={{backgroundColor: "#7e6bc4", color: "white",}} onClick={toggleClick}>{toggle == true ? "Close" : "Answer"}</Button>
+                  <Button 
+                    style={{backgroundColor: "#7e6bc4", color: "white",}} 
+                    onClick={toggleClick}
+                    // onClick={showQuestion}
+                    >
+                    {toggle == true ? "Close" : "Answer"}
+                    
+                  
+                  </Button>
                 { props.auth.user.role == 'teacher' ?
                     <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
                 : null }
@@ -61,7 +71,7 @@ const ShowQuestions = (props) => {
                     <Button  color="gray" icon="pencil" ></Button>
                     </Link>
                 : null }
-            { toggle  ? <StudentChoiceForm question_id={props.match.params.id} push={props.history.push}/> : null  }
+            { toggle  ? <StudentChoiceForm id={props.match.params.id} submission_id={q.id} push={props.history.push}/> : null  }
                 
                 </Card>
               </Card.Group>
