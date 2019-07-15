@@ -1,7 +1,8 @@
 import React from 'react';
 import Quiz from "./Quiz";
 import axios from "axios";
-import { Container, Header, Card } from "semantic-ui-react";
+
+import { Container, Header, Card, Button, } from "semantic-ui-react";
 
 
 class TeacherShowQuizzes extends React.Component {
@@ -45,16 +46,20 @@ class TeacherShowQuizzes extends React.Component {
       })
   }
 
+
   renderQuizzes = (quizzes) => {
     return(
       <>
-        <Container> 
-          <Card.Group itemsPerRow={2}>
+        <Container style={styles.container}> 
+          <Card.Group itemsPerRow={2} >
             { this.state.quizzes.map(quiz => (
               <Card>
                 <Card.Content>
-                 <Card.Header> {quiz.name} </Card.Header>
+                 <Card.Header> <div>
+              <Header as="h2">{quiz.name}</Header>
+            </div></Card.Header>
                  </Card.Content>
+                 
                 <Card.Content extra>
                   <br />
                   <Quiz 
@@ -62,6 +67,7 @@ class TeacherShowQuizzes extends React.Component {
                     key={quiz.id}
                     editQuiz={this.editQuiz}
                     deleteQuiz={this.deleteQuiz} />
+    
                 </Card.Content>
               </Card> 
           ))}
@@ -88,15 +94,23 @@ class TeacherShowQuizzes extends React.Component {
   }
 }
 
+const styles = {
+  segment: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+};
+
 export default TeacherShowQuizzes;
 
 
 //  createSubmission = (id) => {
-  //   axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
-  //     .then( res => { 
-  //       props.history.push(`/quizzes/${id}/questions/${res.data.id}`)
-  //     })
-  // }
+//     axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+//       .then( res => { 
+//         props.history.push(`/quizzes/${id}/questions/${res.data.id}`)
+//       })
+//   }
 
 
   // renderQuizzes = () => (
@@ -121,13 +135,13 @@ export default TeacherShowQuizzes;
   //                         onClick={ () => setShowForm(!showForm) }>
   //                   { showForm ? "Close" : "Edit name" }
   //                 </Button>
-  //                 <Button style={{backgroundColor: "#8186d5", color:"white"}} 
-  //                         as={Link} 
-  //                       to={`/quizzes/${quiz.id}/questions/`} 
-  //                         class="ui violet basic button"
-  //                         onClick={() => createSubmission(quiz.id)}>  
-  //                   View
-  //                 </Button>
+                  // <Button style={{backgroundColor: "#8186d5", color:"white"}} 
+                  //         as={Link} 
+                  //       to={`/quizzes/${quiz.id}/questions/`} 
+                  //         class="ui violet basic button"
+                  //         onClick={() => createSubmission(quiz.id)}>  
+                  //   View
+                  // </Button>
   //                 <Button style={{backgroundColor: "#c6cbef", color:"white"}}
   //                         class="ui violet basic button" onClick={() => deleteQuiz(quiz.id)}> 
   //                   <Icon name="trash"/> 

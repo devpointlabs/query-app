@@ -1,6 +1,8 @@
 import React from "react"
 import { Segment, Button, Header, Icon, } from "semantic-ui-react"
 import MainForm from "./MainForm";
+import axios from "axios";
+import { Link, } from "react-router-dom";
 
 class Quiz extends React.Component {
   state = { editing: false, };
@@ -9,6 +11,15 @@ class Quiz extends React.Component {
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
   };
+
+
+  createSubmission = (id) => {
+    axios.post(`/api/quizzes/${id}/submissions`, {user_id: this.auth.user.id, quiz_id: id})
+      .then( res => { 
+        const { quiz, } = this.state;
+        this.history.push(`/quizzes/${id}/questions/${res.data.id}`)
+      })
+  }
 
   render() {
     return (
@@ -27,9 +38,13 @@ class Quiz extends React.Component {
         }
         <div>
           
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={this.toggleEdit}> 
-            View
-          </Button>
+        <Button style={{backgroundColor: "#8186d5", color:"white"}} 
+                          as={Link} 
+                        to={`/quizzes/${this.props.id}/questions/`} 
+                          class="ui violet basic button"
+                          onClick={() => this.props.createSubmission(this.props.id)}>  
+                    View
+                  </Button>
           <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}> 
             <Icon name="edit outline" />
           </Button>
