@@ -1,7 +1,7 @@
 class Api::ChoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_choice, only: [:show]
   before_action :set_question
+  before_action :set_choice, only: [:show]
   
 
   def index
@@ -17,14 +17,14 @@ class Api::ChoicesController < ApplicationController
   end
 
   def create
-    
     choice = @question.choices.new(choice_params)
-    # find out why the answers wont save anymore
+    submission = Submission.find(params[:submission_id])
+    choice.submission_id = submission.id
     if choice.save
       
       render json: choice
     else
-      render json: @choice.errors, status: 422
+      render json: choice.errors, status: 422
     end 
   end
 
@@ -51,8 +51,9 @@ class Api::ChoicesController < ApplicationController
     
     @question = Question.find(params[:question_id])
   end
+
   def choice_params
-    params.require(:choice).permit(:answer, :correct, :question_id) 
+    params.require(:choice).permit(:answer, :correct, :submission_id) 
   end
 end
 
