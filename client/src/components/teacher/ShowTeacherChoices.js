@@ -25,7 +25,7 @@ const ShowTeacherChoices = (props) => {
     }, [])
 
     useEffect( () => {
-      axios.get(`/api/quizzes/${props.match.params.question_id}/questions/`, { 
+      axios.get(`/api/quizzes/${props.match.params.quiz_id}/questions/`, { 
         correct_answer: correctAnswers,
       })
       .then( res => {

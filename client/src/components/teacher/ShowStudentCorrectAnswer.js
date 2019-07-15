@@ -33,12 +33,18 @@ const ShowStudentCorrectAnswer = (props) => {
 
     return (
         <> 
+        {makeGrade}
 
         <Card>
             <h1>
                 Answers/choices
             </h1>
-          <Card.Header>{props.answer.answer}</Card.Header>
+          <Card.Content>question: {props.answer.name}</Card.Content>
+
+          <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
+          <hr />
+          <Card.Header>students answer: {props.answer.answer}</Card.Header>
+          <Card.Meta>Mark Correct</Card.Meta>
            
           <Button onClick={makeGrade}>{grade == false ? "correct" : "wrong" }</Button>
         </Card>
