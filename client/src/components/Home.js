@@ -1,11 +1,13 @@
 import React, {useState, } from 'react';
-import { Header, Container, Table, Card, Grid, Segment, Image, Icon, Button } from 'semantic-ui-react';
+import { Header, Container, Table, Card, Grid, Segment, Image, Icon, Button, } from 'semantic-ui-react';
 import ShowQuizzes from './ShowQuizzes'
 import TakeQuiz from './TakeQuiz'
 import {Link,} from 'react-router-dom';
 import {AuthConsumer} from '../providers/AuthProvider'
 import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
 import QuizForm from './teacher/QuizForm'
+import styled, { keyframes, } from "styled-components";
+import { Animated, FadeAnimations } from "animated-styled-components";
 
 const Home = (props) => {
 
@@ -16,28 +18,55 @@ const Home = (props) => {
     console.log(toggle)
   }
   
-
   
+  const rotate = keyframes`
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+    transform: rotate(360deg);
+    }
+`;
+
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 3s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`;
+
+const h2 = {
+  fontSize: '120px',
+}
+
   return (
     <>
     <div style={{display: "flex"}}>
-    <Image src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" style={{width: "100px", height: "100px"}}/>
-    <Header as='h1'> DevPoint Labs</Header>
+    <Rotate><Image src="https://www.devpointlabs.com/static/media/Beaker-purple.c898b23f.png" style={{width: "100px", height: "100px"}}/></Rotate>
+    <Animated
+        animation={{
+          delay_in: 1,
+          in: FadeAnimations.FadeInBottom,
+          duration_in: 3
+        }}
+      >
+        <h2 style={h2}>DevPoint Labs</h2>
+      </Animated>
     </div>
       
           <br />
           <Container>
           <Header 
-          as='h1'
-          centered
-          textAlign="center"
-          inverted
-          style={{
-          backgroundImage: `url(${"https://www.devpointlabs.com/static/media/launch-present.b2917818.png"})`,
-          backgroundSize: 'cover',
-          fontSize: '4em',
-          fontWeight: 'normal',
-          height: '250px'
+            as='h1'
+            centered
+            textAlign="center"
+            inverted
+            style={{
+            backgroundImage: `url(${"https://www.devpointlabs.com/static/media/launch-present.b2917818.png"})`,
+            backgroundSize: 'cover',
+            fontSize: '4em',
+            fontWeight: 'normal',
+            height: '250px'
       }}
             > Query
             </Header>
@@ -77,16 +106,15 @@ const Home = (props) => {
       
       { props.auth.user.role == 'teacher' ?
           <div>
-             {togglequiz == true ? <QuizForm {...props} push={props.history.push } /> : null}
-              
+             {togglequiz == true ? <div className="slide-in-right"><QuizForm {...props} push={props.history.push } /></div> : null}
                 <Button onClick={toggle} style={{backgroundColor: "#7e6bc4", color: "white", justifyContent: 'center'}}
-                centered size='massive'
-                 > 
+                  centered size='massive'
+                 >    
                 {togglequiz == true ? 'Close' : 'Create Quiz'}
                 </Button>
-                  <Link to={"/quizzes/new"}>
+                <Link to={"/quizzes/new"}>
               </Link>
-         </div>
+          </div>
       : null }
    
 
