@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :submission_choices
     end
     post 'questions/:question_id/submission/:submission_id/choices', to: 'choices#create'
-  
     get '/show_grades/:quiz_id', to: 'submissions#show_grades'
     get '*other', to: 'static#index'
   end

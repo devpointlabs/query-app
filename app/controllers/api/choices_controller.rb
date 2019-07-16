@@ -1,7 +1,7 @@
 class Api::ChoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question
-  before_action :set_choice, only: [:show]
+  before_action :set_choice, only: [:show, :update]
   
 
   def index
