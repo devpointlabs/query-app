@@ -15,7 +15,8 @@ const StudentChoiceForm = (props) => {
     console.log(answer)
         e.preventDefault()
          axios.post(`/api/questions/${props.id}/submission/${props.submission_id}/choices`, {answer})
-         
+         alert("Answer Submitted")
+         props.push('/')
         //  .then( res => {             
         //     setAnswer(res.data)             
         // })
