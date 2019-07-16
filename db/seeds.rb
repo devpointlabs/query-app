@@ -29,20 +29,23 @@ end
                 )
                 
             end
-        end
             10.times do 
-                Choice.create( 
-                answer: "blah blahs",
+              Choice.create( 
+                answer: "this is the students answer",
                 correct: true,
-                question_id: rand(1..2),
+                question_id: rand(1..10)
+                submission_id: rand(1..5)
                 )
-            end
-            5.times do
+              end
+
+              5.times do
                 Choice.create( 
-                    answer: "not cool at all",
-                    correct: false,
-                    question_id: rand(1..2),
-                    )
+                  answer: "not cool at all",
+                  correct: false,
+                  question_id: rand(1..5),
+                  submission_id: rand(1..5)
+                  )
+                end
             end
 
 

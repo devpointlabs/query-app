@@ -7,11 +7,14 @@ Rails.application.routes.draw do
       resources :questions
     end
     resources :questions do
-      resources :choices
+      resources :choices, except: [:create]
     end
     resources :choice do
       resources :submission_choices
     end
+    post 'questions/:question_id/submission/:submission_id/choices', to: 'choices#create'
+  
+    get '/show_grades/:quiz_id', to: 'submissions#show_grades'
     get '*other', to: 'static#index'
   end
 end

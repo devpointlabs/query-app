@@ -10,8 +10,8 @@ const Choice = (props) => {
     const [showForm, setShowForm] = useState(false);
 
     useEffect( () => {
-        axios.get(`/api/quizzes/${props.match.params.id}/choice`, { choice, show_form: setShowForm, } )
-
+        axios.get(`/api/quizzes/${props.match.params.id}/choices`, { choice, show_form: setShowForm, } )
+      
         // { name, correct_answer: correctAnswer, } )
 
           .then( res => {

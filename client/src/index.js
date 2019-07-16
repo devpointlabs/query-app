@@ -5,6 +5,9 @@ import { BrowserRouter, } from 'react-router-dom';
 import { AuthProvider, } from "./providers/AuthProvider";
 import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware, } from 'devise-axios';
+import 'styled-components'; 
+import 'animated-styled-components';
+import './App.css';
 
 initMiddleware();
 

@@ -10,6 +10,11 @@ def create
     
 end
 
+def show_grades
+    render json: Submission.show_grades(params[:quiz_id])
+
+end
+
 private 
 def submission_params
     params.require(:submission).permit(:user_id, :quiz_id)
