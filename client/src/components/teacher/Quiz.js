@@ -7,7 +7,7 @@ import {AuthConsumer} from '../../providers/AuthProvider'
 
 class Quiz extends React.Component {
   state = { editing: false, };
-  
+
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
   };
@@ -30,7 +30,7 @@ class Quiz extends React.Component {
               <Header as="h2">{this.props.name}</Header>
             </div>
         }
-        
+
         <div>
           <Link 
             textAlign="center" 
