@@ -3,49 +3,59 @@ import {Card, Button, Segment, } from "semantic-ui-react"
 import axios from "axios"
 
 import ShowTeacherChoices from './ShowTeacherChoices'
+import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 
 
 
 const ShowAnswer = (props, id) => {
   const [answers, setAnswers] = useState([])
   const [correct, setCorrect] = useState([])
-  const [grade, setGrade] = useState(false)
+  
 
   useEffect( () => {  
-    
-      axios.get(`/api/questions/${props.match.params.quiz_id}/choices/`, { answer: answers,})
+      axios.get(`/api/show_grades/${props.match.params.quiz_id}`, { answer: answers,})
       .then( res => {
           setAnswers(res.data)
       })
   }, [])
 
-  const makeGrade = () => {
-    setGrade(!grade )
+  
+
+  
+  const sendGrade = (value, id, choice_id, sub_id) => {
+    let params = { correct: value, submission_id: sub_id }
+  
+    axios.put(`/api/questions/${id}/choices/${choice_id}`, params)
+
   }
 
   const renderAnswer = () => {
 
       return answers.map( answer => ( 
-        <Card key={answer.id}>
-          <h1>
-              Answers/choices
-          </h1>
-        <Card.Header>{answer.answer}</Card.Header>
-         
-        <Button onClick={makeGrade}>{grade == false ? "true" : "false" }</Button>
-      </Card>) )
+      <ShowStudentCorrectAnswer sendGrade={sendGrade}  answer={answer} { ...props} key={id} />
+      )
+      ) 
     }
 
-    //if student gets the answer right then it adds that to the correct column of choice model or it displays incorrect
-
+    // if student gets the answer right then it adds that to 
+    //the correct column of choice model or it displays incorrect
+    // I want the question the correct answer, 
+    //and the students answer to display the same line
+    // i want the answer to be graded and sent 
+    // to the database with the correct and false boolean
+    // i want to make the true false toggle only happen for one
   
 
 
     return ( 
       <>
-          <ShowTeacherChoices { ...props } />
-          
           {renderAnswer()}
+          
+          {console.log(answers)}
+        
+         
+          
+          
       </>
       )
 
