@@ -11,14 +11,7 @@ const ShowStudentCorrectAnswer = (props) => {
     const [toggleSubmit, setToggleSubmit] = useState(false)
     
 
-    useEffect( () => {  
     
-        axios.get(`/api/questions/${props.match.params.question_id}/choices/`, { answer: answers,})
-        .then( res => {
-            console.log(res.data)
-            setAnswers(res.data)
-        })
-    }, [])
 
         const makeGrade = () => {
             setGrade(!grade)
@@ -27,31 +20,22 @@ const ShowStudentCorrectAnswer = (props) => {
 
       const handleSubmit = (e) => {
 
-          props.updateGrade(grade)
+          props.sendGrade(grade, props.answer.question_id, props.answer.choice_id, props.answer.submission_id)
 
             alert("This was submitted as " + grade )
         } 
         const changeSubmit = () => {
             setToggleSubmit(!toggleSubmit)
         }    
-        // const renderAnswer = () => {
-
-    //     return answers.map( answer => ( 
-    //       <Card key={answer.id}>
-    //         <h1>
-    //             Answers/choices
-    //         </h1>
-    //       <Card.Header>{answer.answer}</Card.Header>
-    //        
-    //       <Button onClick={makeGrade}>{grade == false ? "true" : "false" }</Button>
-    //     </Card>) )
-    //   }
 
     return (
         <> 
         {console.log("child: ", grade)}
+        {console.log("child component", props.answer.submission_id)}
 
-        <Card>
+        <Card.Group>
+            <Card>
+
     
           <Card.Content>question: {props.answer.name}</Card.Content>
 
@@ -63,7 +47,8 @@ const ShowStudentCorrectAnswer = (props) => {
            
           <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
             <Button onClick={handleSubmit} >Submit</Button>
-        </Card>
+            </Card>
+        </Card.Group>
         
         </>
 

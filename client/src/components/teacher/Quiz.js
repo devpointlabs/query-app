@@ -6,14 +6,14 @@ import { Link, } from "react-router-dom";
 
 class Quiz extends React.Component {
   state = { editing: false, };
-  
+
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
   };
 
   createSubmission = (id, props) => {
     axios.post(`/api/quizzes/${id}/submissions`, {user_id: this.auth.user.id, quiz_id: id})
-      .then( res => { 
+      .then( res => {
         this.history.push(`/quizzes/${id}/questions/${res.data.id}`)
       })
   }
@@ -35,7 +35,7 @@ class Quiz extends React.Component {
               <Header as="h2">{this.props.name}</Header>
             </div>
         }
-        
+
         <div>
           <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
             <Button style={{backgroundColor: "#494ca2", color:"white"}}>See Results</Button>
@@ -44,15 +44,15 @@ class Quiz extends React.Component {
             <Button style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
           </Link>
           <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
-          as={Link} 
-          to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
+          as={Link}
+          to={`/quizzes/${this.props.id}/questions/${this.props.id}`}
           onClick={() => this.props.createSubmission(this.props.id)}>  
             View
           </Button>
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}> 
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}>
             <Icon name="edit outline" />
           </Button>
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={() => this.props.deleteQuiz(this.props.id)}> 
+          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={() => this.props.deleteQuiz(this.props.id)}>
             <Icon name="trash alternate outline" />
           </Button>
         </div>
