@@ -1,6 +1,7 @@
 import React, { useState, useEffect, } from 'react'
-import { Form, Dropdown, } from "semantic-ui-react"
+import { Form, Dropdown, Button } from "semantic-ui-react"
 import axios from 'axios'
+import { Link, } from "react-router-dom";
 import WrongAnswers from './MultipleChoice'
 import TrueFalse from './TrueFalse'
 import FillInTheBlank from './FillInTheBlank';
@@ -38,6 +39,9 @@ const dropDown = () => {
    return (
 
      <>
+     <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
+          as={Link} 
+          to={"/quizzes"} > Back</Button>
               <h3>Question Type</h3>
               {dropDown()}
          
