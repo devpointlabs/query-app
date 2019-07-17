@@ -1,24 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Quiz from "./Quiz";
 import axios from "axios";
+import { Container, Header, Card, } from "semantic-ui-react";
+import {AuthConsumer} from '../../providers/AuthProvider'
 
-import { Container, Header, Card, Button, } from "semantic-ui-react";
+const TeacherShowQuizzes = (props) => {
+  const [ quizzes, setQuizzes ] = useState([])
 
-
-class TeacherShowQuizzes extends React.Component {
-  state = { quizzes: [], quiz: []};
-
-  componentDidMount() {
-    axios.get("/api/quizzes")
-      .then( res => {
-        this.setState({ quizzes: res.data, });
-      })
-      .catch( error => {
-        console.log(error);
-      })
-  }
+  useEffect( () => {
+      axios.get("/api/quizzes")
+        .then( res => {
+          
+          setQuizzes(res.data);
+        })
+    }, [])
  
-  addQuiz = (name) => {
+  const addQuiz = (name) => {
     axios.post('/api/quizzes', {name})
     .then(res => {
       const { quizzes, } = this.state;
@@ -26,7 +23,7 @@ class TeacherShowQuizzes extends React.Component {
     })
   }
 
-  editQuiz = (quiz) => {
+  const editQuiz = (quiz) => {
     axios.put(`/api/quizzes/${quiz.id}`,quiz )
       .then( res => {
         const quizzes = this.state.quizzes.map( m => {
@@ -38,21 +35,21 @@ class TeacherShowQuizzes extends React.Component {
       })
   }
 
-  deleteQuiz = (id) => {
+  const deleteQuiz = (id) => {
     axios.delete(`/api/quizzes/${id}`)
-      .then( res => {
-        const { quizzes, } = this.state;
-        this.setState({ quizzes: quizzes.filter(m => m.id !==id), })
-      })
+    .then ( res => {
+      setQuizzes(quizzes.filter( q => q.id !== id))
+    })
   }
 
+  
 
-  renderQuizzes = (quizzes) => {
+  const renderQuizzes = () => {
     return(
       <>
         <Container> 
-          <Card.Group itemsPerRow={2} style={styles.card}>
-            { this.state.quizzes.map(quiz => (
+          <Card.Group itemsPerRow={2}>
+          { quizzes.map( quiz => (
               <Card>
                 <Card.Content>
                  <Card.Header> 
@@ -66,8 +63,8 @@ class TeacherShowQuizzes extends React.Component {
                   <Quiz 
                     id={quiz.id}
                     key={quiz.id}
-                    editQuiz={this.editQuiz}
-                    deleteQuiz={this.deleteQuiz} />
+                    editQuiz={editQuiz}
+                    deleteQuiz={deleteQuiz} />
     
                 </Card.Content>
               </Card> 
@@ -81,29 +78,27 @@ class TeacherShowQuizzes extends React.Component {
     )
   } 
 
-  render() {
     return (
       <>
        <br />
        <br />
        <br />
        <Card.Group>
-          {this.renderQuizzes()}
+          {renderQuizzes()}
        </Card.Group>
      </>
     )
-  }
 }
 
-const styles = {
-  card: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-};
+const ConnectedTeacherShowQuizzes = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <TeacherShowQuizzes {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
 
-export default TeacherShowQuizzes;
+export default ConnectedTeacherShowQuizzes;
 
 
 //  createSubmission = (id) => {
