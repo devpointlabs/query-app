@@ -75,12 +75,4 @@ const ConnectedQuiz = (props) => (
   </AuthConsumer>
 )
 
-const ConnectedQuiz = (props) => (
-  <AuthConsumer>
-    {auth =>
-      <Quiz {...props} auth={auth} />
-    }
-  </AuthConsumer>
-)
-
 export default ConnectedQuiz;
