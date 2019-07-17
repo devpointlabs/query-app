@@ -14,22 +14,15 @@ const StudentChoiceForm = (props) => {
     const handleSubmit = (e) => {
     console.log(answer)
         e.preventDefault()
-        debugger
-         axios.post(`/api/questions/${props.id}/submission/${props.submission_id}/choices`, {answer})
+         axios.post(`/api/questions/${props.question_id}/submission/${props.submission_id}/choices`, {answer})
          alert("Answer Submitted")
          props.push('/')
-        //  .then( res => {             
-        //     setAnswer(res.data)             
-        // })
-        // .then( res => {
-        //     props.history.push(`/questions/${props.question_id}/choices/${res.data.id}`)
-
-        // })
-        //  .catch( res => {
-        //      console.log(res)
-        //  })
-    
     }
+    // axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
+    //       .then( res => { 
+    //         props.push(`/quizzes/${id}/submissions/${res.data.id}`)
+    //       })
+    //   }
     
     const handleChange = (e) => {
         setAnswer( e.target.value)
