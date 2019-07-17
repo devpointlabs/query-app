@@ -1,5 +1,6 @@
 class Api::ChoicesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_quiz
   before_action :set_question
   before_action :set_choice, only: [:show, :update]
   
@@ -17,9 +18,10 @@ class Api::ChoicesController < ApplicationController
   end
 
   def create
+  
+    binding.pry
     choice = @question.choices.new(choice_params)
     submission = Submission.find(params[:submission_id])
-    binding.pry
     choice.submission_id = submission.id
     if choice.save
       
@@ -49,8 +51,11 @@ class Api::ChoicesController < ApplicationController
   end
 
   def set_question
-    
-    @question = Question.find(params[:question_id])
+    @question = @quiz.questions.find(params[:question_id])
+  end
+
+  def set_quiz
+    @quiz = Quiz.find(params[:quiz_id])
   end
 
   def choice_params
