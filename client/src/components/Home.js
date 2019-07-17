@@ -28,7 +28,7 @@ const Home = (props) => {
           duration_in: 3
         }}
       >
-        <h2 style={{fontSize: '100px'}}>DevPoint Labs</h2>
+        <Header as="h2" style={{fontSize: '100px'}}>DevPoint Labs</Header>
       </Animated>
     </div>
       
