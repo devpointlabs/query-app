@@ -33,13 +33,14 @@ const TrueFalse = (props) => {
 
     return (
         <>
-        <Grid>
+        <Grid className="center-grid">
             <Grid.Row>
-                <h3 className="true-false-question">The question is set to </h3>
-                <Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
+                <br />
+                <h3 className="question-type">The question is set to:</h3>
+                <Button style={{backgroundColor: "#4F1A9F", color:"white"}} onClick={toggleTrueFalse} >{ correct == true ? "false" : "true" }</Button>
             </Grid.Row>
             <Grid.Row>
-                <h3>Write your question here:</h3>
+                <h3>Write your question below:</h3>
             </Grid.Row>
             <Grid.Row>
                 <Form onSubmit={handleSubmit}>
@@ -48,9 +49,9 @@ const TrueFalse = (props) => {
                         placeholder="Question"
                         value={question}
                         onChange={handleQuestionChange}
-                        style={{width: "800px"}}
+                        style={{width: "500px"}}
                     />
-                    <Form.Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={handleTrueFalseChange}>Submit</Form.Button>        
+                    <Form.Button style={{backgroundColor: "#4F1A9F", color:"white"}} onClick={handleTrueFalseChange}>Submit</Form.Button>        
                 </Form>
             </Grid.Row>
         </Grid>

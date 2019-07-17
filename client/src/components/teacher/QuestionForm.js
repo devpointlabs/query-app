@@ -50,8 +50,10 @@ const QuestionForm = (props) => {
       
       {dropDown()} 
       </Grid.Row>
-     
-     
+      <Grid.Row>
+      <br />
+    
+    </Grid.Row>
      
       
      

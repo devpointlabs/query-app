@@ -6,14 +6,19 @@ body {
   font-size: 100%;
 }
 
+.center-grid {
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc; 
+}
 .center-screen {
-    position: absolute;
-    top: 0;
+    position: float;
+    top: 1;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    width: 800px;
+    width: 500px;
     height: 500px;
   
 }
@@ -22,9 +27,7 @@ body {
   margin-right: 20px;
 }
 
-.true-false-question {
-  margin-right: 20px;
-}
+
 
 
 @media only screen and (max-width: 500px) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Form, Button, } from "semantic-ui-react";
+import { Header, Form, Button, Grid, } from "semantic-ui-react";
 import { Link, } from "react-router-dom";
 
 class MainForm extends React.Component {
@@ -29,13 +29,18 @@ class MainForm extends React.Component {
   render() {
     return (
       <>
-      <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
+      
+        <div className="center-screen">
+      <Button basic color='violet'
           as={Link} 
           to={"/"} > Back</Button>
+          
       <br />
        <br />
        <br />
+       <Grid className="center-grid">
       <Form onSubmit={this.handleSubmit}>
+      <br />
         <Header as="h3">
           { this.props.id ? "Edit Quiz" : "Create a New Quiz"}
         </Header>
@@ -46,9 +51,13 @@ class MainForm extends React.Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-          <Form.Button inverted color="purple">Submit</Form.Button>
+          <Form.Button style={{backgroundColor: "#494ca2", color:"white"}}>Submit</Form.Button>
         </Form.Group>
+        <br />
+
       </Form>
+      </Grid>
+      </div>
       </>
     )
   }
