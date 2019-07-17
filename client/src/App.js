@@ -22,13 +22,14 @@ import TakeQuiz from './components/TakeQuiz';
 import TeacherShowQuizzes from './components/teacher/TeacherShowQuizzes'
 import Choice from './components/Choice';
 
+
 const App = () => (
   <Fragment>
     <Navbar />
     <FetchUser>
       <Container>
         <Switch>
-          <ProtectedRoute exact path="/quizzes/:id/questions/:submission_id" component={TakeQuiz} />
+          <ProtectedRoute exact path="/quizzes/:id/questions/:question_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:quiz_id/show_answer" component={ShowAnswer} />
