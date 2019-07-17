@@ -15,9 +15,16 @@ def show_grades
 
 end
 
+ def id_catcher
+    render json: Submission.id_catcher()
+ end 
+
 private 
 def submission_params
     params.require(:submission).permit(:user_id, :quiz_id)
 end 
 
-end
+end 
+  
+
+

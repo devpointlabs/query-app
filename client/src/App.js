@@ -29,7 +29,7 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
-          <ProtectedRoute exact path="/quizzes/:id/questions/:question_id" component={TakeQuiz} />
+          <ProtectedRoute exact path="/quizzes/:id/submissions/:submission_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:quiz_id/show_answer" component={ShowAnswer} />
