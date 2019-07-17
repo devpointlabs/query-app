@@ -1,4 +1,4 @@
-import React, {useState, } from 'react';
+import React, {useState, useEffect, } from 'react';
 import { Header, Container, Table, Card, Grid, Segment, Image, Icon, Button, } from 'semantic-ui-react';
 import ShowQuizzes from './ShowQuizzes'
 import TakeQuiz from './TakeQuiz'
@@ -8,15 +8,24 @@ import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
 import QuizForm from './teacher/QuizForm'
 import styled from 'styled-components';
 import { Animated, FadeAnimations } from "animated-styled-components";
+import axios from 'axios';
 
 const Home = (props) => {
 
   const [togglequiz, setTogglequiz] = useState(false)
+  const [ids, setIds] = useState([])
 
   const toggle = () => {
     setTogglequiz( !togglequiz)
     console.log(toggle)
   }
+
+useEffect(() => {
+    axios.get('/api/idcatcher')
+      .then( res => {
+          setIds(res.data)
+      })
+}, [])
 
   return (
     <>
@@ -106,7 +115,9 @@ const Home = (props) => {
       <TeacherShowQuizzes  { ...props } />
       :null} 
             </Container>
+            {console.log(ids)}
     </>
+    
   )
 
 }

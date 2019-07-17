@@ -2,6 +2,7 @@ import React, {useEffect, useState, } from "react"
 import {Card, Button, Segment, } from "semantic-ui-react"
 import axios from "axios"
 
+import { AuthConsumer, } from '../../providers/AuthProvider'
 import ShowTeacherChoices from './ShowTeacherChoices'
 import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 
@@ -19,19 +20,24 @@ const ShowAnswer = (props, id) => {
       })
   }, [])
 
+  function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
+  }
   
-
+  
   
   const sendGrade = (value, id, choice_id, sub_id) => {
     let params = { correct: value, submission_id: sub_id }
-  
+    
     axios.put(`/api/questions/${id}/choices/${choice_id}`, params)
+    .then( window.onload = timedRefresh(250))
 
   }
 
   const renderAnswer = () => {
 
       return answers.map( answer => ( 
+
       <ShowStudentCorrectAnswer sendGrade={sendGrade}  answer={answer} { ...props} key={id} />
       )
       ) 
@@ -64,4 +70,13 @@ const ShowAnswer = (props, id) => {
 
 }
 
-export default ShowAnswer;
+const ConnectedShowAnswer = (props) => (
+  <AuthConsumer>
+    { auth => 
+    <ShowAnswer { ...props } auth={auth} />
+    }
+
+  </AuthConsumer>
+)
+
+export default ConnectedShowAnswer;

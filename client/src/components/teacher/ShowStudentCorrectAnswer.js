@@ -6,9 +6,9 @@ import { Card, Button, } from "semantic-ui-react"
 
 
 const ShowStudentCorrectAnswer = (props) => {
-    const [answers, setAnswers] = useState([])
     const [grade, setGrade] = useState(false)
     const [toggleSubmit, setToggleSubmit] = useState(false)
+
     
 
     
@@ -22,11 +22,33 @@ const ShowStudentCorrectAnswer = (props) => {
 
           props.sendGrade(grade, props.answer.question_id, props.answer.choice_id, props.answer.submission_id)
 
-            alert("This was submitted as " + grade )
+           
         } 
         const changeSubmit = () => {
             setToggleSubmit(!toggleSubmit)
         }    
+
+        const renderGrade = () => {
+            if (props.answer.correct == true) {
+                return "Correct"
+            } else if (props.answer.correct == false) {
+                return "Wrong"
+            } else {
+                return "Not Graded"
+            }
+        }
+
+        const teacherButtons = () => {
+            if ( props.auth.user.role == 'teacher') {
+
+               return <>
+                <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
+               <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
+                <Button onClick={handleSubmit} >Submit</Button>
+                </>
+            }
+        }
+
 
     return (
         <> 
@@ -36,17 +58,16 @@ const ShowStudentCorrectAnswer = (props) => {
         <Card.Group>
             <Card>
 
-    
+
           <Card.Content>question: {props.answer.name}</Card.Content>
 
+          <Card.Content>{props.auth.user.role == 'teacher' ? "your Grade" : "Teachers grade:"} {renderGrade()} </Card.Content>
           <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
           <hr />
           <Card.Content>Student: {props.answer.user_name}</Card.Content>
           <Card.Content>student's answer: {props.answer.answer}</Card.Content>
-          <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
-           
-          <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
-            <Button onClick={handleSubmit} >Submit</Button>
+         
+              {teacherButtons()}
             </Card>
         </Card.Group>
         
