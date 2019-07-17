@@ -22,6 +22,7 @@ import TakeQuiz from './components/TakeQuiz';
 import TeacherShowQuizzes from './components/teacher/TeacherShowQuizzes'
 import Choice from './components/Choice';
 
+
 const App = () => (
   <Fragment>
     <Navbar />

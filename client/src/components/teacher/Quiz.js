@@ -3,6 +3,7 @@ import { Segment, Button, Header, Icon, } from "semantic-ui-react"
 import MainForm from "./MainForm";
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import {AuthConsumer} from '../../providers/AuthProvider'
 
 class Quiz extends React.Component {
   state = { editing: false, };
@@ -11,18 +12,9 @@ class Quiz extends React.Component {
     this.setState({ editing: !this.state.editing, });
   };
 
-  createSubmission = (id, props) => {
-    axios.post(`/api/quizzes/${id}/submissions`, {user_id: this.auth.user.id, quiz_id: id})
-      .then( res => { 
-        this.history.push(`/quizzes/${id}/questions/${res.data.id}`)
-      })
-  }
-
-
-
   render() {
     return (
-      <Segment style={styles.segment}>
+      <Segment>
         {
           this.state.editing ?
             <MainForm
@@ -35,24 +27,37 @@ class Quiz extends React.Component {
               <Header as="h2">{this.props.name}</Header>
             </div>
         }
-        
+
         <div>
-          <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
-            <Button style={{backgroundColor: "#494ca2", color:"white"}}>See Results</Button>
+        <Link 
+            textAlign="center" 
+            to={`/quizzes/${this.props.id}/question_form`}>
+            <Button 
+              style={{backgroundColor: "#494ca2", color:"white"}}>See Results</Button>
           </Link>
-          <Link textAlign="center" to={`/quizzes/${this.props.id}/question_form`}>
-            <Button style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
+          <Link 
+            textAlign="center" 
+            to={`/quizzes/${this.props.id}/question_form`}>
+            <Button 
+              style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
           </Link>
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
-          as={Link} 
-          to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
-          onClick={() => this.props.createSubmission(this.props.id)}>  
+
+          <Button 
+            Button style={{backgroundColor: "#494ca2", color:"white"}}
+            as={Link} 
+            to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
+            >  
             View
           </Button>
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}} onClick={this.toggleEdit}> 
+
+          <Button 
+            Button style={{backgroundColor: "#494ca2", color:"white"}} 
+            onClick={this.toggleEdit}> 
             <Icon name="edit outline" />
           </Button>
-          <Button Button style={{backgroundColor: "#494ca2", color:"white"}}  onClick={() => this.props.deleteQuiz(this.props.id)}> 
+          <Button 
+            Button style={{backgroundColor: "#494ca2", color:"white"}}  
+            onClick={() => this.props.deleteQuiz(this.props.id)}> 
             <Icon name="trash alternate outline" />
           </Button>
         </div>
@@ -61,12 +66,12 @@ class Quiz extends React.Component {
   }
 };
 
-const styles = {
-  segment: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-};
+const ConnectedQuiz = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <Quiz {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
 
-export default Quiz;
+export default ConnectedQuiz; 
