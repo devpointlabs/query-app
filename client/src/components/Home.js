@@ -116,7 +116,7 @@ const StyledHeader = styled(Header)`
   font-size: 8em !important;
   
   @media (max-width: 768px) {
-    font-size: 6em !important;
+    font-size: 4em !important;
     text-align: center;
   }
 `;
