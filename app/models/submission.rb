@@ -10,6 +10,7 @@ class Submission < ApplicationRecord
         questions.name,
         correct_answer,
         answer,
+        correct, 
         choices.id as choice_id, 
         users.name as user_name,
         questions.id as question_id,

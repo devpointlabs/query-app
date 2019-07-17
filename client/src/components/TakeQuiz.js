@@ -117,11 +117,11 @@ const TakeQuiz = (props) => {
         :
         null  
       }
-      { props.auth.user.role == 'teacher' ?
+      
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
         <Button>Grade Answers</Button>
       </Link>
-      : null }
+     
       
     {renderQuestions()}
       {console.log(questions)}
