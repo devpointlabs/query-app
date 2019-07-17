@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react'
 import {Link, Redirect, } from "react-router-dom";
-import { Form,  } from "semantic-ui-react"
+import { Form, Button } from "semantic-ui-react"
 import axios from 'axios'
 import TeacherShowQuizzes from './TeacherShowQuizzes';
 
@@ -37,6 +37,9 @@ const QuizFormEdit = (props) => {
 
   return(
     <>
+    <Button Button style={{backgroundColor: "#494ca2", color:"white"}}
+          as={Link} 
+          to={"/"} > Back</Button>
     <Form onSubmit={handleSubmit} >
       <Form.Input
       placeholder="New Quiz Name"

@@ -17,7 +17,7 @@ class Quiz extends React.Component {
 
   render() {
     return (
-      <Segment style={styles.segment}>
+      <Segment>
         {
           this.state.editing ?
             <MainForm
@@ -67,13 +67,13 @@ class Quiz extends React.Component {
   }
 };
 
-const styles = {
-  segment: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-};
+const ConnectedQuiz = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <Quiz {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
 
 const ConnectedQuiz = (props) => (
   <AuthConsumer>

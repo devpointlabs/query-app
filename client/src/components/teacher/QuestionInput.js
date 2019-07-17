@@ -24,6 +24,7 @@ const QuestionInput = (props) => {
             <Form onBlur={handleSubmit} >
               <Form.Input 
                 placeholder='Question'
+                style={{width: "500px"}}
                 
                 value={name}
                 onChange={handleChange}

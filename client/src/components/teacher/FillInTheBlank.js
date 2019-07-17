@@ -1,5 +1,5 @@
 import React, { useState, } from "react"
-import { Form, } from 'semantic-ui-react'
+import { Form, Grid, } from 'semantic-ui-react'
 import axios from "axios"
 
 
@@ -27,33 +27,41 @@ const FillInTheBlank = (props) => {
 
     
     
-     return (
+    return (
     <>
-
-      
-      
-        <Form onSubmit={handleSubmit}>
+      <Grid className="center-grid">
+        <Grid.Row>
+          <h3>Write your question below:</h3>
+        </Grid.Row>
+          <Form onSubmit={handleSubmit}>
+        <Grid.Row>
           <Form.Input
           placeholder="question"
-          label="question"
+          style={{width: "500px"}}
           value={name}
           onChange={handleQuestionChange}
           />
-
+            </Grid.Row>
+            <br />
+            <Grid.Row>
+            <br />
+              <h3>Write the correct answer:</h3>
+            </Grid.Row>
           <Form.Input 
           placeholder="correct answer"
-          label="correct answer"
+          style={{width: "500px"}}
           value={correctAnswer}
           onChange={handleAnswersChange}
           />
+          <Grid.Row>
+          <Form.Button style={{backgroundColor: "#4F1A9F", color:"white"}}>Submit</Form.Button>
+          </Grid.Row>
+          <br />
+        </Form>
         
-        <Form.Button>submit</Form.Button>
-      </Form>
-    
+      </Grid>
     </>
-        
-
-        )  
-    }
+    )  
+}
 
 export default FillInTheBlank;
