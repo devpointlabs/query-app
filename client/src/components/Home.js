@@ -6,6 +6,7 @@ import {Link,} from 'react-router-dom';
 import {AuthConsumer} from '../providers/AuthProvider'
 import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
 import QuizForm from './teacher/QuizForm'
+import styled from 'styled-components';
 import { Animated, FadeAnimations } from "animated-styled-components";
 
 const Home = (props) => {
@@ -28,7 +29,7 @@ const Home = (props) => {
           duration_in: 3
         }}
       >
-        <h2 style={{fontSize: '100px'}}>DevPoint Labs</h2>
+        <StyledHeader>DevPoint Labs</StyledHeader>
       </Animated>
     </div>
       
@@ -109,6 +110,16 @@ const Home = (props) => {
   )
 
 }
+
+const StyledHeader = styled(Header)`
+  color: black !important;
+  font-size: 8em !important;
+  
+  @media (max-width: 768px) {
+    font-size: 6em !important;
+    text-align: center;
+  }
+`;
   
 const ConnectedHome = (props) => (
   <AuthConsumer>
