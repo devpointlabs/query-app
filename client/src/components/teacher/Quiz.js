@@ -17,7 +17,7 @@ class Quiz extends React.Component {
 
   render() {
     return (
-      <Segment style={styles.segment}>
+      <Segment>
         {
           this.state.editing ?
             <MainForm
@@ -65,14 +65,6 @@ class Quiz extends React.Component {
       </Segment>
     )
   }
-};
-
-const styles = {
-  segment: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
 };
 
 const ConnectedQuiz = (props) => (
