@@ -11,6 +11,7 @@ import {AuthConsumer} from '../providers/AuthProvider'
 const ShowQuizzes = (props) => {
     const [ quizzes, setQuizzes ] = useState([])
     const [showForm, setShowForm] = useState(false);
+    const [submission, setSubmission] = useState([])
 
     useEffect( () => {
         axios.get("/api/quizzes")
@@ -30,7 +31,7 @@ const ShowQuizzes = (props) => {
       const createSubmission = (id) => {
         axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
           .then( res => { 
-            props.push(`/quizzes/${id}/questions/${res.data.id}`)
+            props.push(`/quizzes/${id}/submissions/${res.data.id}`)
           })
       }
 

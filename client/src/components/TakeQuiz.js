@@ -12,7 +12,7 @@ import CorrectToggle from "./CorrectToggle"
 
 
 
-const ShowQuestions = (props) => {
+const TakeQuiz = (props) => {
     
     const [questions, setQuestions] = useState([])
     const [correct, setCorrect] = useState([])
@@ -53,7 +53,8 @@ const ShowQuestions = (props) => {
          return <CorrectToggle id={c.id} correct={c.correct_answer} />
         } else if (props.auth.user.role == 'student' && toggle == true) { 
           return <StudentChoiceForm id={props.match.params.id}
-           submission_id={c.id}
+           submission_id={props.match.params.submission_id}
+           question_id={c.id}
             push={props.history.push}/>
           } else {
             return null
@@ -122,24 +123,22 @@ const ShowQuestions = (props) => {
       </Link>
       : null }
       
-       {console.log(questions)}
-
     {renderQuestions()}
-  
+      {console.log(questions)}
     
         </>
     )
 }
 
-const ConnectedShowQuestions = (props) => (
+const ConnectedTakeQuiz = (props) => (
   <AuthConsumer>
     {auth =>
-      <ShowQuestions {...props} auth={auth} />
+      <TakeQuiz {...props} auth={auth} />
     }
   </AuthConsumer>
 )
 
-export default ConnectedShowQuestions;
+export default ConnectedTakeQuiz;
 
 
 
