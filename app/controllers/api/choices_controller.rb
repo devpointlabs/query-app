@@ -19,6 +19,7 @@ class Api::ChoicesController < ApplicationController
   def create
     choice = @question.choices.new(choice_params)
     submission = Submission.find(params[:submission_id])
+    binding.pry
     choice.submission_id = submission.id
     if choice.save
       
