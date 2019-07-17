@@ -6,23 +6,29 @@ import EditQuestion from './teacher/EditQuestion'
 import { Link, } from 'react-router-dom'
 import axios from 'axios';
 import {AuthConsumer} from '../providers/AuthProvider'
+import CorrectToggle from "./CorrectToggle"
+ 
 
 
 
 
 const ShowQuestions = (props) => {
     
-    const [questions, setQuestions ] = useState([])
+   
+    const [correct, setCorrect] = useState([])
     const [toggle, setToggle] = useState(false)
 
+  
+
+      useEffect( () => {  
+        axios.get(`/api/show_grades/${props.match.params.id}`)
+        .then( res => {
+            setCorrect(res.data)
+        })
+    }, [])
 
 
-    useEffect( () => {
-        axios.get(`/api/quizzes/${props.match.params.id}/questions`)
-          .then( res => {
-            setQuestions(res.data);
-          })
-      }, [])
+      
 
       const toggleClick = () => {
         setToggle( !toggle)
@@ -31,16 +37,34 @@ const ShowQuestions = (props) => {
       const handleDelete = (id) => {
         axios.delete(`/api/quizzes/${props.match.params.id}/questions/${id}`)
           .then( res => {
-            setQuestions(questions.filter( q => q.id !== id))
+            setCorrect(correct.filter( q => q.id !== id))
           })
       }
 
-    //  const array = questions.map()
+      const renderCorrect = (q) => {
+        if (props.auth.user.role == 'teacher' && toggle == true) {
+
+         return <CorrectToggle id={q.id} correct={q.correct_answer} />
+
+
+        } else if (props.auth.user.role == 'student' && toggle == true) { 
+
+          return <StudentChoiceForm id={props.match.params.id}
+           submission_id={q.id}
+            push={props.history.push}/>
+            
+            
+          } else {
+            
+            return null
+        }
+
+      }
       
      
       const renderQuestions = () => {
   
-        return questions.map( q => (
+        return correct.map( q => (
           <>
           <Container>
             <Segment key={q.id}>
@@ -49,7 +73,15 @@ const ShowQuestions = (props) => {
                 <Card.Content>
                     <Card.Header>Question: {q.name} </Card.Header>
                 </Card.Content>
-                <Button style={{backgroundColor: "#7e6bc4", color: "white",}} onClick={toggleClick}>{toggle == true ? "Close" : "Answer"}</Button>
+                  <Button 
+                    style={{backgroundColor: "#7e6bc4", color: "white",}} 
+                    onClick={toggleClick}
+                    // onClick={showQuestion}
+                    >
+                    {toggle == true ? "Close" : "Answer"}
+                    
+                  
+                  </Button>
                 { props.auth.user.role == 'teacher' ?
                     <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
                 : null }
@@ -61,7 +93,7 @@ const ShowQuestions = (props) => {
                     <Button  color="gray" icon="pencil" ></Button>
                     </Link>
                 : null }
-            { toggle  ? <StudentChoiceForm question_id={props.match.params.id} push={props.history.push}/> : null  }
+            {renderCorrect(q)}
                 
                 </Card>
               </Card.Group>
@@ -90,9 +122,10 @@ const ShowQuestions = (props) => {
       </Link>
       : null }
       
-        {console.log(questions)}
+       
 
     {renderQuestions()}
+  
     
         </>
     )

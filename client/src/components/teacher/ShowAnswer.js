@@ -10,7 +10,7 @@ import ShowStudentCorrectAnswer from './ShowStudentCorrectAnswer'
 const ShowAnswer = (props, id) => {
   const [answers, setAnswers] = useState([])
   const [correct, setCorrect] = useState([])
-  const [finalGrade, setFinalGrade] = useState(false)
+  
 
   useEffect( () => {  
       axios.get(`/api/show_grades/${props.match.params.quiz_id}`, { answer: answers,})
@@ -19,14 +19,20 @@ const ShowAnswer = (props, id) => {
       })
   }, [])
 
-  const updateGrade = (finalGrade) => {
-    setFinalGrade(finalGrade)
+  
+
+  
+  const sendGrade = (value, id, choice_id, sub_id) => {
+    let params = { correct: value, submission_id: sub_id }
+  
+    axios.put(`/api/questions/${id}/choices/${choice_id}`, params)
+
   }
 
   const renderAnswer = () => {
 
       return answers.map( answer => ( 
-      <ShowStudentCorrectAnswer updateGrade={updateGrade}  answer={answer} { ...props} key={id} />
+      <ShowStudentCorrectAnswer sendGrade={sendGrade}  answer={answer} { ...props} key={id} />
       )
       ) 
     }
@@ -44,8 +50,9 @@ const ShowAnswer = (props, id) => {
     return ( 
       <>
           {renderAnswer()}
-          {console.log("parentComonent", finalGrade)}
-         
+          
+          {console.log(answers)}
+        
          
           
           
