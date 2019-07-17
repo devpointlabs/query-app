@@ -7,10 +7,13 @@ import {AuthConsumer} from '../../providers/AuthProvider'
 
 class Quiz extends React.Component {
   state = { editing: false, };
-  
+
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing, });
   };
+
+
+
 
   render() {
     return (
@@ -29,7 +32,7 @@ class Quiz extends React.Component {
         }
 
         <div>
-        <Link 
+          <Link 
             textAlign="center" 
             to={`/quizzes/${this.props.id}/question_form`}>
             <Button 
@@ -41,7 +44,6 @@ class Quiz extends React.Component {
             <Button 
               style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
           </Link>
-
           <Button 
             Button style={{backgroundColor: "#494ca2", color:"white"}}
             as={Link} 
@@ -49,7 +51,6 @@ class Quiz extends React.Component {
             >  
             View
           </Button>
-
           <Button 
             Button style={{backgroundColor: "#494ca2", color:"white"}} 
             onClick={this.toggleEdit}> 
@@ -74,4 +75,12 @@ const ConnectedQuiz = (props) => (
   </AuthConsumer>
 )
 
-export default ConnectedQuiz; 
+const ConnectedQuiz = (props) => (
+  <AuthConsumer>
+    {auth =>
+      <Quiz {...props} auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default ConnectedQuiz;
