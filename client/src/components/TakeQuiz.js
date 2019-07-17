@@ -14,18 +14,25 @@ import CorrectToggle from "./CorrectToggle"
 
 const ShowQuestions = (props) => {
     
-   
+    const [questions, setQuestions] = useState([])
     const [correct, setCorrect] = useState([])
     const [toggle, setToggle] = useState(false)
 
   
 
-      useEffect( () => {  
-        axios.get(`/api/show_grades/${props.match.params.id}`)
-        .then( res => {
-            setCorrect(res.data)
-        })
-    }, [])
+    //   useEffect( () => {  
+    //     axios.get(`/api/show_grades/${props.match.params.id}`)
+    //     .then( res => {
+    //         setCorrect(res.data)
+    //     })
+    // }, [])
+
+    useEffect( () => {  
+      axios.get(`/api/quizzes/${props.match.params.id}/questions`)
+      .then( res => {
+          setQuestions(res.data)
+      })
+  }, [])
 
 
       
@@ -41,21 +48,14 @@ const ShowQuestions = (props) => {
           })
       }
 
-      const renderCorrect = (q) => {
+      const renderCorrect = (c) => {
         if (props.auth.user.role == 'teacher' && toggle == true) {
-
-         return <CorrectToggle id={q.id} correct={q.correct_answer} />
-
-
+         return <CorrectToggle id={c.id} correct={c.correct_answer} />
         } else if (props.auth.user.role == 'student' && toggle == true) { 
-
           return <StudentChoiceForm id={props.match.params.id}
-           submission_id={q.id}
+           submission_id={c.id}
             push={props.history.push}/>
-            
-            
           } else {
-            
             return null
         }
 
@@ -64,14 +64,14 @@ const ShowQuestions = (props) => {
      
       const renderQuestions = () => {
   
-        return correct.map( q => (
+        return questions.map( c => (
           <>
           <Container>
-            <Segment key={q.id}>
+            <Segment key={c.id}>
               <Card.Group>
                 <Card>
                 <Card.Content>
-                    <Card.Header>Question: {q.name} </Card.Header>
+                    <Card.Header>Question: {c.name} </Card.Header>
                 </Card.Content>
                   <Button 
                     style={{backgroundColor: "#7e6bc4", color: "white",}} 
@@ -83,17 +83,17 @@ const ShowQuestions = (props) => {
                   
                   </Button>
                 { props.auth.user.role == 'teacher' ?
-                    <Button  color="red" icon="trash" onClick={() => handleDelete(q.id)}></Button>
+                    <Button  color="red" icon="trash" onClick={() => handleDelete(c.id)}></Button>
                 : null }
                 { props.auth.user.role == 'teacher' ?
                     <Link to={{
                       pathname: `/api/quizzes/${props.match.params.id}/questions/edit`,
-                      state: { question_id: q.id }
+                      state: { question_id: c.id }
                     }}>
                     <Button  color="gray" icon="pencil" ></Button>
                     </Link>
                 : null }
-            {renderCorrect(q)}
+            {renderCorrect(c)}
                 
                 </Card>
               </Card.Group>
@@ -118,11 +118,11 @@ const ShowQuestions = (props) => {
       }
       { props.auth.user.role == 'teacher' ?
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
-        <Button>show answers</Button>
+        <Button>Grade Answers</Button>
       </Link>
       : null }
       
-       
+       {console.log(questions)}
 
     {renderQuestions()}
   
