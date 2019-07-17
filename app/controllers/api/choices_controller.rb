@@ -1,6 +1,5 @@
 class Api::ChoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz
   before_action :set_question
   before_action :set_choice, only: [:show, :update]
   
@@ -51,11 +50,7 @@ class Api::ChoicesController < ApplicationController
   end
 
   def set_question
-    @question = @quiz.questions.find(params[:question_id])
-  end
-
-  def set_quiz
-    @quiz = Quiz.find(params[:quiz_id])
+    @question = Question.find(params[:question_id])
   end
 
   def choice_params
