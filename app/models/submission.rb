@@ -26,6 +26,15 @@ class Submission < ApplicationRecord
       ", quiz_id])    
   end
 
+  def self.id_catcher()
+      find_by_sql(["
+        select choices.id as choice_id, question_id, submission_id, user_id, quiz_id
+        from choices 
+        left join submissions
+        on submissions.id = choices.submission_id
+        "])
+
+  end 
   
 
 
