@@ -109,7 +109,9 @@ const ShowStudentCorrectAnswer = (props) => {
                 "your Grade" : "Teachers grade:"} {renderGrade()} 
                 </Card.Content>
                     <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
-                    <Card.Content>Teachers notes: {props.auth.user.role == 'student' ? props.answer.comment : "No Comments"}</Card.Content>
+                    <Card.Content>Teachers notes: {props.auth.user.role == 'student' ? props.answer.comment : "no comments"} 
+                    {/* { props.auth.user.role == 'teacher' ? props.answer.comment : 'add a comment' } */}
+                    </Card.Content>
             <hr />
                         
                         <Card.Content>{props.auth.user.role == 'teacher' ? `${props.answer.user_name}'s `
