@@ -71,6 +71,30 @@ const TakeQuiz = (props) => {
 
       }
       
+      const questionByType = (c) => { 
+       
+
+         if (c.question_type == "true false" ) {
+          
+          return <> <Card.Content>true or false{c.correct_answer}</Card.Content> </>
+        } 
+        else if (c.question_type == "fill in the blank") {
+         return  <> <Card.Content>fill in the blanc</Card.Content> </>
+        }
+        else if (c.question_type == "multiple choice") {
+          return  <>
+                    <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
+                    <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
+                    <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
+                    <Card.Content>D:" " {c.answerD ==  "" ? c.correct_answer : c.answerD}</Card.Content>
+            </>
+        } 
+          else if (c.question_type == null) {
+           return null
+         }
+
+        }
+      
      
       const renderQuestions = () => {
         if (questions.length > number && props.auth.user.role == 'student') {
@@ -96,11 +120,9 @@ const TakeQuiz = (props) => {
                   <Card>
                   <Card.Content>
                       <Card.Header>Question: {c.name} </Card.Header>
+                      <Card.Header>{c.question_type} </Card.Header>
+                                  {questionByType(c)}
                       
-                      <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
-                      <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
-                      <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
-                      <Card.Content>D:" " {c.answerD ==  "" ? c.correct_answer : c.answerD}</Card.Content>
                   </Card.Content>
                     <Button 
                       style={{backgroundColor: "#7e6bc4", color: "white",}} 
