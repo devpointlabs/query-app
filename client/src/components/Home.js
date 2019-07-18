@@ -6,6 +6,7 @@ import {Link,} from 'react-router-dom';
 import {AuthConsumer} from '../providers/AuthProvider'
 import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
 import QuizForm from './teacher/QuizForm'
+import styled from 'styled-components';
 import { Animated, FadeAnimations } from "animated-styled-components";
 import axios from 'axios';
 
@@ -37,7 +38,7 @@ useEffect(() => {
           duration_in: 3
         }}
       >
-        <h2 style={{fontSize: '100px'}}>DevPoint Labs</h2>
+        <StyledHeader>DevPoint Labs</StyledHeader>
       </Animated>
     </div>
       
@@ -122,6 +123,16 @@ useEffect(() => {
   )
 
 }
+
+const StyledHeader = styled(Header)`
+  color: black !important;
+  font-size: 8em !important;
+  
+  @media (max-width: 768px) {
+    font-size: 4em !important;
+    text-align: center;
+  }
+`;
   
 const ConnectedHome = (props) => (
   <AuthConsumer>

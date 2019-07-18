@@ -10,7 +10,9 @@ const FillInTheBlank = (props) => {
 
      const handleSubmit = () => {
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,
-         { name, correct_answer: correctAnswer })
+         { name,
+           correct_answer: correctAnswer,
+          question_type: "fill in the blank" })
          .then( res => {
           props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
       })

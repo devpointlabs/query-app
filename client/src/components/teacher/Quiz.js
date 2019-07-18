@@ -35,7 +35,7 @@ class Quiz extends React.Component {
         <div>
           <Link 
             textAlign="center" 
-            to={`/quizzes/${this.props.id}/question_form`}>
+            to={`/quizzes/${this.props.id}/show_answer`}>
             <Button 
               style={{backgroundColor: "#494ca2", color:"white"}}>
               See Results

@@ -9,7 +9,11 @@ class Submission < ApplicationRecord
       select
         questions.name,
         correct_answer,
+        
         answer,
+        correct,
+        comment, 
+
         choices.id as choice_id, 
         users.name as user_name,
         questions.id as question_id,
