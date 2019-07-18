@@ -28,6 +28,7 @@ render() {
    
 <Card.Content>
 <Card.Header>Question: {this.props.name} </Card.Header>
+
 </Card.Content>
 
 {/* <Button 

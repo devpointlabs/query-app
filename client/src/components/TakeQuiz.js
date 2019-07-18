@@ -27,19 +27,12 @@ const TakeQuiz = (props) => {
   setQuestion(questions[index + 1])
   }
 
-    //   useEffect( () => {  
-    //     axios.get(`/api/show_grades/${props.match.params.id}`)
-    //     .then( res => {
-    //         setCorrect(res.data)
-    //     })
-    // }, [])
-
     useEffect( () => {  
       axios.get(`/api/quizzes/${props.match.params.id}/questions`)
       .then( res => {
           setQuestions(res.data)
-          setQuestion(res.data[1])
-          console.log(res.data[1])
+          setQuestion(res.data[0])
+          console.log(res.data[0])
       })
   }, [])
 
@@ -103,7 +96,9 @@ const TakeQuiz = (props) => {
            <Container>
             <Segment>
               <Card>
+              <Card.Content>Question {question[number]}</Card.Content>
                 {<Question c={question}  next={next} /> }
+                
                 </Card>
             </Segment>
           </Container>
