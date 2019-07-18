@@ -78,10 +78,10 @@ const ShowStudentCorrectAnswer = (props) => {
             if ( props.auth.user.role == 'teacher') {
 
                return <>
-                <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
-               <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
-                <Button onClick={useToggle}>{toggleForm == true ? "Close" : "Add Comment"}</Button>
-                <Button onClick={handleSubmit} >Submit</Button>
+                        <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
+                         <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
+                        <Button onClick={handleSubmit} >Submit</Button>
+                        <Button onClick={useToggle}>{toggleForm == true ? "Close" : "Add Comment"}</Button>
                 </>
             }
         }

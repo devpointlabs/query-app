@@ -52,7 +52,13 @@ const ShowQuizzes = (props) => {
                 </Button>
              {props.auth.user.role === 'teacher' ? 
             <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
-            :null}
+            : 
+            
+            <Link textAlign="center" to={`/quizzes/${props.id}/show_answer`}>
+            <Button>Grade Answers</Button>
+          </Link>
+            
+            }
              </Card> 
            ))} 
                 </Card.Group> 
