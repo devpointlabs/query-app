@@ -14,6 +14,17 @@ const TeacherShowQuizzes = (props) => {
           setQuizzes(res.data);
         })
     }, [])
+
+    useEffect( () => {
+      axios.get("/api/quizzes/:quiz_id/questions")
+        .then( res => {
+          
+          setQuizzes(res.data);
+        })
+    }, [])
+
+
+  
  
   const addQuiz = (name) => {
     axios.post('/api/quizzes', {name})
@@ -44,6 +55,8 @@ const TeacherShowQuizzes = (props) => {
 
   
 
+  
+
   const renderQuizzes = () => {
     return(
       <>
@@ -61,10 +74,12 @@ const TeacherShowQuizzes = (props) => {
                 <Card.Content extra>
                   <br />
                   <Quiz 
-                    id={quiz.id}
                     key={quiz.id}
+                    id={quiz.id}
                     editQuiz={editQuiz}
-                    deleteQuiz={deleteQuiz} />
+                    deleteQuiz={deleteQuiz}
+      
+                     />
     
                 </Card.Content>
               </Card> 
