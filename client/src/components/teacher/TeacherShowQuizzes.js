@@ -75,7 +75,7 @@ const TeacherShowQuizzes = (props) => {
                   <br />
                   <Quiz 
                     key={quiz.id}
-                    id={quiz.id}
+                    quiz_id={quiz.id}
                     editQuiz={editQuiz}
                     deleteQuiz={deleteQuiz}
       
