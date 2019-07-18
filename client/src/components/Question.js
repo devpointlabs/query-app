@@ -10,7 +10,7 @@ render() {
     <>
    
 <Card.Content>
-<Card.Header>Question: {c.name} </Card.Header>
+<Card.Header> Question: {c.name} </Card.Header>
 </Card.Content>
 <Button 
 style={{backgroundColor: "#7e6bc4", color: "white",}} 
