@@ -19,7 +19,7 @@ const TakeQuiz = (props) => {
     const [correct, setCorrect] = useState([])
     const [toggle, setToggle] = useState(false)
     const [number, setNumber] = useState(0)
-    const [question, setQuestion] = useState("hi")
+    const [question, setQuestion] = useState([])
 
   const next = () => {
     let index = number
@@ -27,19 +27,12 @@ const TakeQuiz = (props) => {
   setQuestion(questions[index + 1])
   }
 
-    //   useEffect( () => {  
-    //     axios.get(`/api/show_grades/${props.match.params.id}`)
-    //     .then( res => {
-    //         setCorrect(res.data)
-    //     })
-    // }, [])
-
     useEffect( () => {  
       axios.get(`/api/quizzes/${props.match.params.id}/questions`)
       .then( res => {
           setQuestions(res.data)
-          setQuestion(res.data[1])
-          console.log(res.data[1])
+          setQuestion(res.data[0])
+          console.log(res.data[0])
       })
   }, [])
 
@@ -104,7 +97,9 @@ const TakeQuiz = (props) => {
            <Container>
             <Segment>
               <Card>
-                {<Question c={question} toggleClick={toggleClick} toggle={toggle} next={next} /> }
+              <Card.Content>Question {question[number]}</Card.Content>
+                {<Question c={question}  next={next} /> }
+                
                 </Card>
             </Segment>
           </Container>
