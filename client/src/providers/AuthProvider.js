@@ -40,6 +40,18 @@ export class AuthProvider extends React.Component {
       })
   }
 
+   autoGrade = (id, choice_id, correct_answer, student_answer) => {
+     debugger
+    if (student_answer === correct_answer) {
+      debugger
+        axios.put(`/api/questions/${id}/choices/${choice_id}`, { correct: true, }) 
+    } else {
+      return null
+    }
+  }
+
+
+
   render() {
     return (
       <AuthContext.Provider value={{
@@ -49,6 +61,8 @@ export class AuthProvider extends React.Component {
         handleLogin: this.handleLogin,
         handleLogout: this.handleLogout,
         setUser: (user) => this.setState({ user, }),
+        autoGrade:this.autoGrade,
+
       }}>
         { this.props.children }
       </AuthContext.Provider>

@@ -36,7 +36,7 @@ const QuizForm = (props) => {
       onChange={handleChange}
       
       />
-        <Form.Button>Submit</Form.Button>
+        <Form.Button>Submit </Form.Button>
     </Form>
    </>
  )

@@ -1,6 +1,7 @@
 import React, { useState, } from "react"
 import { Form, Grid, } from 'semantic-ui-react'
 import axios from "axios"
+import {Link,} from 'react-router-dom';
 
 
 const FillInTheBlank = (props) => {
@@ -10,9 +11,11 @@ const FillInTheBlank = (props) => {
 
      const handleSubmit = () => {
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,
-         { name, correct_answer: correctAnswer })
+         { name,
+           correct_answer: correctAnswer,
+          question_type: "fill in the blank" })
          .then( res => {
-          props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+          props.history.push(`/api/quizzes/${props.match.params.id}/questions`)
       })
     }
 
@@ -54,7 +57,9 @@ const FillInTheBlank = (props) => {
           onChange={handleAnswersChange}
           />
           <Grid.Row>
+          {/* <Link to={`/api/quizzes/${props.match.params.id}/questions`}>  */}
           <Form.Button style={{backgroundColor: "#4F1A9F", color:"white"}}>Submit</Form.Button>
+          {/* </Link> */}
           </Grid.Row>
           <br />
         </Form>

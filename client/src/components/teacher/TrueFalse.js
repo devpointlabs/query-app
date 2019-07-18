@@ -16,10 +16,11 @@ const TrueFalse = (props) => {
         axios.post(`/api/quizzes/${props.match.params.id}/questions`,  {
             name: question,
             correct_answer: bool,
+            question_type: "true/false"
         } )
         .then( res => {
             
-            props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+            props.history.push(`/api/quizzes/${props.match.params.id}/questions`)
         })    
     }
 

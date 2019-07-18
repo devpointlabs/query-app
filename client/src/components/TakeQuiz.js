@@ -19,7 +19,7 @@ const TakeQuiz = (props) => {
     const [correct, setCorrect] = useState([])
     const [toggle, setToggle] = useState(false)
     const [number, setNumber] = useState(0)
-    const [question, setQuestion] = useState("hi")
+    const [question, setQuestion] = useState([])
 
   const next = () => {
     let index = number
@@ -27,19 +27,12 @@ const TakeQuiz = (props) => {
   setQuestion(questions[index + 1])
   }
 
-    //   useEffect( () => {  
-    //     axios.get(`/api/show_grades/${props.match.params.id}`)
-    //     .then( res => {
-    //         setCorrect(res.data)
-    //     })
-    // }, [])
-
     useEffect( () => {  
       axios.get(`/api/quizzes/${props.match.params.id}/questions`)
       .then( res => {
           setQuestions(res.data)
-          setQuestion(res.data[1])
-          console.log(res.data[1])
+          setQuestion(res.data[0])
+          console.log(res.data[0])
       })
   }, [])
 
@@ -64,12 +57,37 @@ const TakeQuiz = (props) => {
           return <StudentChoiceForm id={props.match.params.id}
            submission_id={props.match.params.submission_id}
            question_id={c.id}
+           correct_answer={c.correct_answer}
             push={props.history.push}/>
           } else {
             return null
         }
 
       }
+      
+      const questionByType = (c) => { 
+       
+
+         if (c.question_type == "true false" ) {
+          
+          return <> <Card.Content>true or false{c.correct_answer}</Card.Content> </>
+        } 
+        else if (c.question_type == "fill in the blank") {
+         return  <> <Card.Content>fill in the blanc</Card.Content> </>
+        }
+        else if (c.question_type == "multiple choice") {
+          return  <>
+                    <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
+                    <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
+                    <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
+                    <Card.Content>D:" " {c.answerD ==  "" ? c.correct_answer : c.answerD}</Card.Content>
+            </>
+        } 
+          else if (c.question_type == null) {
+           return null
+         }
+
+        }
       
      
       const renderQuestions = () => {
@@ -79,7 +97,9 @@ const TakeQuiz = (props) => {
            <Container>
             <Segment>
               <Card>
-                {<Question c={question} toggleClick={toggleClick} toggle={toggle} next={next} /> }
+              <Card.Content>Question {question[number]}</Card.Content>
+                {<Question c={question}  next={next} /> }
+                
                 </Card>
             </Segment>
           </Container>
@@ -96,6 +116,9 @@ const TakeQuiz = (props) => {
                   <Card>
                   <Card.Content>
                       <Card.Header>Question: {c.name} </Card.Header>
+                      <Card.Header>{c.question_type} </Card.Header>
+                                  {questionByType(c)}
+                      
                   </Card.Content>
                     <Button 
                       style={{backgroundColor: "#7e6bc4", color: "white",}} 
