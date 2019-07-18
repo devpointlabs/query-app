@@ -19,7 +19,7 @@ const TakeQuiz = (props) => {
     const [correct, setCorrect] = useState([])
     const [toggle, setToggle] = useState(false)
     const [number, setNumber] = useState(0)
-    const [question, setQuestion] = useState("hi")
+    const [question, setQuestion] = useState([])
 
   const next = () => {
     let index = number
@@ -79,7 +79,7 @@ const TakeQuiz = (props) => {
            <Container>
             <Segment>
               <Card>
-                {<Question c={question} toggleClick={toggleClick} toggle={toggle} next={next} /> }
+                {<Question c={question}  next={next} /> }
                 </Card>
             </Segment>
           </Container>
