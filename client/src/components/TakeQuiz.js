@@ -96,6 +96,11 @@ const TakeQuiz = (props) => {
                   <Card>
                   <Card.Content>
                       <Card.Header>Question: {c.name} </Card.Header>
+                      
+                      <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
+                      <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
+                      <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
+                      <Card.Content>D:" " {c.answerD ==  "" ? c.correct_answer : c.answerD}</Card.Content>
                   </Card.Content>
                     <Button 
                       style={{backgroundColor: "#7e6bc4", color: "white",}} 

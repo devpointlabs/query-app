@@ -58,15 +58,10 @@ const ShowAnswer = (props, id) => {
           {renderAnswer()}
           
           {console.log(answers)}
-        
-         
-          
-          
+            
       </>
       )
 
-
-  
 
 }
 
