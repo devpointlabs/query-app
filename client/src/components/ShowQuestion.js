@@ -12,11 +12,10 @@ const ShowQuestion = (props) => {
   const [questions, setQuestions] = useState([])
   const [correct, setCorrect] = useState([])
   const [toggle, setToggle] = useState(false)
-  const [number, setNumber] = useState(0)
-  const [question, setQuestion] = useState("hi")
 
   useEffect( () => {  
-    axios.get(`/api/quizzes/${props.match.params.quiz_id}/questions`)
+    
+    axios.get(`/api/quizzes/${props.match.params.id}/questions`)
     .then( res => {
         setQuestions(res.data)
     })
@@ -27,9 +26,11 @@ const toggleClick = () => {
 }
 
 const handleDelete = (id) => {
+
   axios.delete(`/api/quizzes/${props.match.params.id}/questions/${id}`)
     .then( res => {
-      setCorrect(correct.filter( q => q.id !== id))
+      setQuestions(questions.filter( q => q.id !== id))
+     props.history.push(`/api/quizzes/${props.match.params.id}/questions`)
     })
 }
 
@@ -53,7 +54,11 @@ const renderQuestions = () => {
               
               </Button>
            
-                <Button  color="red" icon="trash" onClick={() => handleDelete(c.id)}></Button>
+                <Button  
+                  color="red" 
+                  icon="trash"
+                  question_id =  {c.id}
+                  onClick={() => handleDelete(c.id)}></Button>
          
       
                 <Link to={{
