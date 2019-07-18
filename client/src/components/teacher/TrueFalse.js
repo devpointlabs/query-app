@@ -20,7 +20,7 @@ const TrueFalse = (props) => {
         } )
         .then( res => {
             
-            props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+            props.history.push(`/api/quizzes/${props.match.params.id}/questions`)
         })    
     }
 

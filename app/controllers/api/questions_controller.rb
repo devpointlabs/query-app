@@ -32,13 +32,13 @@ class Api::QuestionsController < ApplicationController
   end
 
   def destroy
-    question.destroy
-    render json: @questions
+    @question.destroy
+    render json: @question
   end
 
   private 
   def set_question
-    question = @quiz.questions.find(params[:id])
+    @question = @quiz.questions.find(params[:id])
   end
 
   def set_quiz
