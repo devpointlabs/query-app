@@ -1,4 +1,4 @@
-import React, {useState, } from 'react';
+import React, {useState, useEffect, } from 'react';
 import { Header, Container, Table, Card, Grid, Segment, Image, Icon, Button, } from 'semantic-ui-react';
 import ShowQuizzes from './ShowQuizzes'
 import TakeQuiz from './TakeQuiz'
@@ -6,16 +6,26 @@ import {Link,} from 'react-router-dom';
 import {AuthConsumer} from '../providers/AuthProvider'
 import TeacherShowQuizzes from './teacher/TeacherShowQuizzes'
 import QuizForm from './teacher/QuizForm'
+import styled from 'styled-components';
 import { Animated, FadeAnimations } from "animated-styled-components";
+import axios from 'axios';
 
 const Home = (props) => {
 
   const [togglequiz, setTogglequiz] = useState(false)
+  const [ids, setIds] = useState([])
 
   const toggle = () => {
     setTogglequiz( !togglequiz)
     console.log(toggle)
   }
+
+useEffect(() => {
+    axios.get('/api/idcatcher')
+      .then( res => {
+          setIds(res.data)
+      })
+}, [])
 
   return (
     <>
@@ -28,7 +38,7 @@ const Home = (props) => {
           duration_in: 3
         }}
       >
-        <h2 style={{fontSize: '100px'}}>DevPoint Labs</h2>
+        <StyledHeader>DevPoint Labs</StyledHeader>
       </Animated>
     </div>
       
@@ -105,10 +115,22 @@ const Home = (props) => {
       <TeacherShowQuizzes  { ...props } />
       :null} 
             </Container>
+            {console.log(ids)}
     </>
+    
   )
 
 }
+
+const StyledHeader = styled(Header)`
+  color: black !important;
+  font-size: 8em !important;
+  
+  @media (max-width: 768px) {
+    font-size: 4em !important;
+    text-align: center;
+  }
+`;
   
 const ConnectedHome = (props) => (
   <AuthConsumer>
