@@ -1,5 +1,5 @@
 import React, { useState} from 'react'
-import { Form, Radio, Button, } from 'semantic-ui-react'
+import { Form, Radio, Button, Grid, } from 'semantic-ui-react'
 import axios from 'axios'
 
 
@@ -27,10 +27,18 @@ const MultipleChoice = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { answerA, answerB, answerC, answerD, name, correct_answer: correctAnswer}    )
+        axios.post(`/api/quizzes/${props.match.params.id}/questions`,  { 
+            answerA,
+             answerB,
+              answerC,
+               answerD,
+                name,
+                 correct_answer: correctAnswer,
+                 question_type: "multiple choice",
+        }    )
         .then( res => {
             
-            props.history.push(`/quizzes/${props.match.params.id}/questions/${res.data.id}`)
+            props.history.push(`/api/quizzes/${props.match.params.id}/questions`)
         })
     }
     
@@ -115,30 +123,40 @@ const makeDCorrect = () => {
 
 return (
     <>
-          <h1>Question</h1><QuestionInput updateName={updateName} { ...props } />
-          {console.log('parent component:', answerB)}
-
-        <h4>A</h4><Button onClick={toggleA}>{ toggleACorrect == false ? "false" : "true" }</Button>  
+    
+    <Grid className="center-grid">
+        
+        <Grid.Row>
+                <h3>Write your question below:</h3>
+            </Grid.Row>
+            <Grid.Row>
+          <QuestionInput  updateName={updateName} { ...props } />
+          </Grid.Row>
+          <Grid.Row>
+        <h4 className="question-type">A)</h4><Button basic color='violet' onClick={toggleA}>{ toggleACorrect == false ? "false" : "true" }</Button>  
             {makeACorrect()}
-          
-
-          <h4>B</h4><Button onClick={toggleB}>{toggleBCorrect == false ? "false" : "true"}</Button>
+            </Grid.Row>
+            <Grid.Row>
+          <h4 className="question-type">B)</h4><Button basic color='violet' onClick={toggleB}>{toggleBCorrect == false ? "false" : "true"}</Button>
             {makeBCorrect()}
-
-          <h4>C</h4><Button onClick={toggleC}>{ toggleCCorrect == false ? "false" : "true"}</Button>
+            </Grid.Row>
+            <Grid.Row>
+          <h4 className="question-type">C)</h4><Button basic color='violet' onClick={toggleC}>{ toggleCCorrect == false ? "false" : "true"}</Button>
             {makeCCorrect()}
-
-          <h4>D</h4><Button onClick={toggleD}>{ toggleDCorrect == false ? "false" : "true" }</Button>
+            </Grid.Row>
+            <Grid.Row>
+          <h4 className="question-type">D)</h4><Button basic color='violet' onClick={toggleD}>{ toggleDCorrect == false ? "false" : "true" }</Button>
             {makeDCorrect()}
-
+            </Grid.Row>
           
 
            <Form onSubmit={handleSubmit}>
-          <hr />
-           <Form.Button color="purple">Submit</Form.Button>
+          <br />
+           <Form.Button style={{backgroundColor: "#4F1A9F", color:"white"}}>Submit</Form.Button>
+           <br />
          </Form>
-    
-        </>
+    </Grid>
+    </>
 
     )
 

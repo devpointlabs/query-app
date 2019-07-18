@@ -21,6 +21,9 @@ import ShowAnswer from './components/teacher/ShowAnswer'
 import TakeQuiz from './components/TakeQuiz';
 import TeacherShowQuizzes from './components/teacher/TeacherShowQuizzes'
 import Choice from './components/Choice';
+import Quiz from './components/teacher/Quiz';
+import ShowQuestion from './components/ShowQuestion';
+
 
 const App = () => (
   <Fragment>
@@ -28,14 +31,15 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
-          <ProtectedRoute exact path="/quizzes/:id/questions/:submission_id" component={TakeQuiz} />
+          <ProtectedRoute exact path="/quizzes/:id/submissions/:submission_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
           <ProtectedRoute exact path="/" component={Home} />
           <ProtectedRoute exact path="/quizzes/:quiz_id/show_answer" component={ShowAnswer} />
           <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
-          <ProtectedRoute exact path="/questions/:id/questions/:id" component={TeacherShowQuizzes} />
+          <ProtectedRoute exact path="/api/quizzes" component={TeacherShowQuizzes} />
           <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
+          <ProtectedRoute exact path="/api/quizzes/:id/questions" component={ShowQuestion} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />

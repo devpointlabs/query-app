@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Button} from "semantic-ui-react"
+import { Link, } from "react-router-dom";
 import axios from "axios"
 
 const QuizForm = (props) => {
@@ -35,7 +36,7 @@ const QuizForm = (props) => {
       onChange={handleChange}
       
       />
-        <Form.Button>Submit</Form.Button>
+        <Form.Button>Submit </Form.Button>
     </Form>
    </>
  )

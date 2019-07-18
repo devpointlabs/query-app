@@ -4,6 +4,7 @@ import MainForm from "./MainForm";
 import axios from "axios";
 import { Link, } from "react-router-dom";
 import {AuthConsumer} from '../../providers/AuthProvider'
+import ShowQuestion from '../ShowQuestion'
 
 class Quiz extends React.Component {
   state = { editing: false, };
@@ -17,7 +18,7 @@ class Quiz extends React.Component {
 
   render() {
     return (
-      <Segment style={styles.segment}>
+      <Segment>
         {
           this.state.editing ?
             <MainForm
@@ -34,23 +35,33 @@ class Quiz extends React.Component {
         <div>
           <Link 
             textAlign="center" 
-            to={`/quizzes/${this.props.id}/question_form`}>
+            to={`/quizzes/${this.props.id}/show_answer`}>
             <Button 
-              style={{backgroundColor: "#494ca2", color:"white"}}>See Results</Button>
+              style={{backgroundColor: "#494ca2", color:"white"}}>
+              See Results
+            </Button>
           </Link>
           <Link 
             textAlign="center" 
             to={`/quizzes/${this.props.id}/question_form`}>
             <Button 
-              style={{backgroundColor: "#494ca2", color:"white"}}>Add a question</Button>
+              style={{backgroundColor: "#494ca2", color:"white"}}>
+              Add a question
+            </Button>
           </Link>
-          <Button 
-            Button style={{backgroundColor: "#494ca2", color:"white"}}
-            as={Link} 
-            to={`/quizzes/${this.props.id}/questions/${this.props.id}`} 
+          
+          <Link
+          to={`/api/quizzes/${this.props.id}/questions`}
+          
+          >
+            <Button 
+            style={{backgroundColor: "#494ca2", color:"white"}}
+            id = {this.props.id}
             >  
-            View
-          </Button>
+              View
+            </Button>
+            </Link>
+         
           <Button 
             Button style={{backgroundColor: "#494ca2", color:"white"}} 
             onClick={this.toggleEdit}> 
@@ -65,14 +76,6 @@ class Quiz extends React.Component {
       </Segment>
     )
   }
-};
-
-const styles = {
-  segment: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
 };
 
 const ConnectedQuiz = (props) => (
