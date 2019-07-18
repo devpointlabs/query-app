@@ -64,6 +64,7 @@ const TakeQuiz = (props) => {
           return <StudentChoiceForm id={props.match.params.id}
            submission_id={props.match.params.submission_id}
            question_id={c.id}
+           correct_answer={c.correct_answer}
             push={props.history.push}/>
           } else {
             return null
