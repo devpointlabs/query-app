@@ -56,19 +56,18 @@ const ShowStudentCorrectAnswer = (props) => {
         {console.log("child component", props.answer.submission_id)}
 
         <Card.Group>
-            <Card>
-
-
+          <Card>
             <Card.Content>question: {props.answer.name}</Card.Content>
-
                 <Card.Content>{props.auth.user.role == 'teacher'
                                             ? 
                 "your Grade" : "Teachers grade:"} {renderGrade()} 
                 </Card.Content>
                     <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
             <hr />
-                        <Card.Content>Student: {props.answer.user_name}</Card.Content>
-                            <Card.Content>{props.auth.user.role == 'teacher' ? `${props.answer.user_name}'s ` : "Your "}answer: {props.answer.answer}</Card.Content>
+                        
+                        <Card.Content>{props.auth.user.role == 'teacher' ? `${props.answer.user_name}'s `
+                         : 
+                         "Your "} answer:  {props.answer.answer}</Card.Content>
             
                 {teacherButtons()}
             </Card>
