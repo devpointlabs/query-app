@@ -51,10 +51,13 @@ class Quiz extends React.Component {
           </Link>
           
           <Link
-          to={`/api/quizzes/${this.props.quiz_id}/questions`}
+          to={`/api/quizzes/${this.props.id}/questions`}
+          
           >
             <Button 
-            style={{backgroundColor: "#494ca2", color:"white"}}>  
+            style={{backgroundColor: "#494ca2", color:"white"}}
+            id = {this.props.id}
+            >  
               View
             </Button>
             </Link>

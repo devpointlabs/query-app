@@ -63,7 +63,7 @@ const TeacherShowQuizzes = (props) => {
         <Container> 
           <Card.Group itemsPerRow={2}>
           { quizzes.map( quiz => (
-              <Card>
+              <Card key={quiz.id} >
                 <Card.Content>
                  <Card.Header> 
                    <div>
@@ -74,8 +74,7 @@ const TeacherShowQuizzes = (props) => {
                 <Card.Content extra>
                   <br />
                   <Quiz 
-                    key={quiz.id}
-                    quiz_id={quiz.id}
+                    id={quiz.id}
                     editQuiz={editQuiz}
                     deleteQuiz={deleteQuiz}
       

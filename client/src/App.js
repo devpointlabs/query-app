@@ -39,7 +39,7 @@ const App = () => (
           <ProtectedRoute exact path="/api/quizzes" component={TeacherShowQuizzes} />
           <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
           <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
-          <ProtectedRoute exact path="/api/quizzes/:quiz_id/questions" component={ShowQuestion} />
+          <ProtectedRoute exact path="/api/quizzes/:id/questions" component={ShowQuestion} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
