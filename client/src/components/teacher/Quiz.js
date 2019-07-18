@@ -13,7 +13,7 @@ class Quiz extends React.Component {
     this.setState({ editing: !this.state.editing, });
   };
 
-
+ 
 
 
   render() {
