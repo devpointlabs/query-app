@@ -45,7 +45,7 @@ const ShowAnswer = (props, id) => {
     let params = { correct: grade, comment: comment, submission_id: sub_id }
     
     axios.put(`/api/questions/${id}/choices/${choice_id}`, params)
-    .then( window.onload = timedRefresh(250))
+    
 
   }
 
