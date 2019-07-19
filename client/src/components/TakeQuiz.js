@@ -97,7 +97,7 @@ const TakeQuiz = (props) => {
            <Container>
             <Segment>
               <Card>
-              <Card.Content>Question {question[number]}</Card.Content>
+              <Card.Content>Question {number + 1} of {questions.length}</Card.Content>
                 {<Question c={question}  next={next} /> }
                 
                 </Card>
@@ -120,15 +120,20 @@ const TakeQuiz = (props) => {
                                   {questionByType(c)}
                       
                   </Card.Content>
-                    <Button 
+                  <Card.Content>
+                    Your answer: {c.correct_answer}
+                  </Card.Content>
+                  
+
+                    {/* <Button 
                       style={{backgroundColor: "#7e6bc4", color: "white",}} 
-                      onClick={toggleClick}
+                      // onClick={toggleClick}
                       // onClick={showQuestion}
                       >
-                      {toggle == true ? "Close" : "Answer"}
+                      {/* {toggle == true ? "Close" : "Answer"} */}
                       
                     
-                    </Button>
+                    {/* </Button> */} 
                   { props.auth.user.role == 'teacher' ?
                       <Button  color="red" icon="trash" onClick={() => handleDelete(c.id)}></Button>
                   : null }
@@ -168,7 +173,9 @@ const TakeQuiz = (props) => {
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
         <Button>Grade Answers</Button>
       </Link>
-     
+      <Button basic color='violet'
+          as={Link} 
+          to={"/"} > Back</Button>
       
     {renderQuestions()}
       {console.log(questions)}

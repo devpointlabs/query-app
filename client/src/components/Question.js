@@ -27,7 +27,7 @@ render() {
     <>
    
 <Card.Content>
-<Card.Header>Question: {this.props.name} </Card.Header>
+<Card.Header>Question: {c.name} </Card.Header>
 
 </Card.Content>
 
