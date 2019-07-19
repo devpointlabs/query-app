@@ -73,13 +73,17 @@ const TakeQuiz = (props) => {
 
          if (c.question_type == "true false" ) {
           
-          return <> <Card.Content>true or false{c.correct_answer}</Card.Content> </>
+          return <> <Card.Content>True or False{c.correct_answer}</Card.Content> </>
         } 
         else if (c.question_type == "fill in the blank") {
-         return  <> <Card.Content>fill in the blanc</Card.Content> </>
+
+          return <Card.Header>Fill In The Blank</Card.Header>
+         
         }
         else if (c.question_type == "multiple choice") {
-          return  <>
+
+          return  <> <Card.Header>Multiple Choice.</Card.Header>
+
                     <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
                     <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
                     <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
@@ -125,7 +129,7 @@ const TakeQuiz = (props) => {
                   <Card>
                   <Card.Content>
                       <Card.Header>Question: {c.name} </Card.Header>
-                      <Card.Header>{c.question_type} </Card.Header>
+                     
                                   {questionByType(c)}
                       
                   </Card.Content>

@@ -108,7 +108,7 @@ useEffect(() => {
 
 
       {props.auth.user.role === 'student' ?
-      <ShowQuizzes  push={props.history.push} />
+      <ShowQuizzes ids={ids} { ...props} push={props.history.push} />
       : null}
 
       {props.auth.user.role=== 'teacher' ? 
