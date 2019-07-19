@@ -34,7 +34,8 @@ const TakeQuiz = (props) => {
       .then( res => {
           setQuestions(res.data)
           setQuestion(res.data[0])
-          console.log(res.data[0])
+          setAnswers(res.data[0])
+          // console.log(res.data[0])
       })
   }, [])
 
@@ -92,7 +93,7 @@ const TakeQuiz = (props) => {
         }
       
      
-      const renderQuestions = () => {
+      const renderQuestions = (id) => {
         if (questions.length > number && props.auth.user.role == 'student') {
         return (
           <>
@@ -100,8 +101,14 @@ const TakeQuiz = (props) => {
             <Segment>
               <Card>
               <Card.Content>Question {number + 1} of {questions.length}</Card.Content>
-                {<Question c={question}  next={next} /> }
-                
+                {<Question
+                   c={question}  
+                   next={next}
+                   question_id = {id}
+                   submission_id = {props.match.params.submission_id}
+                   push = {props.history.push}
+
+                   /> }
                 </Card>
             </Segment>
           </Container>

@@ -21,7 +21,7 @@ const StudentChoiceForm = (props) => {
             props.auth.autoGrade(props.question_id, res.data.id, res.data.answer, props.correct_answer)
          })
          alert("Answer Submitted")
-         props.push('/')
+         props.next()
          
     }
     // axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
