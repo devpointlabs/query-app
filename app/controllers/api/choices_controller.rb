@@ -55,4 +55,3 @@ class Api::ChoicesController < ApplicationController
     params.require(:choice).permit(:answer, :correct, :comment, :submission_id) 
   end
 end
-
