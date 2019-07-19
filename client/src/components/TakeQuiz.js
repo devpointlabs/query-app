@@ -20,11 +20,13 @@ const TakeQuiz = (props) => {
     const [toggle, setToggle] = useState(false)
     const [number, setNumber] = useState(0)
     const [question, setQuestion] = useState([])
+    const [answers, setAnswers] = useState([])
 
   const next = () => {
     let index = number
   setNumber(index + 1)
   setQuestion(questions[index + 1])
+
   }
 
     useEffect( () => {  
@@ -121,7 +123,7 @@ const TakeQuiz = (props) => {
                       
                   </Card.Content>
                   <Card.Content>
-                    Your answer: {c.correct_answer}
+                    Your answer: {c.answer}
                   </Card.Content>
                   
 
@@ -159,6 +161,10 @@ const TakeQuiz = (props) => {
           ))
         }
       }
+
+      const allAnswered = (c) => {
+        
+      }
     
     return (
       <>
@@ -170,15 +176,18 @@ const TakeQuiz = (props) => {
         null  
       }
       
-        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
-        <Button>Grade Answers</Button>
-      </Link>
       <Button basic color='violet'
           as={Link} 
           to={"/"} > Back</Button>
+
+        <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
+        <Button>Grade Answers</Button>
+      </Link>
+      
+      { }
       
     {renderQuestions()}
-      {console.log(questions)}
+      {/* {console.log(questions)} */}
     
         </>
     )
