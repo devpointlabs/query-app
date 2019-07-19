@@ -30,11 +30,15 @@ class MainForm extends React.Component {
     return (
       <>
         <br />
-        <div className="center-screen">
+        {
+          this.state.editing ?
+        // <div className="center-screen">
       <Button basic color='violet'
           as={Link} 
           to={"/"} > Back</Button>
-          
+          :
+            <br />
+        }
       <br />
        <br />
        <br />
@@ -57,7 +61,7 @@ class MainForm extends React.Component {
 
       </Form>
       </Grid>
-      </div>
+      {/* </div> */}
       </>
     )
   }

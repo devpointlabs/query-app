@@ -20,11 +20,13 @@ const TakeQuiz = (props) => {
     const [toggle, setToggle] = useState(false)
     const [number, setNumber] = useState(0)
     const [question, setQuestion] = useState([])
+    const [answers, setAnswers] = useState([])
 
   const next = () => {
     let index = number
   setNumber(index + 1)
   setQuestion(questions[index + 1])
+
   }
 
     useEffect( () => {  
@@ -32,7 +34,8 @@ const TakeQuiz = (props) => {
       .then( res => {
           setQuestions(res.data)
           setQuestion(res.data[0])
-          console.log(res.data[0])
+          setAnswers(res.data[0])
+          // console.log(res.data[0])
       })
   }, [])
 
@@ -57,6 +60,7 @@ const TakeQuiz = (props) => {
           return <StudentChoiceForm id={props.match.params.id}
            submission_id={props.match.params.submission_id}
            question_id={c.id}
+           correct_answer={c.correct_answer}
             push={props.history.push}/>
           } else {
             return null
@@ -69,13 +73,17 @@ const TakeQuiz = (props) => {
 
          if (c.question_type == "true false" ) {
           
-          return <> <Card.Content>true or false{c.correct_answer}</Card.Content> </>
+          return <> <Card.Content>True or False{c.correct_answer}</Card.Content> </>
         } 
         else if (c.question_type == "fill in the blank") {
-         return  <> <Card.Content>fill in the blanc</Card.Content> </>
+
+          return <Card.Header>Fill In The Blank</Card.Header>
+         
         }
         else if (c.question_type == "multiple choice") {
-          return  <>
+
+          return  <> <Card.Header>Multiple Choice.</Card.Header>
+
                     <Card.Content>A:" " {c.answerA == "" ? c.correct_answer : c.answerA}</Card.Content>
                     <Card.Content>B:" " {c.answerB ==  "" ? c.correct_answer : c.answerB} </Card.Content>
                     <Card.Content>C:" " {c.answerC ==  "" ? c.correct_answer : c.answerC}</Card.Content>
@@ -89,16 +97,22 @@ const TakeQuiz = (props) => {
         }
       
      
-      const renderQuestions = () => {
+      const renderQuestions = (id) => {
         if (questions.length > number && props.auth.user.role == 'student') {
         return (
           <>
            <Container>
             <Segment>
               <Card>
-              <Card.Content>Question {question[number]}</Card.Content>
-                {<Question c={question}  next={next} /> }
-                
+              <Card.Content>Question {number + 1} of {questions.length}</Card.Content>
+                {<Question
+                   c={question}  
+                   next={next}
+                   question_id = {id}
+                   submission_id = {props.match.params.submission_id}
+                   push = {props.history.push}
+
+                   /> }
                 </Card>
             </Segment>
           </Container>
@@ -115,19 +129,24 @@ const TakeQuiz = (props) => {
                   <Card>
                   <Card.Content>
                       <Card.Header>Question: {c.name} </Card.Header>
-                      <Card.Header>{c.question_type} </Card.Header>
+                     
                                   {questionByType(c)}
                       
                   </Card.Content>
-                    <Button 
+                  <Card.Content>
+                    Your answer: {c.answer}
+                  </Card.Content>
+                  
+
+                    {/* <Button 
                       style={{backgroundColor: "#7e6bc4", color: "white",}} 
-                      onClick={toggleClick}
+                      // onClick={toggleClick}
                       // onClick={showQuestion}
                       >
-                      {toggle == true ? "Close" : "Answer"}
+                      {/* {toggle == true ? "Close" : "Answer"} */}
                       
                     
-                    </Button>
+                    {/* </Button> */} 
                   { props.auth.user.role == 'teacher' ?
                       <Button  color="red" icon="trash" onClick={() => handleDelete(c.id)}></Button>
                   : null }
@@ -153,6 +172,10 @@ const TakeQuiz = (props) => {
           ))
         }
       }
+
+      const allAnswered = (c) => {
+        
+      }
     
     return (
       <>
@@ -164,13 +187,18 @@ const TakeQuiz = (props) => {
         null  
       }
       
+      <Button basic color='violet'
+          as={Link} 
+          to={"/"} > Back</Button>
+
         <Link textAlign="center" to={`/quizzes/${props.match.params.id}/show_answer`}>
         <Button>Grade Answers</Button>
       </Link>
-     
+      
+      { }
       
     {renderQuestions()}
-      {console.log(questions)}
+      {/* {console.log(questions)} */}
     
         </>
     )

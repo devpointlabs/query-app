@@ -3,6 +3,7 @@ import { Form, Button, } from "semantic-ui-react";
 import axios from 'axios';
 import ShowAnswer from './teacher/ShowAnswer';
 import { Link, } from 'react-router-dom';
+import { AuthConsumer } from "../providers/AuthProvider"
 
 
 const StudentChoiceForm = (props) => {
@@ -15,8 +16,13 @@ const StudentChoiceForm = (props) => {
     console.log(answer)
         e.preventDefault()
          axios.post(`/api/questions/${props.question_id}/submission/${props.submission_id}/choices`, {answer})
+         .then( res => {
+             debugger
+            props.auth.autoGrade(props.question_id, res.data.id, res.data.answer, props.correct_answer)
+         })
          alert("Answer Submitted")
-         props.push('/')
+         props.next()
+         
     }
     // axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
     //       .then( res => { 
@@ -31,8 +37,7 @@ const StudentChoiceForm = (props) => {
 
     return (
         <>
-     
-       
+           
         
         <Form>
             <Form.Input 
@@ -42,10 +47,26 @@ const StudentChoiceForm = (props) => {
             />
             <Button onClick={handleSubmit} style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Button>
           
-        </Form>
+        </Form> 
 
         </>
     )
-}
+    }
 
-export default StudentChoiceForm;
+             const ConnectedStudentChoiceForm  = (props) => ( 
+    
+       
+            <AuthConsumer>
+                { 
+                 auth =>  
+                 <StudentChoiceForm { ...props } 
+                 auth={auth} 
+                 /> 
+                 }
+            </AuthConsumer>
+       
+   
+)
+
+
+export default ConnectedStudentChoiceForm

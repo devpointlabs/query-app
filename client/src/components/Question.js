@@ -1,6 +1,8 @@
 import React from "react"
 import {Card, Button, Form,} from "semantic-ui-react"
 import axios from "axios"
+import StudentChoiceForm from "./StudentChoiceForm"
+
 
 class Question extends React.Component {
 state = {answer: ""}
@@ -27,7 +29,7 @@ render() {
     <>
    
 <Card.Content>
-<Card.Header>Question: {this.props.name} </Card.Header>
+<Card.Header>Question: {c.name} </Card.Header>
 
 </Card.Content>
 
@@ -41,17 +43,14 @@ onClick={this.props.toggleClick}
 
 </Button> */}
 
-<Form>
-            <Form.Input 
-                placeholder="answer"
-                value={this.answer}
-                onChange={this.handleChange.bind(this)}
-            />
-            <Button onClick={this.handleSubmit.bind(this)} style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Button>
-         
-        </Form>
 
 <Button onClick={this.props.next} >Next</Button>
+ < StudentChoiceForm 
+  question_id = {this.props.c.id}
+  submission_id = {this.props.submission_id}
+  push = {this.props.push}
+  next = {this.props.next}
+ />
  </>
   )
 }

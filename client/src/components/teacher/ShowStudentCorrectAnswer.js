@@ -5,28 +5,25 @@ import { Card, Button, Form,} from "semantic-ui-react"
 
 
 
+
 const ShowStudentCorrectAnswer = (props) => {
     const [grade, setGrade] = useState(false)
-    const [toggleSubmit, setToggleSubmit] = useState(false)
+    // const [toggleSubmit, setToggleSubmit] = useState(false)
     const [toggleForm, setToggleForm] = useState(false)
     const [teacherComment, setTeacherComment] = useState('')
+
+
+    useEffect( () => {
+        setTeacherComment(props.answer.comment)
+        setGrade(props.answer.correct)
+    }, [props])
+    
+
     
     const useToggle = () => {
         setToggleForm(!toggleForm)
       }
-
-    //   const handleComment = (e) => {
-    //       e.preventDefault()
-    //       debugger
-    //     axios.put(`/api/quizzes/${props.match.params.quiz_id}/questions/${props.answer.question_id}`, { wrong_answers: teacherComment, })
-    //   }
-
-
-      const handleComment = (e) => {
-        e.preventDefault()
-        axios.put(`/api/questions/${props.answer.question_id}`)
-        
-    }
+  
 
 
       const handleCommentChange = (e) => {
@@ -48,52 +45,58 @@ const ShowStudentCorrectAnswer = (props) => {
          
       }
 
-  
+      const renderGrade = () => {
+        if (grade == true) {
+            return "Correct"
+        } else if (grade == false) {
+            return "Wrong"
+        } else {
+            return "Not Graded"
+        }
+    }
 
-        
-   
-    
 
         const makeGrade = () => {
             setGrade(!grade)
             
         }
 
+        const sendAutoGrade = (e) => {
+            debugger
+            e.preventDefault()
+            props.autoGrade(props.answer.question_id, props.answer.choice_id, props.answer.correct_answer, props.answer.answer)
+        }
+
+
+
       const handleSubmit = (e) => {
           e.preventDefault()
 
           props.sendGrade(grade, teacherComment, props.answer.question_id, props.answer.choice_id, props.answer.submission_id)
-
+          
            
         } 
-        const changeSubmit = () => {
-            setToggleSubmit(!toggleSubmit)
-        }    
+        // const changeSubmit = () => {
+        //     setToggleSubmit(!toggleSubmit)
+        // }    
 
-        const renderGrade = () => {
-            if (props.answer.correct == true) {
-                return "Correct"
-            } else if (props.answer.correct == false) {
-                return "Wrong"
-            } else {
-                return "Not Graded"
-            }
-        }
+     
 
         const teacherButtons = () => {
             if ( props.auth.user.role == 'teacher') {
 
                return <>
-                <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
-               <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
-                <Button onClick={useToggle}>{toggleForm == true ? "Close" : "Add Comment"}</Button>
-                <Button onClick={handleSubmit} >Submit</Button>
+                        <Card.Meta>{grade == false ? "marked wrong" : "marked correct" }</Card.Meta>
+                         <Button onClick={makeGrade}>{grade == false ? "Wrong" : "Correct" }</Button>
+                        <Button onClick={handleSubmit} >Submit</Button>
+                        <Button onClick={useToggle}>{toggleForm == true ? "Close" : "Add Comment"}</Button>
                 </>
             }
         }
 
-        // write switch for students to have the correct answers on the null value of state 
-        // give teachers the ability to give students feedback
+      
+
+  
         // tell students how many write and wrong answers per test 
         // 
 
@@ -109,8 +112,8 @@ const ShowStudentCorrectAnswer = (props) => {
                 "your Grade" : "Teachers grade:"} {renderGrade()} 
                 </Card.Content>
                     <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
-                    <Card.Content>Teachers notes: {props.auth.user.role == 'student' ? props.answer.comment : "no comments"} 
-                    {/* { props.auth.user.role == 'teacher' ? props.answer.comment : 'add a comment' } */}
+                    <Card.Content>Teachers notes: { teacherComment === null ? "No Comment" : teacherComment} 
+                    
                     </Card.Content>
             <hr />
                         

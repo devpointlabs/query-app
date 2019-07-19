@@ -24,24 +24,28 @@ const ShowAnswer = (props, id) => {
 
 
 
-  // might have to pass question id as props
+
    
 
-   const renderForm = () => {
-
-   }
 
   function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);",timeoutPeriod);
   }
   
+  const autoGrade = (id, choice_id, correct) => {
   
+    if (props.answer.answer === props.answer.correct_answer) {
+        axios.put(`/api/questions/${id}/choices/${choice_id}`, { correct: true, }) 
+    } else {
+      return null
+    }
+  }
   
   const sendGrade = (grade, comment, id, choice_id, sub_id) => {
     let params = { correct: grade, comment: comment, submission_id: sub_id }
     
     axios.put(`/api/questions/${id}/choices/${choice_id}`, params)
-    .then( window.onload = timedRefresh(250))
+    
 
   }
 
@@ -49,7 +53,7 @@ const ShowAnswer = (props, id) => {
 
       return answers.map( answer => ( 
         
-        <ShowStudentCorrectAnswer sendGrade={sendGrade}  answer={answer} { ...props} key={id} />
+        <ShowStudentCorrectAnswer sendGrade={sendGrade} autoGrade={autoGrade} answer={answer} { ...props} key={id} />
         )
         ) 
       }
@@ -69,7 +73,7 @@ const ShowAnswer = (props, id) => {
           {renderAnswer()}
           
           
-          {console.log("something")}
+          {console.log(answers)}
          
           
             
