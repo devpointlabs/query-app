@@ -8,9 +8,17 @@ import { Card, Button, Form,} from "semantic-ui-react"
 
 const ShowStudentCorrectAnswer = (props) => {
     const [grade, setGrade] = useState(false)
-    const [toggleSubmit, setToggleSubmit] = useState(false)
+    // const [toggleSubmit, setToggleSubmit] = useState(false)
     const [toggleForm, setToggleForm] = useState(false)
     const [teacherComment, setTeacherComment] = useState('')
+
+
+    useEffect( () => {
+        setTeacherComment(props.answer.comment)
+        setGrade(props.answer.correct)
+    }, [props])
+    
+
     
     const useToggle = () => {
         setToggleForm(!toggleForm)
@@ -38,9 +46,9 @@ const ShowStudentCorrectAnswer = (props) => {
       }
 
       const renderGrade = () => {
-        if (props.answer.correct == true) {
+        if (grade == true) {
             return "Correct"
-        } else if (props.answer.correct == false) {
+        } else if (grade == false) {
             return "Wrong"
         } else {
             return "Not Graded"
@@ -68,9 +76,9 @@ const ShowStudentCorrectAnswer = (props) => {
           
            
         } 
-        const changeSubmit = () => {
-            setToggleSubmit(!toggleSubmit)
-        }    
+        // const changeSubmit = () => {
+        //     setToggleSubmit(!toggleSubmit)
+        // }    
 
      
 
@@ -104,7 +112,7 @@ const ShowStudentCorrectAnswer = (props) => {
                 "your Grade" : "Teachers grade:"} {renderGrade()} 
                 </Card.Content>
                     <Card.Content>Correct answer: {props.answer.correct_answer}</Card.Content>
-                    <Card.Content>Teachers notes: { props.answer.comment == null ?  "no comments" : props.answer.comment} 
+                    <Card.Content>Teachers notes: { teacherComment === null ? "No Comment" : teacherComment} 
                     
                     </Card.Content>
             <hr />
