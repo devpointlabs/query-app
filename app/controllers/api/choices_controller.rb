@@ -1,18 +1,18 @@
 class Api::ChoicesController < ApplicationController
-  before_action :authenticate_user!
+
   before_action :set_question
   before_action :set_choice, only: [:show, :update]
-  
+
 
   def index
     @choices = @question.choices.all
     render json: @choices
   end
 
-  def show 
+  def show
   end
-  
-  def new 
+
+  def new
     @choice = Choice.new
   end
 
@@ -21,11 +21,11 @@ class Api::ChoicesController < ApplicationController
     submission = Submission.find(params[:submission_id])
     choice.submission_id = submission.id
     if choice.save
-      
+
       render json: choice
     else
       render json: choice.errors, status: 422
-    end 
+    end
   end
 
   def update
@@ -41,7 +41,7 @@ class Api::ChoicesController < ApplicationController
     @choice.destroy
   end
 
-  private 
+  private
 
   def set_choice
     @choice = Choice.find(params[:id])
@@ -52,7 +52,6 @@ class Api::ChoicesController < ApplicationController
   end
 
   def choice_params
-    params.require(:choice).permit(:answer, :correct, :comment, :submission_id) 
+    params.require(:choice).permit(:answer, :correct, :comment, :submission_id)
   end
 end
-

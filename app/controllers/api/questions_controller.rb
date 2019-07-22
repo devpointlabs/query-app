@@ -1,5 +1,5 @@
 class Api::QuestionsController < ApplicationController
-  before_action :authenticate_user!
+
   before_action :set_quiz
   before_action :set_question, only: [:show, :update, :destroy]
   def index
@@ -13,17 +13,17 @@ class Api::QuestionsController < ApplicationController
 
   def create
      question = @quiz.questions.new(question_params)
-     if question.save 
-      
-      render json: question 
-     else 
-      
+     if question.save
+
+      render json: question
+     else
+
       render json: question.errors, status: 422
      end
   end
 
   def update
-  
+
     if question.update(question_params) #this could be wrong
       render json: question
     else
@@ -36,7 +36,7 @@ class Api::QuestionsController < ApplicationController
     render json: @question
   end
 
-  private 
+  private
   def set_question
     @question = @quiz.questions.find(params[:id])
   end
@@ -44,7 +44,7 @@ class Api::QuestionsController < ApplicationController
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
   end
-  
+
   def question_params
     params.require(:question).permit(:name, :answerA, :answerB, :answerC, :answerD,  :correct_answer, :wrong_answers, :question_type, :quiz_id )
   end

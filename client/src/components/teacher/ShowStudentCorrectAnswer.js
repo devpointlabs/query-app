@@ -62,7 +62,7 @@ const ShowStudentCorrectAnswer = (props) => {
         }
 
         const sendAutoGrade = (e) => {
-            debugger
+          
             e.preventDefault()
             props.autoGrade(props.answer.question_id, props.answer.choice_id, props.answer.correct_answer, props.answer.answer)
         }
@@ -73,7 +73,7 @@ const ShowStudentCorrectAnswer = (props) => {
           e.preventDefault()
 
           props.sendGrade(grade, teacherComment, props.answer.question_id, props.answer.choice_id, props.answer.submission_id)
-          
+          alert(`grade submitted as ${grade}, and you sent the comment: ${teacherComment} to ${props.answer.user_name}`)
            
         } 
         // const changeSubmit = () => {

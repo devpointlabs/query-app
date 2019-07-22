@@ -31,15 +31,15 @@ const App = () => (
     <FetchUser>
       <Container>
         <Switch>
-          <ProtectedRoute exact path="/quizzes/:id/submissions/:submission_id" component={TakeQuiz} />
+          <Route exact path="/quizzes/:id/submissions/:submission_id" component={TakeQuiz} />
           <AdminRoute exact path="/quizzes/:id/question_form" component={QuestionForm} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/quizzes/:quiz_id/show_answer" component={ShowAnswer} />
-          <ProtectedRoute exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
-          <ProtectedRoute exact path="/api/quizzes" component={TeacherShowQuizzes} />
-          <ProtectedRoute exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
-          <ProtectedRoute exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
-          <ProtectedRoute exact path="/api/quizzes/:id/questions" component={ShowQuestion} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/quizzes/:quiz_id/show_answer" component={ShowAnswer} />
+          <Route exact path="/questions/:id/show_teacher_answer" component={ShowTeacherChoices} />
+          <Route exact path="/api/quizzes" component={TeacherShowQuizzes} />
+          <Route exact path="/api/quizzes/:id/questions/edit" component={EditQuestion} />
+          <Route exact path="/choice/:choice_id/submission_choices" component={SubmissionChoices} />
+          <Route exact path="/api/quizzes/:id/questions" component={ShowQuestion} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/quizzes/:id/choice" component={Choice} />
@@ -54,4 +54,3 @@ const App = () => (
 )
 
 export default App;
-
