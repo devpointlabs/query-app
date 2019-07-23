@@ -1,5 +1,5 @@
 import React from "react"
-import {Card, Button, Form,} from "semantic-ui-react"
+import { Grid, } from "semantic-ui-react"
 import axios from "axios"
 import StudentChoiceForm from "./StudentChoiceForm"
 
@@ -28,29 +28,18 @@ render() {
   return(
     <>
    
-<Card.Content>
-<Card.Header>Question: {c.name} </Card.Header>
 
-</Card.Content>
+<Grid.Row><b>Question: &nbsp;</b>{c.name}</Grid.Row>
 
-{/* <Button 
-style={{backgroundColor: "#7e6bc4", color: "white",}} 
-onClick={this.props.toggleClick}
-// onClick={showQuestion}
->
-{this.props.toggle == true ? "Close" : "Answer"}
-
-
-</Button> */}
-
-
-<Button onClick={this.props.next} >Next</Button>
+ <Grid.Row>
  < StudentChoiceForm 
   question_id = {this.props.c.id}
   submission_id = {this.props.submission_id}
   push = {this.props.push}
   next = {this.props.next}
  />
+ </Grid.Row>
+ 
  </>
   )
 }

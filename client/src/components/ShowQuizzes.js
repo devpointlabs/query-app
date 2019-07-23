@@ -54,7 +54,7 @@ const ShowQuizzes = (props) => {
             <Button class="ui icon button" color="red" icon="trash" onClick={() => handleDelete(quiz.id)}></Button>
             : 
             
-            <Link textAlign="center" to={`/quizzes/${props.id}/show_answer`}>
+            <Link textAlign="center" to={`/quizzes/${quiz.id}/show_answer`}>
             <Button>Grade Answers</Button>
           </Link>
             

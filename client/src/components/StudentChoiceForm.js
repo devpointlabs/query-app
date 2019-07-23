@@ -1,5 +1,5 @@
 import React, {useState, useEffect, } from 'react';
-import { Form, Button, } from "semantic-ui-react";
+import { Form, Button, Grid, } from "semantic-ui-react";
 import axios from 'axios';
 import ShowAnswer from './teacher/ShowAnswer';
 import { Link, } from 'react-router-dom';
@@ -22,6 +22,7 @@ const StudentChoiceForm = (props) => {
          })
          alert("Answer Submitted")
          props.next()
+         setAnswer("")
          
     }
     // axios.post(`/api/quizzes/${id}/submissions`, {user_id: props.auth.user.id, quiz_id: id})
@@ -38,17 +39,23 @@ const StudentChoiceForm = (props) => {
     return (
         <>
            
-        
+        <Grid >
+            
         <Form>
+        <Grid.Row>
+            <h5>Type your answer below:</h5>
             <Form.Input 
                 placeholder="answer"
                 value={answer}
                 onChange={handleChange}
             />
-            <Button onClick={handleSubmit} style={{backgroundColor: "#2d248a", color: "white",}}>Submit</Button>
-          
+            </Grid.Row>
+            <Grid.Row>
+            <br />
+            <Button onClick={handleSubmit} style={{backgroundColor: "#2d248a", color: "white",}} >Submit</Button>
+            </Grid.Row>
         </Form> 
-
+        </Grid>
         </>
     )
     }
